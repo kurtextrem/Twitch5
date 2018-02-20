@@ -8210,17 +8210,6 @@ function ЗавершитьРаботу(лБыстро)
 			return;
 		}
 
-		if (navigator.userAgent.indexOf('Gecko/') === -1)
-		{
-			м_Отладка.ЗавершитьРаботуИПоказатьСообщение('J0204');
-		}
-		// https://bugzilla.mozilla.org/show_bug.cgi?id=1389821
-		// Firefox 56+ не запускает расширение в родительском процессе.
-		if (navigator.userAgent.indexOf('Firefox/55') !== -1)
-		{
-			м_Отладка.ЗавершитьРаботуИПоказатьСообщение('J0213');
-		}
-
 		м_i18n.TranslatePage(document);
 		
 		const оКанал = ВыделитьКанал(window.location);
