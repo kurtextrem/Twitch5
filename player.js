@@ -6182,7 +6182,7 @@ const м_Проигрыватель = (function()
 			return false;
 		}
 		Проверить(_oMediaElement.networkState === HTMLMediaElement.NETWORK_NO_SOURCE);
-		_oMediaElement.pause();
+		//_oMediaElement.pause();
 		_oMediaElement.src = URL.createObjectURL(_oMediaSource);
 		return true;
 	}
