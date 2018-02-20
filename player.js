@@ -87,7 +87,7 @@ const ПРАВАЯ_СТОРОНА                  = 2;
 const НИЖНЯЯ_СТОРОНА                  = 3;
 const ЛЕВАЯ_СТОРОНА                   = 4;
 
-const ЗАСТРЕВАЕТ_СЕГМЕНТОВ_В_РАБОЧЕМ_ПОТОКЕ = 0; // Все версии Firefox и Edge.
+const ЗАСТРЕВАЕТ_СЕГМЕНТОВ_В_РАБОЧЕМ_ПОТОКЕ = /Chrome\/[5-9][0-9]/.test(navigator.userAgent) ? 0 : 1; // Chrome 49-
 
 const ЭТО_ПЛАНШЕТ = navigator.userAgent.includes('Android') && navigator.userAgent.includes('Tablet');
 
