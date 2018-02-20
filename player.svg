@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24">
+	<!--
+		HACK Chrome 63 не любит кириллицу в <use xlink:href> сука.
+		https://bugs.chromium.org/p/chromium/issues/detail?id=779420
+	-->
+	<defs>
+		<style>
+			g {display: none}
+			g:target {display: inline}
+		</style>
+		<linearGradient id="_gradient" gradientTransform="rotate(90)">
+			<stop offset="25%"  stop-color="#fff"/>
+			<stop offset="100%" stop-color="#bbb"/>
+		</linearGradient>
+		<filter id="_shadow">
+			<feOffset in="SourceAlpha" dx="0" dy="2"/>
+			<feComponentTransfer>
+				<feFuncA type="linear" slope="0.4"/>
+			</feComponentTransfer>
+			<feMerge>
+				<feMergeNode/>
+				<feMergeNode in="SourceGraphic"/>
+			</feMerge>
+		</filter>
+	</defs>
+	<g id="select">
+		<path fill="#333333" d="M6 9l6 7 6-7z"/>
+	</g>
+	<!--
+		HACK Edge 16: C дробным rem фоновое изображение может быть обрезано,
+		поэтому не растягиваем изображение на всю площадь viewBox.
+		https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/4705340/
+		HACK Edge 16: Чтобы изображение не было замылено, нужно из <svg> удалить атрибуты
+		width и height и указать background-size: auto.
+	-->
+	<g id="radio0">
+		<!--
+			Author: Keyamoon
+			Source: http://keyamoon.com
+			License: GPL or CC BY 4.0
+		-->
+		<path id="_radio0" fill="url(#_gradient)" filter="url(#_shadow)" d="M12 2c-5.5 0-10 4.5-10 10s4.5 10 10 10 10-4.5 10-10-4.5-10-10-10zM12 19.5c-4.167 0-7.5-3.333-7.5-7.5s3.333-7.5 7.5-7.5c4.167 0 7.5 3.333 7.5 7.5s-3.333 7.5-7.5 7.5z"/>
+	</g>
+	<g id="radio1">
+		<use xlink:href="#_radio0"/>
+		<circle cx="12" cy="12" r="4" fill="#fff"/>
+	</g>
+</svg>

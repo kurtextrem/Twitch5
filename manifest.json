@@ -1,0 +1,45 @@
+{
+	"manifest_version": 2,
+	"minimum_chrome_version": "43",
+	"name": "Twitch 5",
+	"version": "2018.2.17",
+	"description": "__MSG_M0001__",
+	"author": "Alexander Choporov (CoolCmd)",
+	"icons":
+	{
+		 "16": "icon16.png",
+		 "32": "icon32.png",
+		 "48": "icon48.png",
+		"128": "icon128.png"
+	},
+	"default_locale": "en",
+	"incognito": "split",
+	"permissions":
+	[
+		"storage",
+		"system.memory",
+		"system.cpu",
+		"management",
+		"*://*.twitch.tv/*",
+		"*://twitch.tv/*",
+		"*://*.ttvnw.net/*"
+	],
+	"web_accessible_resources":
+	[
+		"player.html"
+	],
+	"content_scripts":
+	[{
+		"matches":
+		[
+			"https://www.twitch.tv/*",
+			"https://m.twitch.tv/*"
+		],
+		"js":
+		[
+			"content.js"
+		],
+		"all_frames": true,
+		"run_at": "document_start"
+	}]
+}

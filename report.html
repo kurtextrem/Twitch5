@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html dir="ltr">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title></title>
+	<link rel="stylesheet" href="common.css"/>
+	<link rel="stylesheet" href="report.css"/>
+</head>
+<body>
+	<form id="отладка-сообщение" hidden="">
+		<p id="отладка-текстсообщения"></p>
+	</form>
+	<form id="отладка-отзыв" hidden="">
+		<h3 data-i18n="F0700"></h3>
+		<p data-i18n="F0724"></p>
+		<p data-i18n="F0723"></p>
+		<p data-i18n="F0701"></p>
+		<p>
+			<label for="отладка-отзыв-сообщение" data-i18n="F0702"></label>
+			<textarea id="отладка-отзыв-сообщение" name="отладка-сообщение" rows="6" minlength="4" maxlength="10000" spellcheck="true" required="" autofocus=""></textarea>
+		</p>
+		<p>
+			<label for="отладка-отзыв-почта" data-i18n="F0703"></label>
+			<input id="отладка-отзыв-почта" name="отладка-почта" type="email" maxlength="254" spellcheck="false"/>
+		</p>
+		<p>
+			<span data-i18n="F0704"></span>
+			<label for="отладка-отзыв-показатьотчет" class="отладка-ссылкакнопка" data-i18n="F0705"></label>.
+			<input id="отладка-отзыв-показатьотчет" type="checkbox" hidden=""/>
+			<textarea name="отладка-отчет" rows="15" spellcheck="false" required="" readonly=""></textarea>
+			<a href="http://coolcmd.tk/tw5/privacy.html" target="_blank" data-i18n="F0706"></a>.
+		</p>
+		<p>
+			<input name="отладка-типданных" type="hidden" value="отзыв"/>
+			<button type="submit" data-i18n="F0707"></button>
+			&#8194;
+			<button type="reset" data-i18n="F0718"></button>
+		</p>
+	</form>
+	<form id="отладка-ошибка" hidden="">
+		<h3 data-i18n="F0708"></h3>
+		<p data-i18n="F0709"></p>
+		<p data-i18n="F0710"></p>
+		<p>
+			<span data-i18n="F0712"></span>
+			<label for="отладка-ошибка-показатьотчет" class="отладка-ссылкакнопка" data-i18n="F0705"></label>.
+			<input id="отладка-ошибка-показатьотчет" type="checkbox" hidden=""/>
+			<textarea name="отладка-отчет" rows="15" spellcheck="false" required="" readonly=""></textarea>
+			<a href="http://coolcmd.tk/tw5/privacy.html" target="_blank" data-i18n="F0706"></a>.
+		</p>
+		<p>
+			<label for="отладка-ошибка-сообщение" data-i18n="F0715"></label>
+			<textarea id="отладка-ошибка-сообщение" name="отладка-сообщение" rows="3" maxlength="10000" spellcheck="true"></textarea>
+		</p>
+		<p>
+			<label for="отладка-ошибка-почта" data-i18n="F0703"></label>
+			<input id="отладка-ошибка-почта" name="отладка-почта" type="email" maxlength="254" spellcheck="false"/>
+		</p>
+		<p>
+			<input name="отладка-типданных" type="hidden" value="ошибка"/>
+			<button type="submit" autofocus="" data-i18n="F0707"></button>
+		</p>
+	</form>
+	<form id="отладка-идетотправка" hidden="">
+		<p>
+			<span data-i18n="F0717"></span>
+			&#8194;
+			<progress id="отладка-ходотправки"></progress>
+		</p>
+		<button type="submit" autofocus="" data-i18n="F0718"></button>
+	</form>
+	<form id="отладка-сбойотправки" hidden="">
+		<p data-i18n="F0719"></p>
+		<button type="submit" autofocus="" data-i18n="F0720"></button>
+		&#8194;
+		<button type="reset" data-i18n="F0718"></button>
+	</form>
+</body>
+</html>

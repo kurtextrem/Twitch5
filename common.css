@@ -1,0 +1,55 @@
+@charset "UTF-8";
+*
+{
+	box-sizing: border-box;
+}
+*[hidden]
+{
+	display: none !important;
+}
+b
+{
+	font-weight: bolder; /* Chrome 57 */
+}
+input,
+button,
+select,
+textarea
+{
+	font-size: inherit;
+	font-family: inherit;
+}
+html,
+body
+{
+	width:  100%;
+	height: 100%;
+	margin:  0;
+	padding: 0;
+}
+iframe[src="report.html"]
+{
+	position: fixed;
+	top:  0;
+	left: 0;
+	width:  100%;
+	height: 100%;
+	z-index: 10000;
+	border: 0;
+}
+/*
+ * <svg><symbol id="s"><path/></symbol></svg>
+ * <button><svg><use href="s"/></svg></button>
+ * MouseEvent.target:
+ *   Firefox 55: button
+ *   Chrome 61:  svg или use
+ *   Edge 15:    svg или use
+ *   Edge 16:    svg или symbol > path
+ * Вариант Edge 16 не позволяет использовать один обработчик для нескольких кнопок.
+ * Этот стиль заставляет все браузеры посылать событие в button.
+ */
+button > svg,
+button > span
+{
+	pointer-events: none;
+}
