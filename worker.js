@@ -155,7 +155,7 @@ function AsmJS(оБиблиотека, оИмпорт, буфКуча)
 // Чтобы этого избежать, не добавляем 'use asm'. Скорость SearchStartCodePrefix() не падает, потому что в Chrome
 // нет полноценного AOT-компилятора asm.js.
 {
-	'use asm';
+	//'use asm'; @TODO
 
 	var _мбКуча = new оБиблиотека.Uint8Array(буфКуча);
 
