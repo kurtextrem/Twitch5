@@ -934,14 +934,32 @@ const м_Отладка = (function()
 
 	function ОбнюхатьОперативку(фВызвать)
 	{
-		// Firefox 55 и Edge 15 не поддерживают browser.system.
-		фВызвать();
+		try
+		{
+			chrome.system.memory.getInfo(function(оОперативка)
+			{
+				фВызвать(chrome.runtime.lastError ? undefined : оОперативка);
+			});
+		}
+		catch (и)
+		{
+			фВызвать();
+		}
 	}
 
 	function ОбнюхатьПроцессор(фВызвать)
 	{
-		// Firefox 55 и Edge 15 не поддерживают browser.system.
-		фВызвать();
+		try
+		{
+			chrome.system.cpu.getInfo(function(оПроцессор)
+			{
+				фВызвать(chrome.runtime.lastError ? undefined : оПроцессор);
+			});
+		}
+		catch (и)
+		{
+			фВызвать();
+		}
 	}
 
 	function ОбнюхатьВидюху()

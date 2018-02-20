@@ -33,6 +33,7 @@
 		"matches":
 		[
 			"https://www.twitch.tv/*",
+			"https://go.twitch.tv/*",
 			"https://m.twitch.tv/*"
 		],
 		"js":
