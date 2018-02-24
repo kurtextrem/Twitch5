@@ -1,8 +1,9 @@
 {
 	"manifest_version": 2,
 	"minimum_chrome_version": "43",
-	"name": "Twitch 5",
-	"version": "2018.2.17",
+	"name": "Improved Player for Twitch",
+	"short_name": "Twitch 5",
+	"version": "2018.2.20",
 	"description": "__MSG_M0001__",
 	"author": "Alexander Choporov (CoolCmd)",
 	"icons":

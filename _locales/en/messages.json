@@ -770,6 +770,10 @@
 	{
 		"message": "<b>If you have problems with the <cite>Twitch 5</cite> extension, first read the help. To do this, click the <q>?</q> button in the player's settings.</b> If this does not help, use this form to send feedback to the developer of the extension."
 	},
+	"F0725":
+	{
+		"message": "I recommend doing this, because in most cases the information provided by users is not enough."
+	},
 	"F1000":
 	{
 		"message": "<p>Browser extension <cite>Twitch 5</cite> was developed by <cite>Alexander Choporov AKA CoolCmd</cite> in the free time. Extension is free. If you liked it, then you can thank the developer by donating him some money. Donation will also serve as a great motivation to continue the extension development.</p><p>To make a donation, click <a href='http://coolcmd.tk/tw5/donate.html' target='_blank'>this link</a> or open player settings and click the <q>Donate</q> button.</p>",
