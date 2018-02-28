@@ -1,5 +1,20 @@
 @namespace xlink "http://www.w3.org/1999/xlink";
 
+html { font-size: 1px; }
+body {
+	font-family:
+		-apple-system,
+		BlinkMacSystemFont,
+		'Segoe UI',
+		Roboto,
+		Helvetica,
+		Arial,
+		sans-serif,
+		'Apple Color Emoji',
+		'Segoe UI Emoji',
+		'Segoe UI Symbol';
+}
+
 /*************************************/
 /*	ЭЛЕМЕНТЫ УПРАВЛЕНИЯ
 /*************************************/
@@ -195,19 +210,20 @@ input:checked + .радио
 	cursor: auto;
 	background: linear-gradient(45deg, transparent 50%, rgba({{сЦветГрадиента}}, .2)),
 		rgba({{сЦветФона}}, {{чНепрозрачностьОкна}});
-	visibility: hidden;
-	opacity: .1;
-	transform: scaleY(0);
+	display: none;
 }
 .окно.открыто
 {
-	visibility: visible;
-	opacity: 1;
-	transform: none;
+	display: block;
+	animation: open .15s ease-out;
 }
-.санимацией .окно
-{
-	transition: all .15s ease-out;
+@-webkit-keyframes open {
+	0% { opacity: 0; transform: scaleY(0); }
+	100% { opacity: 1; transform: none; }
+}
+@keyframes open {
+	0% { opacity: 0; transform: scaleY(0); }
+	100% { opacity: 1; transform: none; }
 }
 
 /*************************************/
@@ -229,13 +245,18 @@ body
 	align-items: stretch;
 	/* Не показывать прокрутку если перетаскиваемый absolutely positioned element вылезет за пределы проигрывателя */
 	overflow: hidden;
-	font: bold 12rem/1.5 Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 12rem;
+	line-height: 1.5;
 	white-space: nowrap;
 	color: rgb({{сЦветКнопок}});
 	fill: currentColor;
 	text-shadow: 0 1rem 1rem #333;
 	background: inherit;
 	-moz-user-select: none;
+}
+#проигрыватель:hover > .панель {
+	will-change: opacity;
 }
 .чатвнизу #проигрывательичат
 {
@@ -398,7 +419,7 @@ a:hover
 	contain: strict;
 	position: absolute; /* Chrome 59- */
 	height: 100%;
-	max-width: 100%;
+	width: 100%;
 	z-index: 1;
 	object-fit: scale-down;
 }
@@ -452,7 +473,7 @@ body[data-состояние="8"]:not(.автоскрытие) #глаз
 	contain: strict;
 	position: absolute;
 	left: 0;
-	max-width: 100%;
+	width: 100%;
 	height: 10rem;
 	padding: 0 8rem;
 	display: flex;
@@ -466,10 +487,16 @@ body[data-состояние="8"]:not(.автоскрытие) #глаз
 		rgba({{сЦветГрадиента}}, .2) 60%,
 		rgba({{сЦветГрадиента}},  0) 90%),
 		rgba({{сЦветФона}}, {{чНепрозрачность}});
+	-webkit-animation: fadeIn .3s ease-out;
+	animation: fadeIn .3s ease-out;
 }
-.санимацией:not(.панель-безанимации) .панель
-{
-	transition: all .3s ease-out;
+@-webkit-keyframes fadeIn {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
+}
+@keyframes fadeIn {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
 }
 .верхняя
 {
@@ -483,7 +510,7 @@ body[data-состояние="8"]:not(.автоскрытие) #глаз
 {
 	/* Увеличить размер элемента чтобы упростить нажатие на сенсорном экране */
 	height: 100%;
-	padding: 0 8rem;
+	padding: 0 15px;
 	display: flex;
 	align-items: center;
 }
@@ -538,8 +565,6 @@ body[data-состояние="8"]:not(.автоскрытие) #глаз
 }
 #громкость
 {
-	flex: 0 .9 120rem;
-	min-width: 70rem;
 	/* Edge 16: В -ms-track единица измерения rem ссылается на <input> вместо <html> */
 	font-size: 1rem;
 	color: inherit;
@@ -612,10 +637,7 @@ body[data-состояние="8"]:not(.автоскрытие) #глаз
 }
 .автоскрытие:not([data-состояние="3"]):not([data-состояние="7"]):not([data-открытоеокно]) .панель
 {
-	/* Чтобы transition не мешал менять cursor */
-	pointer-events: none;
-	opacity: 0;
-	visibility: hidden;
+	display: none;
 }
 body[data-состояние="6"]:not(.проверкацвета) .крутилка,
 body[data-состояние="8"]:not(.проверкацвета) .крутилка,
@@ -650,7 +672,6 @@ body.проверкацветафон #проигрыватель
 #шкала
 {
 	flex: 1 1 400rem;
-	min-width: 150rem;
 	cursor: pointer;
 }
 .шкала-фон

@@ -1,7 +1,7 @@
-﻿
-
-
+﻿(function(window){
 'use strict';
+
+var document = window.document
 
 // Формат версии: https://developer.chrome.com/extensions/manifest/version
 // В моем случае это UTC-дата выкладывания данной версии для скачивания.
@@ -89,7 +89,7 @@ const ЛЕВАЯ_СТОРОНА                   = 4;
 
 const ЗАСТРЕВАЕТ_СЕГМЕНТОВ_В_РАБОЧЕМ_ПОТОКЕ = /Chrome\/[5-9][0-9]/.test(navigator.userAgent) ? 0 : 1; // Chrome 49-
 
-const ЭТО_ПЛАНШЕТ = navigator.userAgent.includes('Android') && navigator.userAgent.includes('Tablet');
+//const ЭТО_ПЛАНШЕТ = navigator.userAgent.includes('Android') && navigator.userAgent.includes('Tablet');
 
 var г_лРаботаЗавершена = false;
 var г_моОчередь = [];
@@ -1895,8 +1895,8 @@ const м_Настройки = (() =>
 		чШиринаПанелиЧата:                   Настройка.СоздатьДиапазон(340, 100, МАКС_ЗНАЧЕНИЕ_НАСТРОЙКИ),
 		                                     // CSS пикселы. Минимальный размер задается в player.css.
 		чВысотаПанелиЧата:                   Настройка.СоздатьДиапазон(390, 100, МАКС_ЗНАЧЕНИЕ_НАСТРОЙКИ),
-		чРазмерИнтерфейса:                   Настройка.СоздатьДиапазон(ЭТО_ПЛАНШЕТ ? 115 : 100, 50, 200),
-		лАнимацияИнтерфейса:                 Настройка.Создать(!ЭТО_ПЛАНШЕТ),
+		чРазмерИнтерфейса:                   Настройка.СоздатьДиапазон(100, 50, 200),
+		лАнимацияИнтерфейса:                 Настройка.Создать(true),
 		лМенятьГромкостьКолесом:             Настройка.Создать(true),
 		лПоказатьСтатистику:                 Настройка.Создать(false),
 		//
@@ -3789,7 +3789,9 @@ const м_Управление = (() =>
 		// Автоскрытие включено?
 		if (_чТаймерАвтоскрытия === 0)
 		{
-			document.body.classList.remove('автоскрытие', 'панель-безанимации');
+			window.requestAnimationFrame(function() {
+				document.body.classList.remove('автоскрытие', 'панель-безанимации');
+			})
 		}
 		else
 		{
@@ -3805,8 +3807,10 @@ const м_Управление = (() =>
 		{
 			clearTimeout(_чТаймерАвтоскрытия);
 			_чТаймерАвтоскрытия = 0;
-			document.body.classList.add('автоскрытие');
-			document.body.classList.toggle('панель-безанимации', лБезАнимации);
+			window.requestAnimationFrame(function() {
+				document.body.classList.add('автоскрытие');
+				document.body.classList.toggle('панель-безанимации', лБезАнимации);
+			})
 			if (лБезАнимации)
 			{
 				// Не реагировать на небольшие движения мыши.
@@ -3949,7 +3953,7 @@ const м_Управление = (() =>
 
 	function ИзменитьРазмерИнтерфейса()
 	{
-		document.documentElement.style.fontSize = `${м_Настройки.Получить('чРазмерИнтерфейса') / 100}px`;
+		//document.documentElement.style.fontSize = `${м_Настройки.Получить('чРазмерИнтерфейса') / 100}px`;
 	}
 
 	function ИзменитьАнимациюИнтерфейса()
@@ -8237,3 +8241,4 @@ function ЗавершитьРаботу(лБыстро)
 		м_Отладка.ПойманоИсключение(пИсключение);
 	}
 })();
+})(window);
