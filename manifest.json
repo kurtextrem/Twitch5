@@ -5,7 +5,7 @@
 	"short_name": "Twitch 5",
 	"version": "2018.2.20",
 	"description": "__MSG_M0001__",
-	"author": "Alexander Choporov (CoolCmd)",
+	"author": "Alexander Choporov (CoolCmd), Jacob Groß",
 	"icons":
 	{
 		 "16": "icon16.png",
