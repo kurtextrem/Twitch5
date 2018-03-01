@@ -95,7 +95,7 @@ var г_лРаботаЗавершена = false;
 var г_моОчередь = [];
 
 // Chrome 48-, Edge 15
-if (!window.URLSearchParams)
+if (window.URLSearchParams === undefined)
 {
 	window.URLSearchParams = function(сПараметры)
 	{
@@ -139,17 +139,17 @@ if (!window.URLSearchParams)
 }
 
 // Chrome 50-
-if (!NodeList.prototype[Symbol.iterator])
+if (NodeList.prototype[Symbol.iterator] === undefined)
 {
 	NodeList.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 }
-if (!HTMLCollection.prototype[Symbol.iterator])
+if (HTMLCollection.prototype[Symbol.iterator] === undefined)
 {
 	HTMLCollection.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 }
 
 // Chrome 59, Firefox 54
-if (!window.setImmediate)
+if (window.setImmediate === undefined)
 // Для моих целей пока достаточно setTimeout().
 {
 	window.setImmediate = function(фВызвать)

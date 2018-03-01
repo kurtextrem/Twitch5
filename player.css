@@ -141,10 +141,10 @@ input:checked + .радио
 .меню
 {
 	margin: 0;
-	border: 1rem solid #979797;
-	padding: 2rem;
+	border: 1em solid #979797;
+	padding: 2em;
 	background: #f0f0f0;
-	box-shadow: inset 0 0 2rem 1rem #fff, 0 2rem 3rem rgba(0, 0, 0, .3);
+	box-shadow: inset 0 0 2em 1em #fff, 0 2em 3em rgba(0, 0, 0, .3);
 	cursor: default;
 	list-style: none;
 	-moz-user-select: none;
@@ -156,8 +156,8 @@ input:checked + .радио
 .пунктменю
 {
 	margin: 0;
-	border: 1rem solid transparent;
-	padding: 2rem 6rem;
+	border: 1em solid transparent;
+	padding: 2em 6em;
 	font-weight: normal;
 	text-shadow: none;
 	color: #888;
@@ -169,15 +169,15 @@ input:checked + .радио
 .пунктменю[tabindex]:hover
 {
 	border-color: #aecff7;
-	border-radius: 2rem;
+	border-radius: 2em;
 	background: linear-gradient(to bottom, #f2f9ff, #d6eaf9);
-	box-shadow: inset 0 0 1rem 1rem rgba(255, 255, 255, .4);
+	box-shadow: inset 0 0 1em 1em rgba(255, 255, 255, .4);
 }
 .разделительменю
 {
-	margin: 3rem 0;
-	border-top: 1rem solid #e0e0e0;
-	border-bottom: 1rem solid #fff;
+	margin: 3em 0;
+	border-top: 1em solid #e0e0e0;
+	border-bottom: 1em solid #fff;
 	pointer-events: none;
 }
 
@@ -205,7 +205,7 @@ input:checked + .радио
 .окно
 {
 	position: absolute;
-	padding: 10rem;
+	padding: 10em;
 	z-index: 3;
 	cursor: auto;
 	background: linear-gradient(45deg, transparent 50%, rgba({{сЦветГрадиента}}, .2)),
@@ -237,6 +237,7 @@ input:checked + .радио
 body
 {
 	background: #000;
+	font-size: 1px;
 }
 #проигрывательичат
 {
@@ -251,7 +252,7 @@ body
 	white-space: nowrap;
 	color: rgb({{сЦветКнопок}});
 	fill: currentColor;
-	text-shadow: 0 1rem 1rem #333;
+	text-shadow: 0 1em 1em #333;
 	background: inherit;
 	-moz-user-select: none;
 }
@@ -282,9 +283,9 @@ body
 {
 	contain: strict;
 	/* flex-basis == margin */
-	flex: 0 0 16rem;
+	flex: 0 0 16em;
 	/* margin-left <= ОТСТУП_ОКНА */
-	margin: 0 -8rem;
+	margin: 0 -8em;
 	/* Прозрачная часть висит над панелью и чатом */
 	z-index: 5;
 	cursor: pointer;
@@ -292,28 +293,28 @@ body
 		rgba({{сЦветФона}}, {{чНепрозрачность}}),
 		rgba({{сЦветКнопок}}, {{чНепрозрачность}}),
 		rgba({{сЦветФона}}, {{чНепрозрачность}}))
-		center 0% / 2rem 100% no-repeat;
+		center 0% / 2em 100% no-repeat;
 	opacity: 0;
 }
 .чатвнизу #размерчата
 {
 	/* Оставить место между #размерчата и кнопками панели чтобы не промахнуться */
-	margin: -4rem 0 -12rem;
+	margin: -4em 0 -12em;
 	background: linear-gradient(to right,
 		rgba({{сЦветФона}}, {{чНепрозрачность}}),
 		rgba({{сЦветКнопок}}, {{чНепрозрачность}}),
 		rgba({{сЦветФона}}, {{чНепрозрачность}}))
-		0% 3rem / 100% 2rem no-repeat;
+		0% 3em / 100% 2em no-repeat;
 }
 .чатвверху #размерчата
 {
 	/* Оставить место между #размерчата и кнопками панели чтобы не промахнуться */
-	margin: -12rem 0 -4rem;
+	margin: -12em 0 -4em;
 	background: linear-gradient(to right,
 		rgba({{сЦветФона}}, {{чНепрозрачность}}),
 		rgba({{сЦветКнопок}}, {{чНепрозрачность}}),
 		rgba({{сЦветФона}}, {{чНепрозрачность}}))
-		0% 11rem / 100% 2rem no-repeat;
+		0% 11em / 100% 2em no-repeat;
 }
 #размерчата:hover,
 #размерчата.js-тащилка-элемент
@@ -396,7 +397,7 @@ body:not(.показатьчат) #чат
 }
 hr
 {
-	border-width: 1rem 0 0;
+	border-width: 1em 0 0;
 	border-style: solid;
 	border-image: linear-gradient(to right, transparent, rgb({{сЦветЗаголовка}}), transparent) 1;
 }
@@ -435,27 +436,27 @@ body[data-состояние="8"]:not(.автоскрытие) #глаз
 	right: 0;
 	bottom: 0;
 	margin: auto;
-	width: 86rem;
-	height: 86rem;
+	width: 86em;
+	height: 86em;
 	border-radius: 8%;
-	padding: 11rem;
+	padding: 11em;
 	background: rgba({{сЦветФона}}, {{чНепрозрачностьОкна}});
-	box-shadow: inset 0 10rem 10rem rgba({{сЦветГрадиента}}, .2), inset 0 -10rem 15rem hsla(0, 0%, 0%, .25);
+	box-shadow: inset 0 10em 10em rgba({{сЦветГрадиента}}, .2), inset 0 -10em 15em hsla(0, 0%, 0%, .25);
 	pointer-events: none;
 }
 #пропуск
 {
 	position: absolute;
-	top: calc(20rem + 40rem);
-	right: calc(20rem + 40rem);
-	width: 64rem;
-	height: 64rem;
-	border: 2rem solid hsla(0, 0%, 100%, .8);
+	top: calc(20em + 40em);
+	right: calc(20em + 40em);
+	width: 64em;
+	height: 64em;
+	border: 2em solid hsla(0, 0%, 100%, .8);
 	border-radius: 8%;
-	padding: 7rem;
+	padding: 7em;
 	fill: hsl(0, 0%, 100%);
 	background: hsl(0, 100%, 50%);
-	box-shadow: 0 0 10rem hsla(0, 0%, 0%, .4);
+	box-shadow: 0 0 10em hsla(0, 0%, 0%, .4);
 	pointer-events: none;
 	display: none;
 }
@@ -474,13 +475,13 @@ body[data-состояние="8"]:not(.автоскрытие) #глаз
 	position: absolute;
 	left: 0;
 	width: 100%;
-	height: 10rem;
-	padding: 0 8rem;
+	height: 6em;
+	padding: 0 6em;
 	display: flex;
 	align-items: center;
 	z-index: 99999;
 	cursor: auto;
-	font-size: 15rem;
+	font-size: 14rem;
 	background: linear-gradient(to right,
 		rgba({{сЦветГрадиента}},  0) 10%,
 		rgba({{сЦветГрадиента}}, .2) 40%,
@@ -510,7 +511,7 @@ body[data-состояние="8"]:not(.автоскрытие) #глаз
 {
 	/* Увеличить размер элемента чтобы упростить нажатие на сенсорном экране */
 	height: 100%;
-	padding: 0 15px;
+	padding: 0 1em;
 	display: flex;
 	align-items: center;
 }
@@ -525,12 +526,12 @@ body[data-состояние="8"]:not(.автоскрытие) #глаз
 }
 .санимацией .можнотыкать:not(:disabled):hover
 {
-	        filter: drop-shadow(0 0 3rem rgb({{сЦветВыделения}})) drop-shadow(0 0 1rem rgba({{сЦветВыделения}}, .7));
+	        filter: drop-shadow(0 0 3em rgb({{сЦветВыделения}})) drop-shadow(0 0 1em rgba({{сЦветВыделения}}, .7));
 	text-shadow: none;
 }
 .группаэлементов
 {
-	flex: 0 1.8 60rem;
+	flex: 0 1.8 60em;
 }
 .кнопка
 {
@@ -541,8 +542,8 @@ body[data-состояние="8"]:not(.автоскрытие) #глаз
 }
 .кнопка > svg
 {
-	width: 5rem;
-	height: 5rem;
+	width: 3em;
+	height: 3em;
 }
 /* Применить анимацию к svg, чтобы можно было нажимать на края кнопки */
 .кнопка:enabled:active > svg
@@ -551,7 +552,7 @@ body[data-состояние="8"]:not(.автоскрытие) #глаз
 }
 .санимацией .кнопка > svg
 {
-	/* HACK Chrome 64, Firefox 58: Без этой строки и с дробным rem, окончание анимации может потерять плавность */
+	/* HACK Chrome 64, Firefox 58: Без этой строки и с дробным em, окончание анимации может потерять плавность */
 	transform: scale(1.0001);
 	transition: transform .3s;
 }
@@ -565,26 +566,26 @@ body[data-состояние="8"]:not(.автоскрытие) #глаз
 }
 #громкость
 {
-	/* Edge 16: В -ms-track единица измерения rem ссылается на <input> вместо <html> */
+	/* Edge 16: В -ms-track единица измерения em ссылается на <input> вместо <html> */
 	font-size: 1rem;
 	color: inherit;
 	background: transparent !important;
 }
 #громкость::-moz-range-track
 {
-	height: 6rem;
+	height: 6em;
 	border: 0;
-	border-radius: 1rem;
+	border-radius: 1em;
 	background: currentColor;
 }
 #громкость::-moz-range-thumb
 {
-	width: 8rem;
-	height: 18rem;
+	width: 8em;
+	height: 18em;
 	border: 0;
-	border-radius: 2rem;
+	border-radius: 2em;
 	background: linear-gradient(to bottom, hsla(0, 0%, 0%, 0), hsla(0, 0%, 0%, .25)), currentColor;
-	box-shadow: 0 0 2rem hsla(0, 0%, 0%, .7);
+	box-shadow: 0 0 2em hsla(0, 0%, 0%, .7);
 }
 .позиция
 {
@@ -598,8 +599,8 @@ body[data-состояние="8"]:not(.автоскрытие) #глаз
 	 * Если растянуть элемент на всю высоту панели, то выпадающий список будет оторван от элемента.
 	 * Кроме того, горизонтальные поля придется задавать пробелами.
 	 */
-	height: 24rem;
-	margin: 0 8rem;
+	height: 24em;
+	margin: 0 8em;
 	/*
 	 * Firefox 59: Минимальная ширина выпадающего списка = content-box + ширина полосы прокрутки, даже
 	 * когда она не видна. Горизонтальное поле на 4 пиксела больше указанного.
@@ -617,7 +618,7 @@ body[data-состояние="8"]:not(.автоскрытие) #глаз
 #названиеигры > a
 {
 	/* Увеличение высоты и центровка по вертикали */
-	line-height: 20rem;
+	line-height: 20em;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	text-decoration: none;
@@ -671,13 +672,13 @@ body.проверкацветафон #проигрыватель
 
 #шкала
 {
-	flex: 1 1 400rem;
+	flex: 1 1 400em;
 	cursor: pointer;
 }
 .шкала-фон
 {
 	flex: 1;
-	height: 14rem;
+	height: 14em;
 	background: #000;
 }
 #шкала-просмотрено
@@ -701,7 +702,7 @@ body.проверкацветафон #проигрыватель
 }
 .канал th
 {
-	width: 1rem;
+	width: 1em;
 	padding-right: 1em;
 	font: inherit;
 	text-align: right;
@@ -723,12 +724,12 @@ th.канал-аватар, /* specificity */
 }
 .канал-аватар > img
 {
-	width:  80rem;
-	height: 80rem;
+	width:  80em;
+	height: 80em;
 }
 #канал-имя
 {
-	font-size: 1.2em;
+	font-size: 1.2rem;
 	font-weight: bolder;
 	/* Убрать пустое место сверху */
 	line-height: 1;
@@ -769,8 +770,8 @@ body:not(.авторизован) #зритель-подписка,
 
 .настройки
 {
-	right: 8rem;
-	bottom: calc(40rem + 8rem);
+	right: 8em;
+	bottom: calc(40em + 8em);
 }
 .заголовокнастроек
 {
@@ -779,7 +780,7 @@ body:not(.авторизован) #зритель-подписка,
 	border-radius: .2em;
 	padding: .2em .4em;
 	color: #000;
-	text-shadow: 0 1rem 1rem rgba(50, 50, 50, .15);
+	text-shadow: 0 1em 1em rgba(50, 50, 50, .15);
 	background: rgb({{сЦветКнопок}});
 	cursor: pointer;
 }
@@ -848,7 +849,7 @@ input:not(:checked) + .заголовокнастроек + .группанас�
 {
 	flex: 1.5;
 	text-align: right;
-	background: linear-gradient(to right, hsl(0, 0%, 60%), hsl(0, 0%, 88%) 1rem, #fff 5rem, #fff calc(100% - 5rem), hsl(0, 0%, 88%) calc(100% - 1rem), hsl(0, 0%, 60%));
+	background: linear-gradient(to right, hsl(0, 0%, 60%), hsl(0, 0%, 88%) 1em, #fff 5em, #fff calc(100% - 5em), hsl(0, 0%, 88%) calc(100% - 1em), hsl(0, 0%, 60%));
 }
 .данныенастройки .вводчисла-минус
 {
@@ -862,7 +863,7 @@ input:not(:checked) + .заголовокнастроек + .группанас�
 }
 .настройки hr
 {
-	margin: calc(10rem - .5em) 0 10rem;
+	margin: calc(10em - .5em) 0 10em;
 }
 .кнопкаименю-меню
 {
@@ -896,16 +897,16 @@ input:not(:checked) + .заголовокнастроек + .группанас�
 /* Ширина <= min(.новости:max-width, .новости-текст:max-width). С высотой такой фокус не проходит. */
 .новости
 {
-	max-width: calc(100% - 8rem * 2);
-	right: 8rem;
-	bottom: calc(40rem + 8rem);
+	max-width: calc(100% - 8em * 2);
+	right: 8em;
+	bottom: calc(40em + 8em);
 }
 .новости-текст
 {
 	/* Часть окна должна находиться над кнопкой */
 	min-width: 15em;
 	max-width: 42em;
-	max-height: calc(100vh - 40rem * 2 - 8rem * 2 - 10rem * 2);
+	max-height: calc(100vh - 40em * 2 - 8em * 2 - 10em * 2);
 	overflow: auto;
 	white-space: normal;
 	-moz-user-select: text;
@@ -963,10 +964,10 @@ input:not(:checked) + .заголовокнастроек + .группанас�
 #статистика
 {
 	position: absolute;
-	top: 40rem;
+	top: 40em;
 	left: 0;
 	padding: .5em;
-	font: 12rem/16rem Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font: 12em/16em Arial, "Helvetica Neue", Helvetica, sans-serif;
 	max-width: 100%;
 	overflow: auto;
 	z-index: 1;
@@ -982,7 +983,7 @@ input:not(:checked) + .заголовокнастроек + .группанас�
 #статистика.js-тащилка-элемент
 {
 	z-index: 10;
-	outline: 1rem solid hsl(210, 30%, 40%);
+	outline: 1em solid hsl(210, 30%, 40%);
 }
 #статистика:not(.js-тащилка-элемент):hover
 {
@@ -1003,7 +1004,7 @@ input:not(:checked) + .заголовокнастроек + .группанас�
 }
 #статистика > table > tbody > tr > th
 {
-	border-right: 1rem solid #777;
+	border-right: 1em solid #777;
 	padding: 0 .5em 0 0;
 	font: inherit;
 	text-align: right;
@@ -1024,12 +1025,12 @@ input:not(:checked) + .заголовокнастроек + .группанас�
 }
 .статистика-анализ
 {
-	border-spacing: 1rem 0;
+	border-spacing: 1em 0;
 	text-align: right;
 }
 .статистика-анализ td
 {
-	border: 1rem solid transparent;
+	border: 1em solid transparent;
 	padding: 0;
 }
 .статистика-анализ > tbody > tr:not(:last-child) > td
@@ -1055,7 +1056,7 @@ input:not(:checked) + .заголовокнастроек + .группанас�
 .анализ-история.анализ-история /* specificity */
 {
 	border-color: #777;
-	padding: 0 2rem;
+	padding: 0 2em;
 }
 .анализ-история:not(.статистика-подробно)
 {
