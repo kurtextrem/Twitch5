@@ -3,7 +3,7 @@
 	"minimum_chrome_version": "43",
 	"name": "Improved Player for Twitch",
 	"short_name": "Twitch 5",
-	"version": "2018.2.22",
+	"version": "2018.2.23",
 	"description": "__MSG_M0001__",
 	"author": "Alexander Choporov (CoolCmd), Jacob Groß",
 	"icons":
