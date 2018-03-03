@@ -284,9 +284,9 @@ body
 {
 	contain: strict;
 	/* flex-basis == margin */
-	flex: 0 0 16em;
+	flex: 0 0 3em;
 	/* margin-left <= ОТСТУП_ОКНА */
-	margin: 0 -8em;
+	margin: 0px -1.5em;
 	/* Прозрачная часть висит над панелью и чатом */
 	z-index: 5;
 	cursor: pointer;
@@ -336,7 +336,6 @@ body
 	min-width: 250px;
 	min-height: 260px;
 	border: 0;
-	contain: strict;
 }
 .чатсправа #чат,
 .чатслева #чат
