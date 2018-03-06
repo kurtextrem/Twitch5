@@ -3157,6 +3157,7 @@ const м_Чат = (() =>
 				}
 				ОбновитьПоложениеПанели();
 				document.getElementById('размерчата').insertAdjacentElement('afterend', _узЧат);
+				fitVideo()
 			}
 		}
 		else
@@ -5493,6 +5494,10 @@ const м_Проигрыватель = (() =>
 			case 'volumechange':
 				м_Журнал.Вот(`${сЗапись} volume=${_oMediaElement.volume} muted=${_oMediaElement.muted}`);
 				break;
+
+			case 'canplay':
+				fitVideo()
+				break
 
 			default:
 				м_Журнал.Вот(сЗапись);
@@ -8241,4 +8246,11 @@ function ЗавершитьРаботу(лБыстро)
 		м_Отладка.ПойманоИсключение(пИсключение);
 	}
 })();
+
+function fitVideo() {
+	const video = document.getElementById('глаз')
+	const clientRects = video.getBoundingClientRect()
+	if (video.videoWidth > clientRects.width)
+		video.style.objectFit = 'fill'
+}
 })(window);
