@@ -142,7 +142,7 @@ input:checked + .радио
 {
 	margin: 0;
 	border: 1em solid #979797;
-	padding: 2em;
+	/*padding: 2em;*/
 	background: #f0f0f0;
 	box-shadow: inset 0 0 2em 1em #fff, 0 2em 3em rgba(0, 0, 0, .3);
 	cursor: default;
@@ -205,7 +205,7 @@ input:checked + .радио
 .окно
 {
 	position: absolute;
-	padding: 10em;
+	padding: 5em;
 	z-index: 3;
 	cursor: auto;
 	background: linear-gradient(45deg, transparent 50%, rgba({{сЦветГрадиента}}, .2)),
@@ -475,7 +475,7 @@ body[data-состояние="8"]:not(.автоскрытие) #глаз
 	position: absolute;
 	left: 0;
 	width: 100%;
-	height: 6em;
+	height: 4em;
 	padding: 0 6em;
 	display: flex;
 	align-items: center;
@@ -617,8 +617,8 @@ body[data-состояние="8"]:not(.автоскрытие) #глаз
 #названиетрансляции > a,
 #названиеигры > a
 {
-	/* Увеличение высоты и центровка по вертикали */
-	line-height: 20em;
+	/* Увеличение высоты и центровка по вертикали 
+	line-height: 20em;*/
 	overflow: hidden;
 	text-overflow: ellipsis;
 	text-decoration: none;
@@ -779,7 +779,7 @@ body:not(.авторизован) #зритель-подписка,
 	border-radius: .2em;
 	padding: .2em .4em;
 	color: #000;
-	text-shadow: 0 1em 1em rgba(50, 50, 50, .15);
+	/* text-shadow: 0 1em 1em rgba(50, 50, 50, .15); */
 	background: rgb({{сЦветКнопок}});
 	cursor: pointer;
 }
@@ -867,7 +867,11 @@ input:not(:checked) + .заголовокнастроек + .группанас�
 }
 .кнопкаименю-меню
 {
-	top: -2.5em;
+	left: -6em;
+}
+.кнопкаименю-меню li
+{
+	float: left;
 }
 #переключитьстатистику,
 #открытьсправку
@@ -899,14 +903,14 @@ input:not(:checked) + .заголовокнастроек + .группанас�
 {
 	max-width: calc(100% - 8em * 2);
 	right: 8em;
-	bottom: calc(40em + 8em);
+	bottom: 5em;
 }
 .новости-текст
 {
 	/* Часть окна должна находиться над кнопкой */
 	min-width: 15em;
 	max-width: 42em;
-	max-height: calc(100vh - 40em * 2 - 8em * 2 - 10em * 2);
+	max-height: 75vh;
 	overflow: auto;
 	white-space: normal;
 	-moz-user-select: text;
@@ -964,10 +968,10 @@ input:not(:checked) + .заголовокнастроек + .группанас�
 #статистика
 {
 	position: absolute;
-	top: 40em;
+	top: 5em;
 	left: 0;
 	padding: .5em;
-	font: 12em/16em Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font: inherit;
 	max-width: 100%;
 	overflow: auto;
 	z-index: 1;
