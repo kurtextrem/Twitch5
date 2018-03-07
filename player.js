@@ -3157,7 +3157,6 @@ const м_Чат = (() =>
 				}
 				ОбновитьПоложениеПанели();
 				document.getElementById('размерчата').insertAdjacentElement('afterend', _узЧат);
-				fitVideo()
 			}
 		}
 		else
@@ -3168,6 +3167,7 @@ const м_Чат = (() =>
 				_узЧат = null;
 			}
 		}
+		fitVideo()
 	}
 
 	function ПереключитьПанель()
@@ -8252,5 +8252,7 @@ function fitVideo() {
 	const clientRects = video.getBoundingClientRect()
 	if (video.videoWidth > clientRects.width)
 		video.style.objectFit = 'fill'
+	else
+		video.style.objectFit = 'scale-down'
 }
 })(window);
