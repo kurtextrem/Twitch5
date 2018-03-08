@@ -24,7 +24,7 @@ button,
 select,
 .радио
 {
-	-moz-appearance: none;
+	-webkit-appearance: none;
 	appearance: none;
 	margin: 0;
 	border: 0;
@@ -33,6 +33,8 @@ select,
 	box-shadow: none;
 	color: #000;
 	height: 3.217ex;
+	/* Для .кнопкаименю-тексткнопки */
+	line-height: 3.217ex;
 }
 input[type="color"],
 button
@@ -48,7 +50,8 @@ button:enabled:active
 }
 input[type="color"]
 {
-	padding: .3334em;
+	/* HACK Chrome 64 игнорирует вертикальное поле */
+	padding: 0 3px;
 }
 input[type="color"]:disabled,
 button:disabled,
@@ -62,10 +65,6 @@ select
 	padding: 0 .5em;
 	background: #fff;
 }
-select
-{
-	padding: 0 .1667em;
-}
 input[type="text"]:disabled,
 select:disabled
 {
@@ -75,19 +74,19 @@ select:disabled
 select
 {
 	/* Не меняем background-color */
+	/* background-size: auto, см. комментарий в player.svg */
 	background-image: url("player.svg#select");
-	background-repeat: no-repeat;
 	background-position: right;
-	background-size: 1.42em;
-	padding-right: 1.42em;
+	background-repeat: no-repeat;
+	padding-right: 1.6em;
 }
 .радио
 {
 	display: inline-block;
-	/* Ширина меньше высоты */
-	width: 1.4em;
 	margin: 0 .25em 0 0;
-	/* См. комментарий в player.svg */
+	/* Ширина меньше высоты */
+	width: 1.44em;
+	/* background-size: auto, см. комментарий в player.svg */
 	background: url("player.svg#radio0") center no-repeat;
 }
 input:checked + .радио
@@ -112,12 +111,12 @@ input:checked + .радио
 {
 	width: 100%;
 }
-.кнопкаименю-тексткнопки::after
+.кнопкаименю-тексткнопки
 {
-	content: "\0000A0";
 	display: inline-block;
-	width: 1.42em;
-	background: url("player.svg#select") center / 100% no-repeat;
+	/* background-size: auto, см. комментарий в player.svg */
+	background: url("player.svg#select") right no-repeat;
+	padding-right: 1.6em;
 }
 .кнопкаименю-меню
 {
@@ -147,7 +146,7 @@ input:checked + .радио
 	box-shadow: inset 0 0 2em 1em #fff, 0 2em 3em rgba(0, 0, 0, .3);
 	cursor: default;
 	list-style: none;
-	-moz-user-select: none;
+	-webkit-user-select: none;
 }
 /*
  * Оставить pointer events у disabled пункта, чтобы показать всплывающую подсказку.
@@ -280,6 +279,17 @@ body
 	/* Chrome 59 изменяет фон у :fullscreen */
 	background: inherit;
 }
+/* Chrome 49 */
+#проигрыватель:-webkit-full-screen
+{
+	width: 100%;
+	height: 100%;
+}
+#проигрыватель:fullscreen
+{
+	width: 100%;
+	height: 100%;
+}
 #размерчата
 {
 	contain: strict;
@@ -353,7 +363,7 @@ body:not(.показатьчат) #чат
 	display: none;
 }
 /* В полноэкранном режиме чат не виден, значит и кнопка не нужна */
-*:-moz-full-screen #переключитьчат
+*:-webkit-full-screen #переключитьчат
 {
 	display: none;
 }
@@ -366,12 +376,6 @@ body:not(.показатьчат) #чат
 /*	ПРОИГРЫВАТЕЛЬ
 /*************************************/
 
-::-moz-selection
-{
-	color: #000;
-	background-color: rgb({{сЦветВыделения}});
-	text-shadow: none;
-}
 ::selection
 {
 	color: #000;
@@ -386,11 +390,6 @@ body:not(.показатьчат) #чат
  * TODO Показать рамку если топчут клаву. Edge 15 делает это самостоятельно и даже tooltip показывает.
  * https://chromium.googlesource.com/chromium/src/+/master/ui/webui/resources/js/cr/ui/focus_outline_manager.js
  */
-::-moz-focus-inner,
-::-moz-focus-outer
-{
-	border: 0;
-}
 :focus
 {
 	outline: 0;
@@ -404,7 +403,8 @@ hr
 a
 {
 	color: inherit;
-	-moz-user-select: text;
+	/* Edge 15 не поддерживает auto */
+	-webkit-user-select: text;
 }
 a:hover
 {
@@ -526,7 +526,12 @@ body[data-состояние="8"]:not(.автоскрытие) #глаз
 }
 .санимацией .можнотыкать:not(:disabled):hover
 {
-	        filter: drop-shadow(0 0 3em rgb({{сЦветВыделения}})) drop-shadow(0 0 1em rgba({{сЦветВыделения}}, .7));
+	/*
+	 * HACK Chrome 64 + Windows 7 + аппаратное ускорение: drop-shadow() глючит если размер тени
+	 * равен 3.0001..3.3333 пикселей. Возможно есть и другие глючные значения.
+	 */
+	-webkit-filter: drop-shadow(0 0 3px      rgb({{сЦветВыделения}})) drop-shadow(0 0 1px      rgba({{сЦветВыделения}}, .8));
+	filter:         drop-shadow(0 0 3px      rgb({{сЦветВыделения}})) drop-shadow(0 0 1px      rgba({{сЦветВыделения}}, .8));
 	text-shadow: none;
 }
 .группаэлементов
@@ -552,8 +557,11 @@ body[data-состояние="8"]:not(.автоскрытие) #глаз
 }
 .санимацией .кнопка > svg
 {
-	/* HACK Chrome 64, Firefox 58: Без этой строки и с дробным em, окончание анимации может потерять плавность */
-	transform: scale(1.0001);
+	/*
+	 * HACK Chrome 64, Firefox 58: Без этой строки и с определенными дробными значениями rem, начало
+	 * и окончание анимации может потерять плавность, потому что scale() немного меняет размер элемента.
+	 */
+	transform: scaleX(0.999);
 	transition: transform .3s;
 }
 .санимацией .кнопка:enabled:active > svg
@@ -571,17 +579,18 @@ body[data-состояние="8"]:not(.автоскрытие) #глаз
 	color: inherit;
 	background: transparent !important;
 }
-#громкость::-moz-range-track
+#громкость::-webkit-slider-runnable-track
 {
 	height: 6em;
 	border: 0;
 	border-radius: 1em;
 	background: currentColor;
 }
-#громкость::-moz-range-thumb
+#громкость::-webkit-slider-thumb
 {
 	width: 8em;
 	height: 18em;
+	-webkit-appearance: none;
 	border: 0;
 	border-radius: 2em;
 	background: linear-gradient(to bottom, hsla(0, 0%, 0%, 0), hsla(0, 0%, 0%, .25)), currentColor;
@@ -601,17 +610,6 @@ body[data-состояние="8"]:not(.автоскрытие) #глаз
 	 */
 	height: 24em;
 	margin: 0 8em;
-	/*
-	 * Firefox 59: Минимальная ширина выпадающего списка = content-box + ширина полосы прокрутки, даже
-	 * когда она не видна. Горизонтальное поле на 4 пиксела больше указанного.
-	*/
-	padding: 0 .27em;
-	/*
-	 * HACK Firefox 59: Дробная позиция и drop-shadow() полностью ломают работу <select>. scaleY() обходит
-	 * эту ошибку, добавляя новую, менее неприятную. Приходиться выбирать между двумя сортами говна.
-	 * https://bugzilla.mozilla.org/show_bug.cgi?id=1437275
-	 */
-	transform: scaleY(1);
 	background: rgb({{сЦветКнопок}});
 }
 #названиетрансляции > a,
@@ -631,10 +629,6 @@ body[data-состояние="8"]:not(.автоскрытие) #глаз
 #названиеигры
 {
 	min-width: 6em;
-}
-.автоскрытие:not([data-состояние="3"]):not([data-состояние="7"]):not([data-открытоеокно]) #проигрыватель
-{
-	cursor: none;
 }
 .автоскрытие:not([data-состояние="3"]):not([data-состояние="7"]):not([data-открытоеокно]) .панель
 {
@@ -798,6 +792,7 @@ input:not(:checked) + .заголовокнастроек + .группанас�
 	height: 0;
 	visibility: hidden;
 }
+.санимацией .заголовокнастроек,
 .санимацией .группанастроек
 {
 	transition: all .3s cubic-bezier(.22, .61, .36, 1);
@@ -860,10 +855,6 @@ input:not(:checked) + .заголовокнастроек + .группанас�
 {
 	border-top-left-radius: 0;
 	border-bottom-left-radius: 0;
-}
-.настройки hr
-{
-	
 }
 .кнопкаименю-меню
 {
