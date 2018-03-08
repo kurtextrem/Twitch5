@@ -581,15 +581,15 @@ body[data-состояние="8"]:not(.автоскрытие) #глаз
 }
 #громкость::-webkit-slider-runnable-track
 {
-	height: 6em;
+	height: 5em;
 	border: 0;
 	border-radius: 1em;
 	background: currentColor;
 }
 #громкость::-webkit-slider-thumb
 {
-	width: 8em;
-	height: 18em;
+	width: 2em;
+	height: 5em;
 	-webkit-appearance: none;
 	border: 0;
 	border-radius: 2em;
