@@ -8,11 +8,10 @@
 	<!-- TODO Edge 15 https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/12303393/ -->
 	<link rel="icon" href="player.ico" type="image/x-icon"/>
 	<!-- Chrome 61 не хочет crossorigin, Firefox 57 crossorigin похоже пофигу, Edge 15 не понимает preconnect -->
-	<link rel="dns-prefetch" href="https://api.twitch.tv"  pr="1.0"/>
 	<link rel="preconnect"   href="https://api.twitch.tv"  pr="1.0"/>
-	<link rel="dns-prefetch" href="http://usher.ttvnw.net" pr="0.9"/>
+	<link rel="dns-prefetch" href="https://api.twitch.tv"  pr="1.0"/>
 	<link rel="preconnect"   href="http://usher.ttvnw.net" pr="0.9"/>
-	<link rel="stylesheet"   href="common.css"/>
+	<link rel="dns-prefetch" href="http://usher.ttvnw.net" pr="0.9"/>
 	<style id="стиль">
 		/*
 		 * Не показывать верстку без стилей.
@@ -734,7 +733,8 @@
 		<input id="создатьклип-трансляция" name="broadcast_id" type="hidden" value=""/>
 		<input id="создатьклип-позиция" name="offset" type="hidden" value=""/>
 	</form>
-	<script src="player.js"></script>
-	<script src="news.js"></script>
+	<script src="player_pre.js"></script>
+	<script src="news.js" defer></script>
+	<link rel="stylesheet" href="common.css"/>
 </body>
 </html>
