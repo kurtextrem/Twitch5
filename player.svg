@@ -3,6 +3,10 @@
 		HACK Chrome 63 не любит кириллицу в <use xlink:href> сука.
 		https://bugs.chromium.org/p/chromium/issues/detail?id=779420
 	-->
+	<!--
+		HACK Edge 16: Чтобы изображение не было замылено, нужно из <svg> удалить атрибуты
+		width и height и указать background-size: auto.
+	-->
 	<defs>
 		<style>
 			g {display: none}
@@ -15,7 +19,7 @@
 		<filter id="_shadow">
 			<feOffset in="SourceAlpha" dx="0" dy="2"/>
 			<feComponentTransfer>
-				<feFuncA type="linear" slope="0.4"/>
+				<feFuncA type="linear" slope="0.2"/>
 			</feComponentTransfer>
 			<feMerge>
 				<feMergeNode/>
@@ -30,8 +34,6 @@
 		HACK Edge 16: C дробным rem фоновое изображение может быть обрезано,
 		поэтому не растягиваем изображение на всю площадь viewBox.
 		https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/4705340/
-		HACK Edge 16: Чтобы изображение не было замылено, нужно из <svg> удалить атрибуты
-		width и height и указать background-size: auto.
 	-->
 	<g id="radio0">
 		<!--

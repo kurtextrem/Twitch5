@@ -77,6 +77,35 @@ function GetText(sName)
 }
 
 
+function ЖдатьЗагрузкуДомика()
+{
+	return new Promise(function(фВыполнить, фОтказаться)
+	{
+		Журнал('[Twitch 5] document.readyState=%s', document.readyState);
+		if (document.readyState !== 'loading')
+		{
+			фВыполнить();
+		}
+		else
+		{
+			document.addEventListener('DOMContentLoaded', function ОбработатьЗагрузкуДомика()
+			{
+				try
+				{
+					Журнал('[Twitch 5] document.readyState=%s', document.readyState);
+					document.removeEventListener('DOMContentLoaded', ОбработатьЗагрузкуДомика);
+					фВыполнить();
+				}
+				catch (пИсключение)
+				{
+					фОтказаться(пИсключение);
+				}
+			});
+		}
+	});
+}
+
+
 function ПолучитьСсылкуВКоторойНаходится(узУзел)
 {
 	for (; узУзел; узУзел = узУзел.parentElement)
@@ -289,32 +318,7 @@ function ПеренаправитьНаНашПроигрыватель()
 	document.documentElement.setAttribute('data-tw5-перенаправление', '');
 	const сАдресПроигрывателя = ПолучитьАдресНашегоПроигрывателя(г_сКодКанала);
 	Журнал('[Twitch 5] Меняю адрес страницы с %s на %s', location.href, сАдресПроигрывателя);
-	//
-	// HACK Firefox 52-, Firefox 59: location.replace(moz-extension://) не замещает, а добавляет адрес в историю.
-	// https://bugzilla.mozilla.org/show_bug.cgi?id=1436321
-	//
-	if (navigator.userAgent.indexOf('Firefox/52') === -1 && navigator.userAgent.indexOf('Firefox/59') === -1)
-	{
-		location.replace(сАдресПроигрывателя);
-	}
-	else if (г_сИсторияВкладки === 'добавление')
-	{
-		// Может синхронно вызвать обработчик события popstate.
-		history.back();
-		document.title = 'Twitch';
-		location.assign(сАдресПроигрывателя);
-	}
-	else
-	{
-		ЗапретитьАвтоперенаправлениеЭтойСтраницы();
-		// Между сменой адреса и сменой заголовка может пройти несколько секунд. Если перенаправить до смены заголовка,
-		// то в истории будет заголовок предыдущей страницы. Лучше урезаный заголовок, чем неправильный.
-		if (г_сИсторияВкладки !== 'загрузка')
-		{
-			document.title = 'Twitch';
-		}
-		location.assign(сАдресПроигрывателя);
-	}
+	location.replace(сАдресПроигрывателя);
 }
 
 function ОбработатьЩелчокМыши(оСобытие)
@@ -433,13 +437,13 @@ function ВставитьНашуКнопку()
 			{
 				display: block !important;
 				color: white !important;
-				background: red !important;
+				background: #f00000 !important;
 				pointer-events: auto !important;
 				cursor: pointer !important;
 			}
 			.tw5-справка > .tw-tooltip::after
 			{
-				background: red !important;
+				background: #f00000 !important;
 			}
 		</style>
 		<!-- TODO tw-mg-l-1 tw-svg ... -->
@@ -489,13 +493,13 @@ function ВставитьНашуКнопку()
 				{
 					display: block !important;
 					color: white !important;
-					background: red !important;
+					background: #f00000 !important;
 					pointer-events: auto !important;
 					cursor: pointer !important;
 				}
 				.tw5-справка > .tw-tooltip::after
 				{
-					background: red !important;
+					background: #f00000 !important;
 				}
 			</style>
 			<div class="tw5-автоперенаправление tw-align-self-center tw-flex-grow-0 tw-flex-shrink-0 tw-flex-nowrap tw-pd-x-05 tw-tooltip-wrapper tw-inline-flex">
@@ -547,11 +551,11 @@ function ВставитьНашуКнопку()
 				{
 					display: block !important;
 					color: white !important;
-					background: red !important;
+					background: #f00000 !important;
 				}
 				.tw5-справка .balloon--tooltip::after
 				{
-					background: red !important;
+					background: #f00000 !important;
 				}
 			</style>
 			<li class="tw5-автоперенаправление flex__item">
@@ -655,11 +659,75 @@ function ПерехватитьФункции()
 }
 
 
+function НастроитьЧат()
+{
+	const sPlayerOrigin = chrome.extension.getURL('').slice(0, -1);
+	try
+	{
+		// Кидает исключение если sPlayerOrigin не совпадает с window.top.location.origin.
+		// Например, если чат висит на стороннем сайте.
+		window.top.postMessage('ВставитьСторонниеРасширения?', sPlayerOrigin);
+		// Запрос отослан без ошибок. Добавляем обработку ответа.
+		window.addEventListener('message', function ОбработатьСообщение(оСобытие)
+		{
+			if (оСобытие.source       === window.top
+			&&  оСобытие.origin       === sPlayerOrigin
+			&&  typeof оСобытие.data  === 'object'
+			&&  оСобытие.data         !== null
+			&&  оСобытие.data.сЗапрос === 'ВставитьСторонниеРасширения?')
+			{
+				window.removeEventListener('message', ОбработатьСообщение);
+				if (оСобытие.data.сСторонниеРасширения)
+				{
+					ЖдатьЗагрузкуДомика().then(function()
+					{
+						if (document.head)
+						{
+							Журнал('[Twitch 5] Вставляю сторонние расширения');
+							if (оСобытие.data.сСторонниеРасширения.indexOf('BTTV ') !== -1)
+							{
+								var elScript = document.createElement('script');
+								elScript.setAttribute('src', 'https://cdn.betterttv.net/betterttv.js');
+								document.head.appendChild(elScript);
+							}
+							if (оСобытие.data.сСторонниеРасширения.indexOf('FFZ ') !== -1)
+							{
+								var elScript = document.createElement('script');
+								elScript.setAttribute('src', 'https://cdn.frankerfacez.com/script/script.min.js');
+								document.head.appendChild(elScript);
+							}
+							if (оСобытие.data.сСторонниеРасширения.indexOf('FFZAP ') !== -1)
+							{
+								var elScript = document.createElement('script');
+								elScript.setAttribute('src', 'https://cdn.lordmau5.com/ffz-ap/ffz-ap.min.js');
+								document.head.appendChild(elScript);
+							}
+						}
+					});
+				}
+			}
+		});
+	}
+	catch (пИсключение)
+	{
+		Журнал('[Twitch 5] Поймано исключение во время посылки запроса: %s', пИсключение);
+	}
+}
+
+
 (function()
 {
 	Журнал('[Twitch 5] content.js запущен по адресу', location.href);
 	ИзмененАдресСтраницы('загрузка');
 	if (г_оРазобранныйАдрес.чСтраница === СТРАНИЦА_ЧАТ_КАНАЛА)
+	{
+		if (window.top !== window)
+		{
+			НастроитьЧат();
+		}
+		return;
+	}
+	if (window.top !== window)
 	{
 		return;
 	}

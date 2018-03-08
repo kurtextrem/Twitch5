@@ -65,14 +65,6 @@ input[type="checkbox"]:not(:checked) + [name="отладка-отчет"]
 {
 	white-space: pre-wrap;
 }
-::-moz-selection,
-::-moz-selection,
-::-moz-selection
-{
-	color: #fff;
-	background-color: #1e9628;
-	text-shadow: none;
-}
 ::selection,
 ::selection,
 ::selection
