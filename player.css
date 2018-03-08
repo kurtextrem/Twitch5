@@ -244,8 +244,7 @@ body
 	display: flex;
 	align-items: stretch;
 	/* Не показывать прокрутку если перетаскиваемый absolutely positioned element вылезет за пределы проигрывателя */
-	overflow: visible;
-	contain: paint;
+	overflow: hidden;
 	font-weight: bold;
 	font-size: 12rem;
 	line-height: 1.5;
