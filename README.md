@@ -1,4 +1,12 @@
-# Improved Video Player for Twitch (Twitch 5)
+# Deprecated: Improved Video Player for Twitch (Twitch 5)
+
+**Alexander Choporov (CoolCmd) has returned and the extension is back to the Webstore: https://chrome.google.com/webstore/detail/alternate-player-for-twit/bhplkbgoehhhddaoolmakpocnenplmhf**
+
+**Thus, my development stops from here and I will only update for my own needs.**
+
+----
+
+Old description:
 
 The Twitch 5 extension updated for Chrome, **all credit goes to Alexander Choporov (CoolCmd)**.
 
