@@ -762,5 +762,8 @@
    "M0001": {
       "description": "Краткое описание расширения. Копия этой строки есть в AMO и Windows Store.",
       "message": "Альтернативный проигрыватель прямых трансляций для сайта Twitch.tv."
+   },
+   "J0300": {
+      "message": "В Интернет-магазине Google стало доступно оригинальное расширение “Alternate Player for Twitch.tv” (бывшее “Twitch 5”) по адресу\nhttps://chrome.google.com/webstore/detail/bhplkbgoehhhddaoolmakpocnenplmhf\nПо этой причине расширение “Improved Player for Twitch” больше не поддерживается. Пожалуйста, удалите расширение “Improved Player for Twitch” из вашего браузера и установите “Alternate Player for Twitch.tv”."
    }
 }
