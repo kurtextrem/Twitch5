@@ -88,9 +88,7 @@ const ПРАВАЯ_СТОРОНА                  = 2;
 const НИЖНЯЯ_СТОРОНА                  = 3;
 const ЛЕВАЯ_СТОРОНА                   = 4;
 
-const ЗАСТРЕВАЕТ_СЕГМЕНТОВ_В_РАБОЧЕМ_ПОТОКЕ = /Chrome\/[5-9][0-9]/.test(navigator.userAgent) ? 0 : 1; // Chrome 49-
-
-//const ЭТО_ПЛАНШЕТ = navigator.userAgent.includes('Android') && navigator.userAgent.includes('Tablet');
+const ЗАСТРЕВАЕТ_СЕГМЕНТОВ_В_РАБОЧЕМ_ПОТОКЕ = 0; // Chrome 49-
 
 var г_лРаботаЗавершена = false;
 var г_моОчередь = [];
@@ -137,16 +135,6 @@ if (window.URLSearchParams === undefined)
 		var сЗначение = this._амПараметры.get(String(сИмя));
 		return сЗначение === undefined ? null : сЗначение;
 	};
-}
-
-// Chrome 50-
-if (NodeList.prototype[Symbol.iterator] === undefined)
-{
-	NodeList.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
-}
-if (HTMLCollection.prototype[Symbol.iterator] === undefined)
-{
-	HTMLCollection.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 }
 
 // Chrome 59, Firefox 54
@@ -4001,7 +3989,7 @@ const м_Управление = (() =>
 		ПерехватитьДвижениеМыши();
 		// UNDONE https://bugs.chromium.org/p/chromium/issues/detail?id=755023
 		// Исправлено в Chrome 64.
-		document.addEventListener('focusout', оСобытие =>
+		/*document.addEventListener('focusout', оСобытие =>
 		{
 			if (оСобытие.target === document.activeElement && оСобытие.relatedTarget === null
 			&& !document.hidden && document.hasFocus()
@@ -4010,7 +3998,7 @@ const м_Управление = (() =>
 				м_Журнал.Ой('[Управление] Избегаю потерю фокуса чатом');
 				оСобытие.target.blur();
 			}
-		});
+		});*/
 	}
 
 	function ЗапуститьИзменениеГромкостиКолесом()
@@ -8286,10 +8274,8 @@ function ЗавершитьРаботу(лБыстро)
 	}
 
 	try
-	{
-		м_Отладка.ЗавершитьРаботуИПоказатьСообщение('J0300');
-		
-		if (window.top !== window)
+	{	
+		/*if (window.top !== window)
 		{
 			return;
 		}
@@ -8297,7 +8283,7 @@ function ЗавершитьРаботу(лБыстро)
 		if (navigator.userAgent.indexOf('Gecko/') !== -1 || navigator.userAgent.indexOf('Edge/') !== -1)
 		{
 			м_Отладка.ЗавершитьРаботуИПоказатьСообщение('J0204');
-		}
+		}*/
 
 		м_i18n.TranslatePage(document);
 		
