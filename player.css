@@ -1,6 +1,5 @@
 @namespace xlink "http://www.w3.org/1999/xlink";
 
-html { font-size: 1px; }
 /*************************************/
 /*	ЭЛЕМЕНТЫ УПРАВЛЕНИЯ
 /*************************************/
@@ -209,7 +208,8 @@ input:checked + .флажок-значок
 .окно
 {
 	position: absolute;
-	padding: 5em;
+	margin: .5rem;
+	padding: .625rem;
 	z-index: 3;
 	cursor: auto;
 	background: linear-gradient(45deg, transparent 50%, rgba({{сЦветГрадиента}}, .2)),
@@ -241,7 +241,6 @@ input:checked + .флажок-значок
 body
 {
 	background: #000;
-	font-size: 1px;
 }
 #проигрывательичат
 {
