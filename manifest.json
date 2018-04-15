@@ -27,7 +27,8 @@
 	],
 	"web_accessible_resources":
 	[
-		"player.html"
+		"player.html",
+		"content.css"
 	],
 	"content_scripts":
 	[{
