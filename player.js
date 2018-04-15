@@ -78,11 +78,12 @@ const ЛЕВАЯ_КНОПКА                    = 0;
 const СРЕДНЯЯ_КНОПКА                  = 1;
 const ПРАВАЯ_КНОПКА                   = 2;
 
-const ЧАТ_ЗАКРЫТ                      = 0;
+// Эти константы также определены в player.html.
+const ЧАТ_ВЫГРУЖЕН                    = 0;
 const ЧАТ_СКРЫТ                       = 1;
 const ЧАТ_ПАНЕЛЬ                      = 2;
-const ЧАТ_ОКНО                        = 3;
 
+// Эти константы также определены в player.html.
 const ВЕРХНЯЯ_СТОРОНА                 = 1;
 const ПРАВАЯ_СТОРОНА                  = 2;
 const НИЖНЯЯ_СТОРОНА                  = 3;
@@ -234,6 +235,12 @@ function GetUrlHost(sAbsoluteUrl)
 	return (new URL(sAbsoluteUrl)).host;
 }
 
+function РазобратьПараметры(оАдрес)
+{
+	// Edge 15 не поддерживает Location.searchParams и HTMLAnchorElement.searchParams.
+	return оАдрес.searchParams || new URLSearchParams(оАдрес.search.slice(1));
+}
+
 function ИзменитьЗаголовокДокумента(сЗаголовок)
 // TODO Edge 15: Страницы расширения не добавляются в browsing history браузера.
 // TODO Edge 15: У страницы расширения нет значка https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/12303393/
@@ -286,10 +293,37 @@ function ЭтотЭлементМожноПрокрутить(узЭлемент
 	return (оСтиль.overflowY === 'scroll' || оСтиль.overflowY === 'auto') && (узЭлемент.clientHeight < узЭлемент.scrollHeight);
 }
 
-function РазобратьПараметры(оАдрес)
+function ЭлементПолностьюПрокручен(узЭлемент)
 {
-	// Edge 15 не поддерживает Location.searchParams и HTMLAnchorElement.searchParams.
-	return оАдрес.searchParams || new URLSearchParams(оАдрес.search.slice(1));
+	// На всякий случай сравниваем не с 0. Из-за дробных rem возможны округления и нестыковки.
+	return узЭлемент.scrollHeight - узЭлемент.scrollTop - узЭлемент.clientHeight < 2;
+}
+
+function ПоказатьЭлемент(пЭлемент, лПоказать)
+{
+	Проверить(ЭтоОбъект(пЭлемент) || ЭтоНепустаяСтрока(пЭлемент));
+	if (typeof пЭлемент === 'string')
+	{
+		пЭлемент = document.getElementById(пЭлемент);
+	}
+	if (лПоказать)
+	{
+		пЭлемент.removeAttribute('hidden');
+	}
+	else
+	{
+		пЭлемент.setAttribute('hidden', '');
+	}
+	return пЭлемент;
+}
+
+function ЭлементПоказан(пЭлемент)
+{
+	if (typeof пЭлемент === 'string')
+	{
+		пЭлемент = document.getElementById(пЭлемент);
+	}
+	return !пЭлемент.hasAttribute('hidden');
 }
 
 //
@@ -749,7 +783,10 @@ const м_Отладка = (() =>
 		м_Управление.ОтключитьПолноэкранныйРежим();
 
 		document.body.textContent = '';
-		for (let уз = document.querySelector('link[href="common.css"]'); уз.nextSibling; уз.nextSibling.remove()) {}
+		for (let уз of document.querySelectorAll('link[rel="stylesheet"], style'))
+		{
+			уз.remove();
+		}
 		for (let уз of [document.documentElement, document.body])
 		{
 			уз.removeAttribute('class');
@@ -760,13 +797,19 @@ const м_Отладка = (() =>
 		return new Promise((фВыполнить, фОтказаться) =>
 		{
 			const уз = document.createElement('iframe');
+			уз.style.position = 'fixed';
+			уз.style.top      = '0';
+			уз.style.left     = '0';
+			уз.style.width    = '100%';
+			уз.style.height   = '100%';
+			уз.style.zIndex   = '100500';
+			уз.style.border   = '0';
 			уз.src = 'report.html';
 			уз.addEventListener('load', function ОбработатьОкончаниеЗагрузки()
 			{
 				уз.removeEventListener('load', ОбработатьОкончаниеЗагрузки);
-				const оДокумент = уз.contentDocument;
-				м_i18n.TranslatePage(оДокумент);
-				фВыполнить(оДокумент);
+				м_i18n.TranslatePage(уз.contentDocument);
+				фВыполнить(уз.contentDocument);
 			});
 			document.body.appendChild(уз);
 		});
