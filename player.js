@@ -96,6 +96,18 @@ const ЗАСТРЕВАЕТ_СЕГМЕНТОВ_В_РАБОЧЕМ_ПОТОКЕ = 0
 var г_лРаботаЗавершена = false;
 var г_моОчередь = [];
 
+// Chrome 59, Firefox 54
+if (window.setImmediate === undefined)
+// Для моих целей пока достаточно setTimeout().
+{
+	window.setImmediate = function(фВызвать)
+	{
+		Проверить(typeof фВызвать === 'function');
+		setTimeout(фВызвать, 0);
+	}
+}
+
+
 function Проверить(пУсловие)
 {
 	if (!пУсловие)

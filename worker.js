@@ -8,7 +8,7 @@
 // TODO Добавить AVC3 если попадется трансляция с несколькими SPS.
 // TODO Перевести часть Проверить() в Браковать().
 
-const ВЕРСИЯ_РАСШИРЕНИЯ = '2018.3.5';
+const ВЕРСИЯ_РАСШИРЕНИЯ = '2018.4.6';
 const ВЕРСИЯ_БРАУЗЕРА = Number.parseInt(/Chrome\/(\d+)/.exec(navigator.userAgent)[1], 10); // replace for prepack
 
 function Проверить(пУсловие)
