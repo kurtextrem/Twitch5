@@ -1,0 +1,238 @@
+﻿@charset "UTF-8";
+/* Не влезает надпись в настройках: Должен быть подписчиком на протяжении ... */
+html .ember-chat .chat-menu .chat-menu-content .chat-menu-content__description
+{
+	white-space: normal; /* nowrap */
+}
+/**
+ * Включаем если:
+ * - Не влезает список смайликов.
+ * - Высота небольшая (разрешение экрана 720) и ширина достаточна для закрепленных сообщений.
+ */
+@media (max-height: 505px), (max-height: 700px) and (min-width: 666px)
+{
+	/* Всплывающая подсказка .tipsy при выборе смайлика может вылезти за нижнюю границу страницы */
+	html
+	{
+		overflow-y: hidden; /* auto */
+	}
+	/**
+	 * Уменьшить вертикальные поля заголовка
+	 */
+	html .ember-chat .chat-header
+	{
+		height: 34px; /* 50px */
+		padding: 2px 0; /* 10px 0 */
+	}
+	html .ember-chat .chat-header .chat-header__button
+	{
+		top: 2px; /* 10px */
+	}
+	html .ember-chat .notification-container
+	{
+		top: 33px; /* 49px */
+	}
+	html .ember-chat .top-dropdown,
+	html .ember-chat .chat-room-list,
+	html .ember-chat .chat-commands-dropdown
+	{
+		top: 32px; /* 40px */
+	}
+	html .ember-chat .chat-room
+	{
+		top: 34px; /* 50px */
+	}
+	/* Увеличить высоту и ограничить ширину списка комнат */
+	html .ember-chat .chat-room-list
+	{
+		bottom: 1px;
+		margin: 0 20px; /* 20px */
+		height: auto; /* 45% */
+		max-width: 40em;
+	}
+	html .ember-chat .chat-messages
+	{
+		bottom: 36px; /* 111px */
+	}
+	html .ember-chat .chat-messages .chat-lines
+	{
+		padding: 0; /* 10px 0 */
+	}
+	html .ember-chat .chat-interface
+	{
+		height: 36px !important; /* 111px, important для BTTV */
+		padding-top: 3px; /* 0 */
+		padding-bottom: 3px; /* 20px */
+	}
+	.chat-interface__wrap
+	{
+		display: flex;
+	}
+	html .ember-chat .chat-interface .textarea-contain
+	{
+		height: 30px; /* 50px */
+		margin-bottom: 0; /* 10px */
+	}
+	html .ember-chat .chat-interface .textarea-contain textarea
+	{
+		height: 30px !important; /* 50px, 1 строка */
+		padding-right: 50px; /* 25px, добавить место для .bits-helper-toggle */
+		overflow: hidden; /* Полоса прокрутки не перекроет .emoticon-selector-toggle */ 
+	}
+	html .ember-chat .chat-interface .chat-buttons-container
+	{
+		width: auto; /* 100% */
+		display: flex; /* block */
+		align-items: flex-start;
+	}
+	html .chat-interface__submit
+	{
+		order: -1;
+		margin: 0 10px !important; /* 0, important для BTTV dark mode */
+	}
+	html .ember-chat .chat-interface .chat-rules
+	{
+		width: auto; /* 88% */
+	}
+	.dropmenu,
+	.ui-menu,
+	.ui-multiselect-menu
+	{
+		margin-bottom: 0 !important; /* 20px, important для BTTV */
+	}
+	html .emoticon-selector
+	{
+		bottom: 36px; /* 100px */
+	}
+	html .emoticon-selector .emoticon-selector-box
+	{
+		width: 80rem; /* 30rem */
+		max-width: 90vw;
+	}
+	html .emoticon-selector .emoticon-selector-box .all-emotes,
+	html .emoticon-selector .emoticon-selector-box .channel-emotes
+	{
+		max-height: calc(100vh - 3rem - 36px); /* 30.5rem */
+	}
+	/* Переместить поиск смайликов в стоку с вкладками */
+	.emoticon-selector-box > .border-t
+	{
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		width: 15em;
+		border: 0 !important;
+		padding: 0 !important;
+	}
+	html .bits-card
+	{
+		right: 0;
+		max-width: 50em;
+	}
+	html .bits-purchase .scroll
+	{
+		max-height: calc(100vh - 36px * 1.2 - 10rem);
+	}
+	html .ember-chat .chat-settings
+	{
+		bottom: 36px !important; /* 41px, important для FFZ */
+		left: auto; /* 20px */
+		right: 20px; /* auto */
+		width: 34em; /* 222px */
+		max-width: 90vw;
+	}
+	/**
+	 * Закрепленные сообщения будут висеть в правом верхнем углу
+	 */
+	html .sticky-message
+	{
+		position: absolute !important; /* absolute или relative */
+		left: auto !important; /* 0 */
+	}
+	.chat-messages
+	{
+		top: 0 !important; /* 30px/76px если есть закрепленные сообщения */
+	}
+	/**
+	 * BetterTTV
+	 */
+	/* Возвращаем стандартные значения Twitch */
+	html .ember-chat .chat-interface
+	{
+		border: 0; /* 1px 0 0 0, dark mode */
+	}
+	html .ember-chat .chat-interface .textarea-contain
+	{
+		width: 100%; /* auto */
+		top: 0; /* 10px */
+		margin-right: 0; /* 10px */
+	}
+	html .ember-chat .chat-interface .chat-buttons-container
+	{
+		margin-left: 0; /* 10px */
+		padding-top: 0; /* 10px */
+	}
+	/* В dark mode у кнопок есть правый отступ */
+	.chat-buttons-container > .float-left:nth-last-child(2)
+	{
+		margin-right: 0;
+	}
+	/* float переносит правую часть текста на новую строку, плюс .pinned-cheer__expando-arrow хреново смотрится */
+	html .pinned-cheers
+	{
+		padding: 0; /* 0 0 10px 5px */
+		display: flex; /* float block */
+	}
+	html .pinned-cheers::before
+	{
+		order: 1;
+	}
+	/* BTTV неправильно скрывает заголовок чата, поэтому js завышает высоту .chat-settings */
+	.chat-settings
+	{
+		max-height: calc(100vh - 36px) !important;
+	}
+	/**
+	 * FrankerFaceZ
+	 */
+	html .ffz-ui-popup .emoticon-selector-box
+	{
+		width: 80rem !important; /* 10000px */
+		max-width: 90vw !important; /* 300px */
+	}
+	.ffz-ui-menu-page
+	{
+		max-height: calc(100vh - 36px - 1px - 37px) !important; /* js */
+	}
+	.ffz-ui-menu-page > .ffz-ui-sub-menu-page,
+	.ffz-ui-menu-page > .ffz-ui-sub-menu-page > .ffz-ui-sub-menu-page
+	{
+		max-height: calc(100vh - 36px - 1px - 37px * 2) !important; /* js */
+	}
+	.ffz-ui-menu-page > .ffz-ui-sub-menu-page > .ffz-filter-container
+	{
+		position: absolute; /* static */
+		right: 0; /* auto */
+		padding: 3px; /* 10px, центровка по вертикали */
+	}
+	html body:not(.ffz-minimal-chat-input):not(.ffz-menu-replace) .chat-interface .emoticon-selector-toggle + .ffz-ui-toggle,
+	html body:not(.ffz-minimal-chat-input):not(.ffz-menu-replace) .chat-interface .emoticon-selector-toggle + div + .ffz-ui-toggle
+	{
+		top: 6px; /* 28px */
+		right: 53px; /* 6px */
+	}
+	/* Добавить место для .ffz-ui-toggle. HACK FFZ активен если есть data-current-path */
+	body[data-current-path]:not(.ffz-minimal-chat-input):not(.ffz-menu-replace) .ember-chat .chat-interface .textarea-contain textarea
+	{
+		padding-right: 70px;
+	}
+	html .ffz.room-state.stat
+	{
+		margin: 0 0 0 5px; /* 0 -10px 0 15px */
+		letter-spacing: -.0834em; /* normal */
+	}
+	.ffz-has-recent-messages .chat-messages
+	{
+		top: 30px !important;
+	}
+}

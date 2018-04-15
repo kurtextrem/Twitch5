@@ -24,6 +24,7 @@ const ЭТО_НЕ_КОД_КАНАЛА =
 
 const ХРАНИТЬ_СОСТОЯНИЕ_КАНАЛА = 20000; // Миллисекунды.
 
+
 var г_оРазобранныйАдрес;
 var г_сИсторияВкладки;
 
@@ -659,7 +660,7 @@ function ПерехватитьФункции()
 }
 
 
-function НастроитьЧат()
+function ВставитьСторонниеРасширения()
 {
 	const sPlayerOrigin = chrome.extension.getURL('').slice(0, -1);
 	try
@@ -687,7 +688,8 @@ function НастроитьЧат()
 							if (оСобытие.data.сСторонниеРасширения.indexOf('BTTV ') !== -1)
 							{
 								var elScript = document.createElement('script');
-								elScript.setAttribute('src', 'https://cdn.betterttv.net/betterttv.js');
+								// TODO Для нового чата https://cdn.betterttv.net/betterttv.js
+								elScript.setAttribute('src', 'https://legacy.betterttv.net/betterttv.js');
 								document.head.appendChild(elScript);
 							}
 							if (оСобытие.data.сСторонниеРасширения.indexOf('FFZ ') !== -1)
@@ -699,7 +701,7 @@ function НастроитьЧат()
 							if (оСобытие.data.сСторонниеРасширения.indexOf('FFZAP ') !== -1)
 							{
 								var elScript = document.createElement('script');
-								elScript.setAttribute('src', 'https://cdn.lordmau5.com/ffz-ap/ffz-ap.min.js');
+								elScript.setAttribute('src', 'https://cdn.ffzap.com/ffz-ap.min.js');
 								document.head.appendChild(elScript);
 							}
 						}
@@ -715,7 +717,15 @@ function НастроитьЧат()
 }
 
 
-(function()
+function ИзменитьСтильЧата()
+{
+	const узСтиль = document.createElement('link');
+	узСтиль.setAttribute('rel', 'stylesheet');
+	узСтиль.setAttribute('href', chrome.extension.getURL('content.css'));
+	(document.head || document.documentElement).appendChild(узСтиль);
+}
+
+(() =>
 {
 	Журнал('[Twitch 5] content.js запущен по адресу', location.href);
 	ИзмененАдресСтраницы('загрузка');
@@ -723,8 +733,9 @@ function НастроитьЧат()
 	{
 		if (window.top !== window)
 		{
-			НастроитьЧат();
+			ВставитьСторонниеРасширения();
 		}
+		ИзменитьСтильЧата();
 		return;
 	}
 	if (window.top !== window)

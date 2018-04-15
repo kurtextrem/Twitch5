@@ -371,7 +371,7 @@
 				<div id="количествозрителей" class="элементпанели" data-i18n="^A0503">
 					<span data-i18n="F0502"></span>&#160;<span class="метка"></span>
 				</div>
-				<button class="кнопка элементпанели можнотыкать" type="button" data-переключитьокно="канал" data-i18n="^A0597">
+				<button class="кнопка элементпанели можнотыкать" type="button" data-окно-переключить="канал" data-i18n="^A0597">
 					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 						<use xlink:href="#svg-channel"/>
 					</svg>
@@ -419,7 +419,7 @@
 					</div>
 				</div>
 				<div class="группаэлементов"></div>
-				<button id="переключитьновости" class="кнопка элементпанели можнотыкать" type="button" data-переключитьокно="новости" hidden="" data-i18n="^A0508">
+				<button id="переключитьновости" class="кнопка элементпанели можнотыкать непрочитано" type="button" hidden="" data-окно-переключить="новости" data-i18n="^A0508">
 					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 						<use xlink:href="#svg-notification"/>
 					</svg>
@@ -429,7 +429,7 @@
 						<use xlink:href="#svg-chat"/>
 					</svg>
 				</button>
-				<button class="кнопка элементпанели можнотыкать" type="button" data-переключитьокно="настройки" data-i18n="^A0510">
+				<button class="кнопка элементпанели можнотыкать" type="button" data-окно-переключить="настройки" data-i18n="^A0510">
 					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 						<use xlink:href="#svg-settings"/>
 					</svg>
@@ -498,23 +498,29 @@
 							<button id="зритель-отписаться" class="можнотыкать" type="button" data-i18n="F0593^A0594"></button>
 						</th>
 						<td>
-							<button id="зритель-уведомлять" class="кнопка элементпанели можнотыкать" type="button" data-i18n="^A0595">
-								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-									<use xlink:href="#svg-notification"/>
-								</svg>
-							</button>
-							<button id="зритель-неуведомлять" class="кнопка элементпанели можнотыкать" type="button" data-i18n="^A0596">
-								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-									<use xlink:href="#svg-notification"/>
-								</svg>
-							</button>
+							<label class="зритель-уведомление радио-метка можнотыкать" data-i18n="^A0595"
+								><input id="зритель-уведомление" type="checkbox" hidden=""
+								/><span class="флажок-значок"></span
+								><span class="радио-текст" data-i18n="F0633"></span
+							></label>
 						</td>
 					</tr>
 				</tbody>
 				</table>
 			</div>
 			<div id="новости" class="новости окно">
-				<div id="новости-текст" class="новости-текст"></div>
+				<div id="текстновостей" class="новости-текст"></div>
+				<div class="горизвырав">
+					<div class="горизвырав-лево">
+						<button type="button" data-окно-переключить="новости" data-i18n="F0619^A0620"></button>
+					</div>
+					<div class="горизвырав-середина">
+						<button id="прокрутитьновости" type="button" hidden="" data-i18n="^A0618">&#160;</button>
+					</div>
+					<div class="горизвырав-право">
+						<button id="отложитьновости" type="button" data-окно-переключить="новости" data-окно-данные="отмена" data-i18n="F0621^A0622"></button>
+					</div>
+				</div>
 			</div>
 			<div id="настройки" class="настройки окно">
 				<input id="группаосновные" name="группанастроек" type="radio" hidden="" checked=""/>
@@ -535,17 +541,15 @@
 					<div class="настройка">
 						<div class="имянастройки" data-i18n="F0533"></div>
 						<div id="длительностьповтора" class="данныенастройки" data-i18n="^A0534">
-							<button type="button" class="вводчисла-минус">−</button>
-							<input type="text" class="вводчисла-число" readonly="" tabindex="-1"/>
-							<button type="button" class="вводчисла-плюс">+</button>
+							<button type="button" class="вводчисла-минус">−</button
+							><input type="text" class="вводчисла-число" readonly="" tabindex="-1"
+							/><button type="button" class="вводчисла-плюс">+</button>
 						</div>
 					</div>
 					<div class="настройка">
 						<div class="данныенастройки">
 							<div class="кнопкаименю">
-								<button class="кнопкаименю-кнопка" type="button">
-									<span class="кнопкаименю-тексткнопки" data-i18n="F0604"></span>
-								</button>
+								<button class="кнопкаименю-кнопка" type="button" data-i18n="F0604"></button>
 								<ul class="кнопкаименю-меню меню">
 									<li class="пунктменю" id="экспортнастроек" tabindex="0" data-i18n="F0605^A0606"></li>
 									<li class="пунктменю" id="импортнастроек" tabindex="0" data-i18n="F0607^A0608"></li>
@@ -554,6 +558,68 @@
 								</ul>
 							</div>
 							<input id="выборфайладляимпортанастроек" type="file" accept="application/json,.json" hidden=""/>
+						</div>
+					</div>
+				</div>
+				<input id="группачат" name="группанастроек" type="radio" hidden=""/>
+				<label for="группачат" class="заголовокнастроек" data-i18n="F0626"></label>
+				<div class="группанастроек">
+					<div class="настройка">
+						<div class="имянастройки" data-i18n="F0614"></div>
+						<div class="данныенастройки" data-i18n="^A0615">
+							<label class="радио-метка"
+								><input name="затемнитьчат" type="radio" value="0" hidden=""
+								/><span class="радио-значок"></span
+								><span class="радио-текст" data-i18n="F0616"></span
+							></label
+							><label class="радио-метка"
+								><input name="затемнитьчат" type="radio" value="1" hidden=""
+								/><span class="радио-значок"></span
+								><span class="радио-текст" data-i18n="F0617"></span
+							></label>
+						</div>
+					</div>
+					<div class="настройка">
+						<div class="имянастройки" data-i18n="F0629"></div>
+						<div class="данныенастройки" data-i18n="^A0630">
+							<label class="радио-метка"
+								><input name="состояниезакрытогочата" type="radio" value="0" hidden=""
+								/><span class="радио-значок"></span
+								><span class="радио-текст" data-i18n="F0631"></span
+							></label
+							><label class="радио-метка"
+								><input name="состояниезакрытогочата" type="radio" value="1" hidden=""
+								/><span class="радио-значок"></span
+								><span class="радио-текст" data-i18n="F0632"></span
+							></label>
+						</div>
+					</div>
+					<div class="настройка">
+						<div class="имянастройки" data-i18n="F0623"></div>
+						<div class="данныенастройки" data-i18n="^A0624">
+							<label class="радио-метка"
+								><input id="автоположениечата" type="checkbox" hidden=""
+								/><span class="флажок-значок"></span
+								><span class="радио-текст" data-i18n="J0120"></span
+							></label
+							><div class="положениечата">
+								<label class="радио-метка"
+									><input type="radio" value="4" hidden=""
+									/><span class="радио-значок"></span
+								></label>
+								<label class="радио-метка"
+									><input type="radio" value="1" hidden=""
+									/><span class="радио-значок"></span
+								></label>
+								<label class="радио-метка"
+									><input type="radio" value="3" hidden=""
+									/><span class="радио-значок"></span
+								></label>
+								<label class="радио-метка"
+									><input type="radio" value="2" hidden=""
+									/><span class="радио-значок"></span
+								></label>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -569,35 +635,35 @@
 					<div class="настройка">
 						<div class="имянастройки" data-i18n="F0610"></div>
 						<div id="размеринтерфейса" class="данныенастройки" data-i18n="^A0611">
-							<button type="button" class="вводчисла-минус">−</button>
-							<input type="text" class="вводчисла-число" readonly="" tabindex="-1"/>
-							<button type="button" class="вводчисла-плюс">+</button>
+							<button type="button" class="вводчисла-минус">−</button
+							><input type="text" class="вводчисла-число" readonly="" tabindex="-1"
+							/><button type="button" class="вводчисла-плюс">+</button>
+						</div>
+					</div>
+					<div class="настройка">
+						<div class="имянастройки" data-i18n="F0627"></div>
+						<div id="интервалавтоскрытия" class="данныенастройки" data-i18n="^A0628">
+							<button type="button" class="вводчисла-минус">−</button
+							><input type="text" class="вводчисла-число" readonly="" tabindex="-1"
+							/><button type="button" class="вводчисла-плюс">+</button>
 						</div>
 					</div>
 					<div class="настройка">
 						<div class="имянастройки" data-i18n="F0574"></div>
-						<div class="данныенастройки данныенастройки-2" data-i18n="^A0575">
-							<label class="радио-метка">
-								<input name="менятьгромкостьколесом" type="radio" value="0" hidden=""/>
-								<span class="радио"></span><span data-i18n="F0576"></span>
-							</label>
-							<label class="радио-метка">
-								<input name="менятьгромкостьколесом" type="radio" value="1" hidden=""/>
-								<span class="радио"></span><span data-i18n="F0577"></span>
-							</label>
+						<div class="данныенастройки" data-i18n="^A0575">
+							<label class="радио-метка"
+								><input id="менятьгромкостьколесом" type="checkbox" hidden=""
+								/><span class="флажок-значок"></span
+							></label>
 						</div>
 					</div>
 					<div class="настройка">
 						<div class="имянастройки" data-i18n="F0612"></div>
-						<div class="данныенастройки данныенастройки-2" data-i18n="^A0613">
-							<label class="радио-метка">
-								<input name="анимацияинтерфейса" type="radio" value="0" hidden=""/>
-								<span class="радио"></span><span data-i18n="F0576"></span>
-							</label>
-							<label class="радио-метка">
-								<input name="анимацияинтерфейса" type="radio" value="1" hidden=""/>
-								<span class="радио"></span><span data-i18n="F0577"></span>
-							</label>
+						<div class="данныенастройки" data-i18n="^A0613">
+							<label class="радио-метка"
+								><input id="анимацияинтерфейса" type="checkbox" hidden=""
+								/><span class="флажок-значок"></span
+							></label>
 						</div>
 					</div>
 				</div>
@@ -637,9 +703,9 @@
 					<div class="настройка">
 						<div class="имянастройки" data-i18n="F0570"></div>
 						<div id="прозрачность" class="данныенастройки">
-							<button type="button" class="вводчисла-минус">−</button>
-							<input type="text" class="вводчисла-число" readonly="" tabindex="-1"/>
-							<button type="button" class="вводчисла-плюс">+</button>
+							<button type="button" class="вводчисла-минус">−</button
+							><input type="text" class="вводчисла-число" readonly="" tabindex="-1"
+							/><button type="button" class="вводчисла-плюс">+</button>
 						</div>
 					</div>
 					<div class="настройка">
@@ -653,75 +719,87 @@
 				<div class="группанастроек">
 					<div class="настройка">
 						<div class="имянастройки" data-i18n="F0514"></div>
-						<div class="данныенастройки данныенастройки-3" data-i18n="^A0515">
-							<label class="радио-метка">
-								<input name="одновременныхзагрузок" type="radio" value="1" hidden=""/>
-								<span class="радио"></span>1
-							</label>
-							<label class="радио-метка">
-								<input name="одновременныхзагрузок" type="radio" value="2" hidden=""/>
-								<span class="радио"></span>2
-							</label>
-							<label class="радио-метка">
-								<input name="одновременныхзагрузок" type="radio" value="3" hidden=""/>
-								<span class="радио"></span>3
-							</label>
+						<div class="данныенастройки" data-i18n="^A0515">
+							<label class="радио-метка"
+								><input name="одновременныхзагрузок" type="radio" value="1" hidden=""
+								/><span class="радио-значок"></span
+								><span class="радио-текст">1</span
+							></label
+							><label class="радио-метка"
+								><input name="одновременныхзагрузок" type="radio" value="2" hidden=""
+								/><span class="радио-значок"></span
+								><span class="радио-текст">2</span
+							></label
+							><label class="радио-метка"
+								><input name="одновременныхзагрузок" type="radio" value="3" hidden=""
+								/><span class="радио-значок"></span
+								><span class="радио-текст">3</span
+							></label>
 						</div>
 					</div>
 					<div class="настройка">
 						<div class="имянастройки" data-i18n="F0518"></div>
 						<div id="началовоспроизведения" class="данныенастройки" data-i18n="^A0519">
-							<button type="button" class="вводчисла-минус">−</button>
-							<input type="text" class="вводчисла-число" readonly="" tabindex="-1"/>
-							<button type="button" class="вводчисла-плюс">+</button>
+							<button type="button" class="вводчисла-минус">−</button
+							><input type="text" class="вводчисла-число" readonly="" tabindex="-1"
+							/><button type="button" class="вводчисла-плюс">+</button>
 						</div>
 					</div>
 					<div class="настройка">
 						<div class="имянастройки" data-i18n="F0516"></div>
 						<div id="размербуфера" class="данныенастройки" data-i18n="^A0517">
-							<button type="button" class="вводчисла-минус">−</button>
-							<input type="text" class="вводчисла-число" readonly="" tabindex="-1"/>
-							<button type="button" class="вводчисла-плюс">+</button>
+							<button type="button" class="вводчисла-минус">−</button
+							><input type="text" class="вводчисла-число" readonly="" tabindex="-1"
+							/><button type="button" class="вводчисла-плюс">+</button>
 						</div>
 					</div>
 					<div class="настройка">
 						<div class="имянастройки" data-i18n="F0537"></div>
 						<div id="растягиваниебуфера" class="данныенастройки" data-i18n="^A0538">
-							<button type="button" class="вводчисла-минус">−</button>
-							<input type="text" class="вводчисла-число" readonly="" tabindex="-1"/>
-							<button type="button" class="вводчисла-плюс">+</button>
+							<button type="button" class="вводчисла-минус">−</button
+							><input type="text" class="вводчисла-число" readonly="" tabindex="-1"
+							/><button type="button" class="вводчисла-плюс">+</button>
 						</div>
 					</div>
 					<div class="настройка">
 						<div class="имянастройки" data-i18n="F0520"></div>
-						<div class="данныенастройки данныенастройки-3" data-i18n="^A0521">
-							<label class="радио-метка">
-								<input name="заначка" type="radio" value="0" hidden=""/>
-								<span class="радио"></span><span data-i18n="F0505"></span>
-							</label>
-							<label class="радио-метка">
-								<input name="заначка" type="radio" value="1" hidden=""/>
-								<span class="радио"></span>1
-							</label>
-							<label class="радио-метка">
-								<input name="заначка" type="radio" value="2" hidden=""/>
-								<span class="радио"></span>2
-							</label>
+						<div class="данныенастройки" data-i18n="^A0521">
+							<label class="радио-метка"
+								><input name="заначка" type="radio" value="0" hidden=""
+								/><span class="радио-значок"></span
+								><span class="радио-текст" data-i18n="F0505"></span
+							></label
+							><label class="радио-метка"
+								><input name="заначка" type="radio" value="1" hidden=""
+								/><span class="радио-значок"></span
+								><span class="радио-текст">1</span
+							></label
+							><label class="радио-метка"
+								><input name="заначка" type="radio" value="2" hidden=""
+								/><span class="радио-значок"></span
+								><span class="радио-текст">2</span
+							></label>
 						</div>
 					</div>
 					<div class="настройка">
 						<div class="имянастройки" data-i18n="F0522"></div>
 						<div id="интервалопроса" class="данныенастройки" data-i18n="^A0523">
-							<button type="button" class="вводчисла-минус">−</button>
-							<input type="text" class="вводчисла-число" readonly="" tabindex="-1"/>
-							<button type="button" class="вводчисла-плюс">+</button>
+							<button type="button" class="вводчисла-минус">−</button
+							><input type="text" class="вводчисла-число" readonly="" tabindex="-1"
+							/><button type="button" class="вводчисла-плюс">+</button>
 						</div>
 					</div>
 				</div>
-				<button id="переключитьстатистику" type="button" data-i18n="F0526^A0527"></button>
-				<button id="открытьсправку" type="button" data-i18n="^A0599">&#160;&#160;?&#160;&#160;</button>
-				<button id="поддержать" type="button" data-i18n="F0530^A0531"></button>
-				<button id="оставитьотзыв" type="button" data-i18n="F0528^A0529"></button>
+				<div class="горизвырав">
+					<div class="горизвырав-лево">
+						<button id="переключитьстатистику" type="button" data-i18n="F0526^A0527"></button>
+						<button id="открытьсправку" class="отступслева" type="button" data-i18n="F0625^A0599"></button>
+					</div>
+					<div class="горизвырав-право">
+						<button id="оставитьотзыв" type="button" data-i18n="F0528^A0529"></button>
+						<button id="поддержать" class="отступслева" type="button" data-i18n="F0530^A0531"></button>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div id="размерчата" data-i18n="^A0532"></div>
