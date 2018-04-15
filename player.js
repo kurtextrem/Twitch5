@@ -1,7 +1,7 @@
-﻿
-
-
+﻿﻿(function(window){
 'use strict';
+
+const document = window.document, performance = window.performance
 
 // Формат версии: https://developer.chrome.com/extensions/manifest/version
 // В моем случае это UTC-дата выкладывания данной версии для скачивания.
@@ -12,8 +12,8 @@
 // Edge 15: Последнее число должно быть нулем.
 // https://docs.microsoft.com/en-us/microsoft-edge/extensions/guides/packaging/creating-and-testing-extension-packages#json-manifest-template-values
 const ВЕРСИЯ_РАСШИРЕНИЯ = '2018.4.6';
-const ВЕРСИЯ_БРАУЗЕРА = Number.parseInt(/Chrome\/(\d+)/.exec(navigator.userAgent)[1], 10);
-const ЭТО_ПЛАНШЕТ = false;
+//const ВЕРСИЯ_БРАУЗЕРА = Number.parseInt(/Chrome\/(\d+)/.exec(navigator.userAgent)[1], 10);
+//const ЭТО_ПЛАНШЕТ = false;
 
 // Chrome 59 + Windows + аппаратное декодирование: Для завершения перемотки и начала воспроизведения нужно не менее
 // 4 кадров, не исключено, что иногда и больше. Без аппаратного декодирования достаточно 2 кадров.
@@ -91,76 +91,10 @@ const ПРАВАЯ_СТОРОНА                  = 2;
 const НИЖНЯЯ_СТОРОНА                  = 3;
 const ЛЕВАЯ_СТОРОНА                   = 4;
 
-const ЗАСТРЕВАЕТ_СЕГМЕНТОВ_В_РАБОЧЕМ_ПОТОКЕ = ВЕРСИЯ_БРАУЗЕРА < 50 ? 1 : 0;
+const ЗАСТРЕВАЕТ_СЕГМЕНТОВ_В_РАБОЧЕМ_ПОТОКЕ = 0;
 
 var г_лРаботаЗавершена = false;
 var г_моОчередь = [];
-
-// Chrome 48-, Edge 15
-if (!window.URLSearchParams)
-{
-	window.URLSearchParams = function(сПараметры)
-	{
-		Проверить(arguments.length === 1 && typeof сПараметры === 'string');
-		this._амПараметры = new Map();
-		if (сПараметры.length !== 0)
-		{
-			for (var сПараметр of сПараметры.split('&'))
-			{
-				var чРавно = сПараметр.indexOf('=');
-				if (чРавно === -1)
-				{
-					var сИмя = decodeURIComponent(сПараметр);
-					if (!this._амПараметры.has(сИмя))
-					{
-						this._амПараметры.set(сИмя, '');
-					}
-				}
-				else
-				{
-					var сИмя = decodeURIComponent(сПараметр.slice(0, чРавно));
-					if (!this._амПараметры.has(сИмя))
-					{
-						this._амПараметры.set(сИмя, decodeURIComponent(сПараметр.slice(чРавно + 1)));
-					}
-				}
-			}
-		}
-	};
-
-	window.URLSearchParams.prototype.has = function(сИмя)
-	{
-		return this._амПараметры.has(String(сИмя));
-	};
-
-	window.URLSearchParams.prototype.get = function(сИмя)
-	{
-		var сЗначение = this._амПараметры.get(String(сИмя));
-		return сЗначение === undefined ? null : сЗначение;
-	};
-}
-
-// Chrome 50-
-if (!NodeList.prototype[Symbol.iterator])
-{
-	NodeList.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
-}
-if (!HTMLCollection.prototype[Symbol.iterator])
-{
-	HTMLCollection.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
-}
-
-// Chrome 59, Firefox 54
-if (!window.setImmediate)
-// Для моих целей пока достаточно setTimeout().
-{
-	window.setImmediate = function(фВызвать)
-	{
-		Проверить(typeof фВызвать === 'function');
-		setTimeout(фВызвать, 0);
-	}
-}
-
 
 function Проверить(пУсловие)
 {
@@ -1233,7 +1167,7 @@ function ПомойкаВКаналеСообщений()
 	this._оПомойка = null;
 };
 
-function ПомойкаВРабочемПотоке()
+/*function ПомойкаВРабочемПотоке()
 {
 	this._сАдрес = '';
 	this._оПомойка = null;
@@ -1294,13 +1228,13 @@ function ПомойкаВРабочемПотоке()
 		this._оПомойка = null;
 		this._кбВПомойке = 0;
 	}
-};
+};*/
 
 function ПомойкаОтсутствует() {}
 ПомойкаОтсутствует.prototype.Выбросить = ПомойкаОтсутствует.prototype.Сжечь = function() {};
 
 // В Chrome 64 уже нет проблем с освобожданием памяти. Точно не знаю в какой версии это исправили.
-const м_Помойка = ЭТО_ПЛАНШЕТ || ВЕРСИЯ_БРАУЗЕРА >= 64 ? new ПомойкаОтсутствует() : new ПомойкаВРабочемПотоке();
+const м_Помойка = new ПомойкаОтсутствует()
 
 const м_i18n = (() =>
 {
@@ -2032,9 +1966,9 @@ const м_Настройки = (() =>
 		                                     // Минимальный размер задается в player.css.
 		чВысотаПанелиЧата:                   Настройка.СоздатьДиапазон(302, 100, МАКС_ЗНАЧЕНИЕ_НАСТРОЙКИ), // CSS пикселы.
 		лЗатемнитьЧат:                       Настройка.Создать(false),
-		чРазмерИнтерфейса:                   Настройка.СоздатьДиапазон(ЭТО_ПЛАНШЕТ ? 115 : 100, 75, 200),
+		чРазмерИнтерфейса:                   Настройка.СоздатьДиапазон(100, 75, 200),
 		чИнтервалАвтоскрытия:                Настройка.СоздатьДиапазон(4, 0.5, 60),
-		лАнимацияИнтерфейса:                 Настройка.Создать(!ЭТО_ПЛАНШЕТ),
+		лАнимацияИнтерфейса:                 Настройка.Создать(true),
 		лМенятьГромкостьКолесом:             Настройка.Создать(true),
 		лПоказатьСтатистику:                 Настройка.Создать(false),
 		//
@@ -3315,7 +3249,7 @@ const м_Чат = (() =>
 			_узЧат.width = м_Настройки.Получить('чШиринаПанелиЧата');
 			_узЧат.height = м_Настройки.Получить('чВысотаПанелиЧата');
 			// UNDONE HACK https://bugs.chromium.org/p/chromium/issues/detail?id=793280
-			if (ВЕРСИЯ_БРАУЗЕРА > 55 && ВЕРСИЯ_БРАУЗЕРА < 66)
+			/*if (ВЕРСИЯ_БРАУЗЕРА > 55 && ВЕРСИЯ_БРАУЗЕРА < 66)
 			{
 				const чСкрытьНа = Math.round(2000 - performance.now());
 				if (чСкрытьНа > 0)
@@ -3338,7 +3272,7 @@ const м_Чат = (() =>
 						чСкрытьНа
 					);
 				}
-			}
+			}*/
 			document.getElementById('размерчата').insertAdjacentElement('afterend', _узЧат);
 		}
 	}
@@ -3967,7 +3901,7 @@ const м_Управление = (() =>
 	                                             // Частота опроса последовательной мыши 60 Гц.
 	const ПОРОГ_ОКОНЧАНИЯ_ДВИЖЕНИЯ       = 300;  // Миллисекунды.
 
-	const ПОКАЗЫВАТЬ_ПРОПУСК_ВИДЕО       = 3000; // Миллисекунды.
+	const ПОКАЗЫВАТЬ_ПРОПУСК_ВИДЕО       = 1500; // Миллисекунды.
 
 	// Текст для ссылки если метаданные не загружены.
 	const НАЗВАНИЕ_ТРАНСЛЯЦИИ_НЕИЗВЕСТНО = '• • •';
@@ -4263,7 +4197,7 @@ const м_Управление = (() =>
 		// настройкой минимального размера шрифта браузера. На данный момент 16px можно заменить
 		// на большее значение (пересчитав rem в css). 10px маловато, потому что значение настройки
 		// может быть меньше 100%.
-		document.documentElement.style.fontSize = `${16 * м_Настройки.Получить('чРазмерИнтерфейса') / 100}px`;
+		//document.documentElement.style.fontSize = `${16 * м_Настройки.Получить('чРазмерИнтерфейса') / 100}px`;
 	}
 
 	function ИзменитьАнимациюИнтерфейса()
@@ -5871,6 +5805,10 @@ const м_Проигрыватель = (() =>
 			case 'volumechange':
 				м_Журнал.Вот(`${сЗапись} volume=${_oMediaElement.volume} muted=${_oMediaElement.muted}`);
 				break;
+
+			case 'canplay':
+				fitVideo()
+				break
 
 			default:
 				м_Журнал.Вот(сЗапись);
@@ -8543,7 +8481,7 @@ function ЗавершитьРаботу(лБыстро)
 
 	try
 	{
-		if (window.top !== window)
+		/*if (window.top !== window)
 		{
 			return;
 		}
@@ -8551,7 +8489,7 @@ function ЗавершитьРаботу(лБыстро)
 		if (navigator.userAgent.indexOf('Gecko/') !== -1 || navigator.userAgent.indexOf('Edge/') !== -1)
 		{
 			м_Отладка.ЗавершитьРаботуИПоказатьСообщение('J0204');
-		}
+		}*/
 
 		м_i18n.TranslatePage(document);
 		
@@ -8581,3 +8519,13 @@ function ЗавершитьРаботу(лБыстро)
 		м_Отладка.ПойманоИсключение(пИсключение);
 	}
 })();
+
+function fitVideo() {
+	const video = document.getElementById('глаз')
+	const clientRects = video.getBoundingClientRect()
+	if (video.videoWidth > clientRects.width)
+		video.style.objectFit = 'fill'
+	else
+		video.style.objectFit = 'scale-down'
+}
+})(window);
