@@ -1,7 +1,7 @@
 ﻿(function(window){
 'use strict';
 
-var document = window.document
+const document = window.document, performance = window.performance
 
 // Формат версии: https://developer.chrome.com/extensions/manifest/version
 // В моем случае это UTC-дата выкладывания данной версии для скачивания.
