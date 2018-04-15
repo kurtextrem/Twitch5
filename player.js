@@ -8533,11 +8533,11 @@ function ЗавершитьРаботу(лБыстро)
 })();
 
 function fitVideo() {
-	const video = document.getElementById('глаз')
-	const clientRects = video.getBoundingClientRect()
-	if (video.videoWidth > clientRects.width)
-		video.style.objectFit = 'fill'
-	else
-		video.style.objectFit = 'scale-down'
+	const video = document.getElementById('глаз'),
+		vWidth = video.videoWidth,
+		vHeight = video.videoHeight
+
+	video.style.width = vWidth + 'px'
+	video.style.height = vHeight + 'px'
 }
 })(window);

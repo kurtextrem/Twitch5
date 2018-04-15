@@ -1,5 +1,19 @@
 @namespace xlink "http://www.w3.org/1999/xlink";
 
+body {
+	font-family:
+		-apple-system,
+		BlinkMacSystemFont,
+		'Segoe UI',
+		Roboto,
+		Helvetica,
+		Arial,
+		sans-serif,
+		'Apple Color Emoji',
+		'Segoe UI Emoji',
+		'Segoe UI Symbol';
+}
+
 /*************************************/
 /*	ЭЛЕМЕНТЫ УПРАВЛЕНИЯ
 /*************************************/
@@ -205,7 +219,7 @@ input:checked + .флажок-значок
 /*	М_ОКНА
 /*************************************/
 
-.окно
+.окно.окно
 {
 	position: absolute;
 	margin: .5rem;
@@ -249,17 +263,20 @@ body
 	align-items: stretch;
 	/* Не показывать прокрутку если перетаскиваемый absolutely positioned element вылезет за пределы проигрывателя */
 	overflow: hidden;
-	font: bold .75rem/1.5 Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: .75rem;
+	line-height: 1.5;
 	white-space: nowrap;
 	color: rgb({{сЦветКнопок}});
 	fill: currentColor;
 	text-shadow: 0 .0625rem .0625rem #333;
 	background: inherit;
+	-webkit-user-select: none;
+}
 #проигрыватель:hover > .панель {
 	will-change: opacity;
 }
-	-webkit-user-select: none;
-}
+
 #проигрыватель
 {
 	flex: 1;
@@ -270,20 +287,21 @@ body
 	position: relative;
 	/* Chrome 59 изменяет фон у :fullscreen */
 	background: inherit;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
-/* Chrome 49 */
+/* Chrome 49
 #проигрыватель:-webkit-full-screen
 {
 	width: 100%;
 	height: 100%;
-}
+}*/
 #проигрыватель:fullscreen
 {
 	width: 100%;
 	height: 100%;
-}
-#проигрыватель:fullscreen > #глаз {
-	object-fit: cover;
 }
 #размерчата:hover,
 #размерчата.js-тащилка-элемент
@@ -509,12 +527,17 @@ a:hover
 }
 #глаз
 {
-	contain: layout style;
-	position: absolute; /* Chrome 59- */
-	height: 100%;
-	width: 100%;
+	contain: strict;
+	 /* position: absolute; Chrome 59- */
+	/*height: 100%;
+	width: 100%;*/
 	z-index: 1;
-	object-fit: scale-down;
+	object-fit: contain;
+}
+#проигрыватель:fullscreen > #глаз {
+	contain: layout style;
+	height: 100% !important;
+	width: 100% !important;
 }
 body[data-состояние="8"] #глаз
 {
