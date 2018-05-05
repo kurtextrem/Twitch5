@@ -8535,7 +8535,20 @@ function ЗавершитьРаботу(лБыстро)
 function fitVideo() {
 	const video = document.getElementById('глаз'),
 		vWidth = video.videoWidth,
-		vHeight = video.videoHeight
+		vHeight = video.videoHeight,
+		wHeight = window.innerHeight,
+		wWidth = window.innerWidth
+
+	let sw = false
+	if (vHeight > wHeight) { 
+		vHeight = wHeight
+		sw = true
+	}
+	if (vWidth > wWidth) {
+		vWidth = wWidth
+		sw = true
+	}
+	if (sw) video.style.objectFit = 'fill'
 
 	video.style.width = vWidth + 'px'
 	video.style.height = vHeight + 'px'

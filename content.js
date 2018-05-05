@@ -17,9 +17,11 @@ const ЭТО_НЕ_КОД_КАНАЛА =
 	'friends',
 	'subscriptions',
 	'inventory',
+	'manager',
 	'signup',
 	'login',
-	'logout'
+	'logout',
+	'embed'
 ];
 
 const ХРАНИТЬ_СОСТОЯНИЕ_КАНАЛА = 20000; // Миллисекунды.
@@ -168,26 +170,21 @@ function РазобратьАдрес(oUrl)
 	var лМожноПеренаправлять = false;
 	if (oUrl.protocol === 'https:' && (oUrl.host === 'www.twitch.tv' || oUrl.host === 'm.twitch.tv'))
 	{
-		var мсЧасти = oUrl.pathname.match(/^\/([^/]+)(\/[^/]+)?\/?$/);
-		if (мсЧасти)
+		var мсЧасти = oUrl.pathname.match(/^\/([^/]+)(\/[^/]+)?(\/[^/]+)?\/?$/);
+		if (мсЧасти && мсЧасти[2] === undefined)
 		{
-			switch (мсЧасти[2])
+			// Оптимизация. Не слать напрасно запрос.
+			if (ЭТО_НЕ_КОД_КАНАЛА.indexOf(мсЧасти[1]) === -1)
 			{
-			case undefined:
-				// Оптимизация. Не слать напрасно запрос.
-				if (ЭТО_НЕ_КОД_КАНАЛА.indexOf(мсЧасти[1]) === -1)
-				{
-					чСтраница = СТРАНИЦА_ВОЗМОЖНО_ПРЯМАЯ_ТРАНСЛЯЦИЯ;
-					сКодКанала = мсЧасти[1];
-					лМожноПеренаправлять = ЭтотАдресМожноПеренаправлять(oUrl);
-				}
-				break;
-
-			case '/chat':
-				чСтраница = СТРАНИЦА_ЧАТ_КАНАЛА;
+				чСтраница = СТРАНИЦА_ВОЗМОЖНО_ПРЯМАЯ_ТРАНСЛЯЦИЯ;
 				сКодКанала = мсЧасти[1];
-				break;
+				лМожноПеренаправлять = ЭтотАдресМожноПеренаправлять(oUrl);
 			}
+		}
+		else if (мсЧасти && (мсЧасти[1] === 'embed' || мсЧасти[1] === 'popout') && мсЧасти[3] === '/chat')
+		{
+			чСтраница = СТРАНИЦА_ЧАТ_КАНАЛА;
+			сКодКанала = мсЧасти[2].slice(1);
 		}
 	}
 	Журнал('[Twitch 5] Адрес разобран: Страница=%s КодКанала=%s МожноПеренаправлять=%s', чСтраница, сКодКанала, лМожноПеренаправлять);
@@ -688,8 +685,7 @@ function ВставитьСторонниеРасширения()
 							if (оСобытие.data.сСторонниеРасширения.indexOf('BTTV ') !== -1)
 							{
 								var elScript = document.createElement('script');
-								// TODO Для нового чата https://cdn.betterttv.net/betterttv.js
-								elScript.setAttribute('src', 'https://legacy.betterttv.net/betterttv.js');
+								elScript.setAttribute('src', 'https://cdn.betterttv.net/betterttv.js');
 								document.head.appendChild(elScript);
 							}
 							if (оСобытие.data.сСторонниеРасширения.indexOf('FFZ ') !== -1)
@@ -719,10 +715,6 @@ function ВставитьСторонниеРасширения()
 
 function ИзменитьСтильЧата()
 {
-	const узСтиль = document.createElement('link');
-	узСтиль.setAttribute('rel', 'stylesheet');
-	узСтиль.setAttribute('href', chrome.extension.getURL('content.css'));
-	(document.head || document.documentElement).appendChild(узСтиль);
 }
 
 (() =>
