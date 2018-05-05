@@ -1256,7 +1256,7 @@ const м_i18n = (() =>
 		const sText = chrome.i18n.getMessage(sName);
 		if (!sText)
 		{
-			throw new Error(`Не найден текст ${sName}`);
+			// throw new Error(`Не найден текст ${sName}`);
 		}
 		return sText;
 	}
@@ -7308,7 +7308,7 @@ const м_Преобразователь = (() =>
 		if (!_оРабочийПоток)
 		{
 			м_Журнал.Вот('[Преобразование] Создаю рабочий поток');
-			_оРабочийПоток = new Worker(chrome.extension.getURL('worker.js'));
+			_оРабочийПоток = new Worker(chrome.extension.getURL('worker_pre.js'));
 			_оРабочийПоток.addEventListener('error', ОбработатьОшибкуПреобразования);
 			_оРабочийПоток.addEventListener('message', ОбработатьОкончаниеПреобразования);
 		}
@@ -8534,10 +8534,10 @@ function ЗавершитьРаботу(лБыстро)
 
 function fitVideo() {
 	const video = document.getElementById('глаз'),
-		vWidth = video.videoWidth,
-		vHeight = video.videoHeight,
 		wHeight = window.innerHeight,
 		wWidth = window.innerWidth
+	let vWidth = video.videoWidth,
+		vHeight = video.videoHeight
 
 	let sw = false
 	if (vHeight > wHeight) { 
