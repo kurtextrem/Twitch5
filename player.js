@@ -11,7 +11,7 @@ const document = window.document, performance = window.performance
 // 4 - указывается только для версий, выпущенных в один день. >= 1, по умолчанию 0.
 // Edge 15: Последнее число должно быть нулем.
 // https://docs.microsoft.com/en-us/microsoft-edge/extensions/guides/packaging/creating-and-testing-extension-packages#json-manifest-template-values
-const ВЕРСИЯ_РАСШИРЕНИЯ = '2018.4.6';
+const ВЕРСИЯ_РАСШИРЕНИЯ = '2018.4.25';
 //const ВЕРСИЯ_БРАУЗЕРА = Number.parseInt(/Chrome\/(\d+)/.exec(navigator.userAgent)[1], 10);
 //const ЭТО_ПЛАНШЕТ = false;
 
@@ -7744,7 +7744,7 @@ function Twitch(_сКодКанала)
 
 	function ПолучитьАдресПанелиЧата()
 	{
-		const мсАдрес = ['https://www.twitch.tv', `/${_сКодКанала}/chat`];
+		const мсАдрес = ['https://www.twitch.tv', `/embed/${_сКодКанала}/chat`];
 		if (м_Настройки.Получить('лЗатемнитьЧат'))
 		{
 			мсАдрес.push('?darkpopout');
