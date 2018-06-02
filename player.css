@@ -1195,20 +1195,6 @@ input:not(:checked) + .заголовокнастроек + .группанас�
 {
 	display: none;
 }
-#закрытьстатистику
-{
-	position: absolute;
-	left: .375rem;
-	top: .375rem;
-	fill: #bbb;
-	cursor: pointer;
-}
-#закрытьстатистику > svg
-{
-	display: block;
-	width: .9rem;
-	height: .9rem;
-}
 .статистика-символ
 {
 	font: 1.2em/1 Calibri, Arial, sans-serif;
@@ -1281,4 +1267,18 @@ input:not(:checked) + .заголовокнастроек + .группанас�
 .анализ-история:empty
 {
 	display: none;
+}
+#закрытьстатистику
+{
+	position: absolute;
+	left: .375rem;
+	top: .375rem;
+	fill: #bbb;
+	cursor: pointer;
+}
+#закрытьстатистику > svg
+{
+	display: block;
+	width: .9rem;
+	height: .9rem;
 }
