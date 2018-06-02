@@ -43,7 +43,7 @@ function ЗавершитьРаботуИОтправитьОтчет(сПрич
 function ВыброситьВПомойку(мбБарахло)
 {
 	// В Chrome 64 уже нет проблем с освобожданием памяти. Точно не знаю в какой версии это исправили.
-	if (ЭТО_ПЛАНШЕТ || ВЕРСИЯ_ДВИЖКА_БРАУЗЕРА >= 64)
+	if (ВЕРСИЯ_ДВИЖКА_БРАУЗЕРА >= 64)
 	{
 		return;
 	}
@@ -59,7 +59,7 @@ Uint8Array.prototype.Копировать = function(target, source, begin, end)
 	this.set(new Uint8Array(source.buffer, begin, Math.floor(end) - Math.floor(begin)), target);
 };
 
-/*if (ВЕРСИЯ_БРАУЗЕРА < 58)
+/*if (ВЕРСИЯ_ДВИЖКА_БРАУЗЕРА < 58)
 {
 	Uint8Array.prototype.copyWithin = function(target, begin, end)
 	// HACK Chrome 57-: copyWithin() охуенно медленный https://bugs.chromium.org/p/v8/issues/detail?id=5929
