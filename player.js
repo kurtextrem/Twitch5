@@ -5568,6 +5568,10 @@ const м_Проигрыватель = (() =>
 				fitVideo()
 				break
 
+		case 'volumechange':
+			м_Журнал.Вот(`${сЗапись} volume=${_oMediaElement.volume} muted=${_oMediaElement.muted}`);
+			break;
+
 		default:
 			м_Журнал.Вот(сЗапись);
 		}
@@ -8249,16 +8253,6 @@ function ЗавершитьРаботу(лБыстро)
 
 	м_i18n.TranslateDocument(document);
 		
-		const оКанал = ВыделитьКанал(window.location);
-		if (оКанал.сКодКанала)
-		{
-			if (ЭтотКаналУжеОткрыт(оКанал.сКодКанала))
-			{
-				return;
-			}
-			м_Twitch = Twitch(оКанал.сКодКанала);
-		}
-		else
 	const оКанал = ВыделитьКанал(window.location);
 	if (оКанал.сКодКанала)
 	{
@@ -8287,3 +8281,26 @@ function ЗавершитьРаботу(лБыстро)
 	.then(НачатьРаботу)
 	.catch(м_Отладка.ПойманоИсключение);
 })();
+
+function fitVideo() {
+	const video = document.getElementById('глаз'),
+		wHeight = window.innerHeight,
+		wWidth = window.innerWidth
+	let vWidth = video.videoWidth,
+		vHeight = video.videoHeight
+
+	let sw = false
+	if (vHeight > wHeight) { 
+		vHeight = wHeight
+		sw = true
+	}
+	if (vWidth > wWidth) {
+		vWidth = wWidth
+		sw = true
+	}
+	if (sw) video.style.objectFit = 'fill'
+
+	video.style.width = vWidth + 'px'
+	video.style.height = vHeight + 'px'
+}
+})(window);
