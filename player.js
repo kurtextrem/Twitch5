@@ -1,7 +1,7 @@
 ﻿﻿(function(window){
 'use strict';
 
-const document = window.document, performance = window.performance
+const document = window.document, performance = window.performance, ДобавитьОбработчикИсключений = window.ДобавитьОбработчикИсключений
 
 // Формат версии: https://developer.chrome.com/extensions/manifest/version
 // В моем случае это UTC-дата выкладывания данной версии для скачивания.
@@ -2936,9 +2936,9 @@ const м_Чат = (() =>
 			_узЧат.width = м_Настройки.Получить('чШиринаПанелиЧата');
 			_узЧат.height = м_Настройки.Получить('чВысотаПанелиЧата');
 			// UNDONE HACK https://bugs.chromium.org/p/chromium/issues/detail?id=793280
-			/*if (ВЕРСИЯ_ДВИЖКА_БРАУЗЕРА > 55 && ВЕРСИЯ_ДВИЖКА_БРАУЗЕРА < 66)
+			//if (ВЕРСИЯ_ДВИЖКА_БРАУЗЕРА > 55 && ВЕРСИЯ_ДВИЖКА_БРАУЗЕРА < 66)
 			_узЧат.src = сАдрес;
-			{
+			/*{
 				const чСкрытьНа = Math.round(2000 - performance.now());
 				if (чСкрытьНа > 0)
 				{
