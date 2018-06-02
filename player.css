@@ -659,6 +659,11 @@ body[data-состояние="8"] #глаз
 	0% { opacity: 0; }
 	100% { opacity: 1; }
 }
+.санимацией:not(.панель-безанимации) .панель
+{
+	transition: .3s ease-out;
+	transition-property: visibility, opacity;
+}
 .верхняя
 {
 	top: 0;
