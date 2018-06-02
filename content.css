@@ -1,238 +1,377 @@
-﻿@charset "UTF-8";
-/* Не влезает надпись в настройках: Должен быть подписчиком на протяжении ... */
-html .ember-chat .chat-menu .chat-menu-content .chat-menu-content__description
+@charset "UTF-8";
+/* Включаем без учета ширины если не влезает выбор bits */
+@media (max-height: 35em), (max-height: 42em) and (min-width: 32em)
 {
-	white-space: normal; /* nowrap */
-}
-/**
- * Включаем если:
- * - Не влезает список смайликов.
- * - Высота небольшая (разрешение экрана 720) и ширина достаточна для закрепленных сообщений.
- */
-@media (max-height: 505px), (max-height: 700px) and (min-width: 666px)
-{
-	/* Всплывающая подсказка .tipsy при выборе смайлика может вылезти за нижнюю границу страницы */
-	html
+	/**
+	 * Уменьшить вертикальные поля заголовка со списком комнат.
+	 */
+	html .room-selector__header
 	{
-		overflow-y: hidden; /* auto */
+		height: 3rem;
+	}
+	html .room-selector__open-header-wrapper
+	{
+		min-height: 3rem;
+	}
+	html .room-picker
+	{
+		top: calc(3rem - 1px);
+		max-width: 40rem;
+	}
+
+	/**
+	 * Поле для ввода сообщения.
+	 */
+	.tw-textarea[data-a-target="chat-input"]
+	{
+		/* Высота равна высоте кнопок */
+		height: calc(2.8rem + 2px);
+		/* Вертикальная полоса прокрутки не перекроет кнопку справа */ 
+		overflow: hidden;
+		padding-left: .5rem;
+		line-height: 1.4;
 	}
 	/**
-	 * Уменьшить вертикальные поля заголовка
+	 * Исправляем косяк Twitch: ширину кнопок нужно частично задавать в пикселах.
 	 */
-	html .ember-chat .chat-header
+	.tw-textarea[data-a-target="chat-input"][style*="padding-right: 3rem"]
 	{
-		height: 34px; /* 50px */
-		padding: 2px 0; /* 10px 0 */
+		padding-right: calc((2px + 1.2rem + 16px) * 1) !important;
 	}
-	html .ember-chat .chat-header .chat-header__button
+	.tw-textarea[data-a-target="chat-input"][style*="padding-right: 6rem"]
 	{
-		top: 2px; /* 10px */
+		padding-right: calc((2px + 1.2rem + 16px) * 2) !important;
 	}
-	html .ember-chat .notification-container
+	.tw-textarea[data-a-target="chat-input"][style*="padding-right: 9rem"]
 	{
-		top: 33px; /* 49px */
+		padding-right: calc((2px + 1.2rem + 16px) * 3) !important;
 	}
-	html .ember-chat .top-dropdown,
-	html .ember-chat .chat-room-list,
-	html .ember-chat .chat-commands-dropdown
+
+	/**
+	 * Кнопки, которые были под вводом сообщения, будут находиться справа от него.
+	 */
+	html .chat-input
 	{
-		top: 32px; /* 40px */
+		display: flex;
+		flex: none;
+		padding-bottom: .4rem !important;
 	}
-	html .ember-chat .chat-room
+	.chat-input > .tw-relative.tw-z-default
 	{
-		top: 34px; /* 50px */
+		flex: 1;
 	}
-	/* Увеличить высоту и ограничить ширину списка комнат */
-	html .ember-chat .chat-room-list
+	html .chat-input__buttons-container
 	{
-		bottom: 1px;
-		margin: 0 20px; /* 20px */
-		height: auto; /* 45% */
-		max-width: 40em;
+		margin-top: 0 !important;
 	}
-	html .ember-chat .chat-messages
+	.tw-button[data-a-target="chat-send-button"]
 	{
-		bottom: 36px; /* 111px */
+		order: -1;
+		margin-left: .8rem;
 	}
-	html .ember-chat .chat-messages .chat-lines
+
+	/**
+	 * Окна.
+	 */
+	.tw-balloon[data-a-target="chat-settings-balloon"],
+	.tw-balloon[data-a-target="emote-picker"],
+	html .t-bits-card,
+	html .bits-card-loading,
+	html .bits-buy-card
 	{
-		padding: 0; /* 10px 0 */
+		/* Использовать место, занимаемое заголовком со списком комнат */
+		position: fixed !important;
+		left: auto !important;
+		/* Не прислонять окно вплотную к границе экрана, чтобы пользователь
+		понял, что ни одна часть окна не вышла за пределы экрана. */
+		right: .2rem !important;
+		/* Не перекрывать кнопки, которые закрывают окно */
+		bottom: calc(.4rem + (2.8rem + 2px)) !important;
+		margin: 0 !important;
 	}
-	html .ember-chat .chat-interface
+
+	/**
+	 * Настройки чата.
+	 */
+	.chat-settings
 	{
-		height: 36px !important; /* 111px, important для BTTV */
-		padding-top: 3px; /* 0 */
-		padding-bottom: 3px; /* 20px */
+		max-height: calc(100vh - .4rem - (2.8rem + 2px) - 2px - .2rem) !important;
 	}
-	.chat-interface__wrap
+	html .chat-settings__content
+	{
+		padding: 1rem 1.5rem !important;
+	}
+
+	/**
+	 * Список смайликов.
+	 */
+	.tw-balloon[data-a-target="emote-picker"]
+	{
+		width: 80rem;
+	}
+	.emote-picker__tab-content
+	{
+		max-height: calc(100vh - .4rem - (2.8rem + 2px) - 3rem - 2px - .2rem) !important; /* important для FFZ */
+	}
+	html .emote-picker__content-block
+	{
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+	}
+	.emote-picker__content-block:first-child
+	{
+		padding-top: 0 !important;
+	}
+	/* Оставить поле у последнего блока, чтобы влезла всплывающая подсказка
+	с названием смайлика. Подсказка всегда внизу - это недоработка Twitch. */
+	.emote-picker__content-block.tw-pd-b-2:not(:last-child)
+	{
+		padding-bottom: 1rem !important;
+	}
+	/**
+	 * Переместить поиск смайликов в строку с вкладками.
+	 */
+	.emote-picker__controls-container
 	{
 		display: flex;
 	}
-	html .ember-chat .chat-interface .textarea-contain
+	.emote-picker__tabs-container
 	{
-		height: 30px; /* 50px */
-		margin-bottom: 0; /* 10px */
+		flex: 1;
 	}
-	html .ember-chat .chat-interface .textarea-contain textarea
+	/* html для FFZ */
+	html .emote-picker__controls-container > .tw-border-t.tw-pd-1
 	{
-		height: 30px !important; /* 50px, 1 строка */
-		padding-right: 50px; /* 25px, добавить место для .bits-helper-toggle */
-		overflow: hidden; /* Полоса прокрутки не перекроет .emoticon-selector-toggle */ 
+		order: 1;
+		display: flex;
+		align-items: center;
+		padding: 0 .2rem 0 0 !important;
 	}
-	html .ember-chat .chat-interface .chat-buttons-container
+	.emote-picker__controls-container .tw-input
 	{
-		width: auto; /* 100% */
-		display: flex; /* block */
-		align-items: flex-start;
+		width: 12em;
+		padding: .2rem .8rem;
 	}
-	html .chat-interface__submit
+
+	/**
+	 * Выбор bits.
+	 */
+	html .t-bits-card
 	{
-		order: -1;
-		margin: 0 10px !important; /* 0, important для BTTV dark mode */
+		width: 150rem !important;
+		max-width: calc(100vw - .2rem * 2);
 	}
-	html .ember-chat .chat-interface .chat-rules
+	html .bits-card-loading
 	{
-		width: auto; /* 88% */
+		width: 40rem !important;
 	}
-	.dropmenu,
-	.ui-menu,
-	.ui-multiselect-menu
+	/* Значение взято с запасом */
+	@media (max-height: 27em)
 	{
-		margin-bottom: 0 !important; /* 20px, important для BTTV */
+		html .cheermote-prefix-selector
+		{
+			max-height: 11rem;
+		}
+		html .cheermote-prefix-selector,
+		html .cheermote-tier-selector
+		{
+			height: auto;
+			min-height: 0;
+		}
+		html .cheermote-tier-intro,
+		html .pending-cheer
+		{
+			min-height: 0;
+		}
+		html .cheermote-tier-selector__back-button
+		{
+			padding-top: 0;
+		}
+		html .t-bits-card__contents h4
+		{
+			margin-bottom: .5rem;
+		}
+		.t-bits-card .tw-pd-1,
+		.t-bits-card .tw-pd-2,
+		.t-bits-card .tw-pd-3
+		{
+			padding-top: .5rem !important;
+			padding-bottom: .5rem !important;
+		}
+		.t-bits-card .tw-pd-t-1,
+		.t-bits-card .tw-pd-t-2,
+		.t-bits-card .tw-pd-t-3,
+		html .cheermote-prefix-selector__cheermotes,
+		html .cheermote-tier-selector__cheermotes
+		{
+			padding-top: .5rem !important;
+		}
+		.t-bits-card .tw-pd-b-1,
+		.t-bits-card .tw-pd-b-2,
+		.t-bits-card .tw-pd-b-3
+		{
+			padding-bottom: .5rem !important;
+		}
+		.t-bits-card .tw-mg-1,
+		.t-bits-card .tw-mg-2,
+		.t-bits-card .tw-mg-3,
+		.t-bits-card .tw-mg-t-1,
+		.t-bits-card .tw-mg-t-2,
+		.t-bits-card .tw-mg-t-3,
+		.t-bits-card .tw-mg-b-1,
+		.t-bits-card .tw-mg-b-2,
+		.t-bits-card .tw-mg-b-3
+		{
+			margin-top: 0 !important;
+			margin-bottom: 0 !important;
+		}
 	}
-	html .emoticon-selector
+
+	/**
+	 * Покупка bits.
+	 */
+	html .bits-buy-card
 	{
-		bottom: 36px; /* 100px */
+		width: 80rem !important;
+		max-width: calc(100vw - .2rem * 2);
+		min-height: 0;
+		max-height: calc(100vh - .4rem - (2.8rem + 2px) - .2rem);
 	}
-	html .emoticon-selector .emoticon-selector-box
+	.bits-buy-card[data-a-target="bits-buy-card-loading"]
 	{
-		width: 80rem; /* 30rem */
-		max-width: 90vw;
+		min-height: 18rem;
 	}
-	html .emoticon-selector .emoticon-selector-box .all-emotes,
-	html .emoticon-selector .emoticon-selector-box .channel-emotes
+	html .bits-buy-card-offers__scroll-view
 	{
-		max-height: calc(100vh - 3rem - 36px); /* 30.5rem */
+		height: 100%;
 	}
-	/* Переместить поиск смайликов в стоку с вкладками */
-	.emoticon-selector-box > .border-t
+
+	/**
+	 * Список зрителей.
+	 */
+	html .chat-viewers__header
+	{
+		height: 3rem;
+	}
+	html .chat-viewers__filter
+	{
+		margin-top: .5rem !important;
+		margin-bottom: .5rem !important;
+	}
+	.chat-viewers__filter .tw-input
+	{
+		padding-top: .2rem;
+		padding-bottom: .2rem;
+	}
+	.chat-viewers-list.tw-pd-b-2
+	{
+		padding-bottom: 1rem !important;
+	}
+
+	/**
+	 * Список пожертвований. Будет висеть в правом верхнем углу, не отнимая место у сообщений.
+	 */
+	html .pinned-cheer-v2
 	{
 		position: absolute;
-		bottom: 0;
-		right: 0;
-		width: 15em;
-		border: 0 !important;
-		padding: 0 !important;
+		/* Не перекрывать вертикальную полосу прокрутки */
+		right: 12px;
+		top: 0;
+		max-height: calc(100vh - .4rem - (2.8rem + 2px) - 3rem);
+		height: auto;
+		display: flex;
 	}
-	html .bits-card
+	html .pinned-cheer-v2-header__users
 	{
-		right: 0;
-		max-width: 50em;
+		width: auto;
 	}
-	html .bits-purchase .scroll
+	html .pinned-cheer-v2-header--arrow
 	{
-		max-height: calc(100vh - 36px * 1.2 - 10rem);
+		position: static !important;
+		vertical-align: top;
 	}
-	html .ember-chat .chat-settings
+	.pinned-cheer-v2 > * > .tw-c-background.tw-pd-t-1
 	{
-		bottom: 36px !important; /* 41px, important для FFZ */
-		left: auto; /* 20px */
-		right: 20px; /* auto */
-		width: 34em; /* 222px */
-		max-width: 90vw;
+		height: 100%;
+		display: flex;
+		flex-flow: column;
 	}
+	html .bits-leaderboard-expanded__scrollable
+	{
+		max-height: none;
+	}
+	/* Оставить место для bits-leaderboard-expanded__arrow */
+	.pinned-cheer-v2 > * > * > .tw-align-items-center
+	{
+		margin-left: 3.8rem;
+		margin-right: 3.8rem;
+	}
+	@media (max-width: 47em)
+	{
+		/* Если ширины чата недостаточно, то список пожертвований может перекрывать сообщения.
+		Раскрывать список по наведению мыши или нажатию пальца на inned-cheer-v2-header--arrow. */
+		.pinned-cheer-v2-header:not(:hover) > .pinned-cheer-v2-header__users
+		{
+			max-width: 0;
+			overflow: hidden;
+		}
+	}
+
 	/**
-	 * Закрепленные сообщения будут висеть в правом верхнем углу
+	 * Правила чата. Не тратить время на добавление вертикальной прокрутки
+	 * правил, здоровые портянки никто в здравом уме читать не станет.
 	 */
-	html .sticky-message
+	html .chat-rules
 	{
-		position: absolute !important; /* absolute или relative */
-		left: auto !important; /* 0 */
+		position: fixed !important;
+		bottom: .4rem;
+		z-index: 5;
 	}
-	.chat-messages
+	.chat-rules > .tw-mg-b-1
 	{
-		top: 0 !important; /* 30px/76px если есть закрепленные сообщения */
+		margin-bottom: 0 !important;
 	}
+
+	/**
+	 * Меню в карточке откроется вверх и не вылезет за нижнюю границу экрана.
+	 */
+	.viewer-card__actions > div > .tw-align-right .tw-balloon--down
+	{
+		top: auto;
+		bottom: 100%;
+		margin-bottom: 8px;
+	}
+	.viewer-card__actions > div > .tw-align-right .tw-balloon--down > .tw-balloon__tail
+	{
+		top: 100%;
+		margin-top: -1px;
+	}
+	.viewer-card__actions > div > .tw-align-right .tw-balloon--down > .tw-balloon__tail .tw-balloon__tail-symbol
+	{
+		top: auto;
+		bottom: 8px;
+	}
+
+	/* Исправляем косяк Twitch: карточку не видно в Chrome 49 */
+	.chat-room__viewer-card,
+	/* Исправляем косяк Twitch: элемент смещен по вертикали в списке зрителей в Chrome 49 */
+	.chat-viewers__header > .tw-absolute
+	{
+		top: 0;
+	}
+
+	.chat-list__lines .tw-full-height.tw-pd-b-1[role="log"]
+	{
+		padding-bottom: 0 !important;
+	}
+
 	/**
 	 * BetterTTV
 	 */
-	/* Возвращаем стандартные значения Twitch */
-	html .ember-chat .chat-interface
+	#emote-menu-for-twitch
 	{
-		border: 0; /* 1px 0 0 0, dark mode */
-	}
-	html .ember-chat .chat-interface .textarea-contain
-	{
-		width: 100%; /* auto */
-		top: 0; /* 10px */
-		margin-right: 0; /* 10px */
-	}
-	html .ember-chat .chat-interface .chat-buttons-container
-	{
-		margin-left: 0; /* 10px */
-		padding-top: 0; /* 10px */
-	}
-	/* В dark mode у кнопок есть правый отступ */
-	.chat-buttons-container > .float-left:nth-last-child(2)
-	{
-		margin-right: 0;
-	}
-	/* float переносит правую часть текста на новую строку, плюс .pinned-cheer__expando-arrow хреново смотрится */
-	html .pinned-cheers
-	{
-		padding: 0; /* 0 0 10px 5px */
-		display: flex; /* float block */
-	}
-	html .pinned-cheers::before
-	{
-		order: 1;
-	}
-	/* BTTV неправильно скрывает заголовок чата, поэтому js завышает высоту .chat-settings */
-	.chat-settings
-	{
-		max-height: calc(100vh - 36px) !important;
-	}
-	/**
-	 * FrankerFaceZ
-	 */
-	html .ffz-ui-popup .emoticon-selector-box
-	{
-		width: 80rem !important; /* 10000px */
-		max-width: 90vw !important; /* 300px */
-	}
-	.ffz-ui-menu-page
-	{
-		max-height: calc(100vh - 36px - 1px - 37px) !important; /* js */
-	}
-	.ffz-ui-menu-page > .ffz-ui-sub-menu-page,
-	.ffz-ui-menu-page > .ffz-ui-sub-menu-page > .ffz-ui-sub-menu-page
-	{
-		max-height: calc(100vh - 36px - 1px - 37px * 2) !important; /* js */
-	}
-	.ffz-ui-menu-page > .ffz-ui-sub-menu-page > .ffz-filter-container
-	{
-		position: absolute; /* static */
-		right: 0; /* auto */
-		padding: 3px; /* 10px, центровка по вертикали */
-	}
-	html body:not(.ffz-minimal-chat-input):not(.ffz-menu-replace) .chat-interface .emoticon-selector-toggle + .ffz-ui-toggle,
-	html body:not(.ffz-minimal-chat-input):not(.ffz-menu-replace) .chat-interface .emoticon-selector-toggle + div + .ffz-ui-toggle
-	{
-		top: 6px; /* 28px */
-		right: 53px; /* 6px */
-	}
-	/* Добавить место для .ffz-ui-toggle. HACK FFZ активен если есть data-current-path */
-	body[data-current-path]:not(.ffz-minimal-chat-input):not(.ffz-menu-replace) .ember-chat .chat-interface .textarea-contain textarea
-	{
-		padding-right: 70px;
-	}
-	html .ffz.room-state.stat
-	{
-		margin: 0 0 0 5px; /* 0 -10px 0 15px */
-		letter-spacing: -.0834em; /* normal */
-	}
-	.ffz-has-recent-messages .chat-messages
-	{
-		top: 30px !important;
+		max-width: 120rem;
+		left: auto !important;
+		right: 1px;
 	}
 }
