@@ -4,7 +4,7 @@
 'use strict';
 
 const ВЕРСИЯ_РАСШИРЕНИЯ = '2018.5.18';
-const ВЕРСИЯ_ДВИЖКА_БРАУЗЕРА = Number.parseInt(/Chrome\/(\d+)/.exec(navigator.userAgent)[1], 10);
+const ВЕРСИЯ_ДВИЖКА_БРАУЗЕРА = Number.parseInt(/Chrome\/(\d+)/.exec(navigator.userAgent)[1], 10); // replace for prepack
 
 function Проверить(пУсловие)
 {

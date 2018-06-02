@@ -11,8 +11,8 @@ const document = window.document, performance = window.performance
 // 4 - указывается только для версий, выпущенных в один день. >= 1, по умолчанию 0.
 // Edge 15: Последнее число должно быть нулем.
 // https://docs.microsoft.com/en-us/microsoft-edge/extensions/guides/packaging/creating-and-testing-extension-packages#json-manifest-template-values
-const ВЕРСИЯ_РАСШИРЕНИЯ = '2018.4.25';
-//const ВЕРСИЯ_БРАУЗЕРА = Number.parseInt(/Chrome\/(\d+)/.exec(navigator.userAgent)[1], 10);
+const ВЕРСИЯ_РАСШИРЕНИЯ = '2018.5.18';
+//const ВЕРСИЯ_ДВИЖКА_БРАУЗЕРА = Number.parseInt(/Chrome\/(\d+)/.exec(navigator.userAgent)[1], 10);
 //const ЭТО_ПЛАНШЕТ = false;
 
 // Chrome 59 + Windows + аппаратное декодирование: Для завершения перемотки и начала воспроизведения нужно не менее
@@ -3261,7 +3261,7 @@ const м_Чат = (() =>
 			_узЧат.width = м_Настройки.Получить('чШиринаПанелиЧата');
 			_узЧат.height = м_Настройки.Получить('чВысотаПанелиЧата');
 			// UNDONE HACK https://bugs.chromium.org/p/chromium/issues/detail?id=793280
-			/*if (ВЕРСИЯ_БРАУЗЕРА > 55 && ВЕРСИЯ_БРАУЗЕРА < 66)
+			/*if (ВЕРСИЯ_ДВИЖКА_БРАУЗЕРА > 55 && ВЕРСИЯ_ДВИЖКА_БРАУЗЕРА < 66)
 			{
 				const чСкрытьНа = Math.round(2000 - performance.now());
 				if (чСкрытьНа > 0)
