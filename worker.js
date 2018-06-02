@@ -1,15 +1,10 @@
 ﻿
 
 
-
 'use strict';
 
-// Firefox, Chrome: subarray() немного медленнее чем new Uint8Array().
-// TODO Добавить AVC3 если попадется трансляция с несколькими SPS.
-// TODO Перевести часть Проверить() в Браковать().
-
-const ВЕРСИЯ_РАСШИРЕНИЯ = '2018.4.25';
-const ВЕРСИЯ_БРАУЗЕРА = Number.parseInt(/Chrome\/(\d+)/.exec(navigator.userAgent)[1], 10); // replace for prepack
+const ВЕРСИЯ_РАСШИРЕНИЯ = '2018.5.18';
+const ВЕРСИЯ_ДВИЖКА_БРАУЗЕРА = Number.parseInt(/Chrome\/(\d+)/.exec(navigator.userAgent)[1], 10);
 
 function Проверить(пУсловие)
 {
@@ -48,7 +43,7 @@ function ЗавершитьРаботуИОтправитьОтчет(сПрич
 function ВыброситьВПомойку(мбБарахло)
 {
 	// В Chrome 64 уже нет проблем с освобожданием памяти. Точно не знаю в какой версии это исправили.
-	if (ВЕРСИЯ_БРАУЗЕРА >= 64)
+	if (ЭТО_ПЛАНШЕТ || ВЕРСИЯ_ДВИЖКА_БРАУЗЕРА >= 64)
 	{
 		return;
 	}
@@ -92,7 +87,7 @@ Uint8Array.prototype.Копировать = function(target, source, begin, end)
 	};
 }
 
-if (ВЕРСИЯ_БРАУЗЕРА < 59)
+if (ВЕРСИЯ_ДВИЖКА_БРАУЗЕРА < 59)
 {
 	Uint8Array.prototype.slice = function(begin, end)
 	// Chrome 44-: slice() не поддерживается.
@@ -540,7 +535,7 @@ function ID3(мбБуфер, уНачало, уКонец)
 	this._кбПоле = -1;
 }
 
-ID3._oUtf8Decoder = null; // static
+ID3._oUtf8Decoder = null;
 
 ID3.prototype.ПолучитьСледующееПоле = function()
 {
@@ -588,6 +583,7 @@ ID3.prototype.ПолучитьПервоеТекстовоеЗначение = f
 	}
 	try
 	{
+		// Firefox, Chrome: subarray() немного медленнее, чем new Uint8Array().
 		var сЗначения = ID3._oUtf8Decoder.decode(new Uint8Array(this._мб.buffer, this._уПоле + 1, this._кбПоле - 1));
 	}
 	catch (и)
@@ -712,7 +708,7 @@ function СрезОбработки(кбСтруктураСемпла, уНач
 //
 //
 
-const м_Журнал = (function()
+const м_Журнал = (() =>
 {
 	var _мсВажность = [];
 	var _мсЗаписи   = [];
@@ -751,7 +747,7 @@ const м_Журнал = (function()
 	return {Вот, Окак, Ой, Отправить};
 })();
 
-const м_Балкон = (function()
+const м_Балкон = (() =>
 {
 	// TODO Можно заменить на массив и хранить все что выбрасывается, например в ВыделитьМассив().
 	var _мбБарахло = null;
@@ -794,7 +790,6 @@ const м_Балкон = (function()
 	return {Положить, Найти, Освободить};
 })();
 
-(function()
 {
 	/***
 	ПАРАМЕТРЫ ПОСЛЕДОВАТЕЛЬНОСТИ
@@ -2090,7 +2085,7 @@ const м_Балкон = (function()
 			0x61, 0x76, 0x63, 0x31                       // compatible_brands = 'avc1'
 		]);
 
-		оСегмент.AddBox('moov', function()
+		оСегмент.AddBox('moov', () =>
 		{
 			оСегмент.AddFullBox('mvhd', 1, 0,            // Версия 1 для обхода исправленной в Chrome 55 ошибки https://bugs.chromium.org/p/chromium/issues/detail?id=649882
 			[
@@ -2112,7 +2107,7 @@ const м_Балкон = (function()
 				0xFF, 0xFF, 0xFF, 0xFF                   // next_track_id = unknown
 			]);
 
-			оСегмент.AddBox('mvex', function()
+			оСегмент.AddBox('mvex', () =>
 			{
 				if (лЕстьВидео)
 				{
@@ -2157,7 +2152,7 @@ const м_Балкон = (function()
 
 	function ДобавитьДорожку(оПараметры, лВидео, оСегмент)
 	{
-		оСегмент.AddBox('trak', function()
+		оСегмент.AddBox('trak', () =>
 		{
 			оСегмент.AddFullBox('tkhd', 0, 3, 80);                                              // track_in_movie | track_enabled
 			// creation_time = 0
@@ -2187,7 +2182,7 @@ const м_Балкон = (function()
 				                                                                                // Firefox 48, Chrome 53: Не используется.
 			}
 
-			оСегмент.AddBox('mdia', function()
+			оСегмент.AddBox('mdia', () =>
 			{
 				оСегмент.AddFullBox('mdhd', 0, 0, 20);
 				// creation_time = 0
@@ -2215,7 +2210,7 @@ const м_Балкон = (function()
 					]
 				);
 
-				оСегмент.AddBox('minf', function()
+				оСегмент.AddBox('minf', () =>
 				{
 					if (лВидео)
 					{
@@ -2230,9 +2225,9 @@ const м_Балкон = (function()
 						// reserved = 0
 					}
 
-					оСегмент.AddBox('dinf', function()
+					оСегмент.AddBox('dinf', () =>
 					{
-						оСегмент.AddFullBox('dref', 0, 0, function()
+						оСегмент.AddFullBox('dref', 0, 0, () =>
 						{
 							оСегмент.мбБуфер.ЗаписатьБЦ32(оСегмент.уКонец, 1); // entry_count
 							оСегмент.уКонец += 4;
@@ -2240,12 +2235,12 @@ const м_Балкон = (function()
 						});
 					});
 
-					оСегмент.AddBox('stbl', function()
+					оСегмент.AddBox('stbl', () =>
 					{
 						//
 						// ISO 14496-12:2012 SampleDescriptionBox
 						//
-						оСегмент.AddFullBox('stsd', 0, 0, function()
+						оСегмент.AddFullBox('stsd', 0, 0, () =>
 						{
 							оСегмент.мбБуфер.ЗаписатьБЦ32(оСегмент.уКонец, 1); // entry_count
 							оСегмент.уКонец += 4;
@@ -2255,7 +2250,7 @@ const м_Балкон = (function()
 								//
 								// ISO 14496-15:2013 AVCSampleEntry
 								//
-								оСегмент.AddBox('avc1', function()
+								оСегмент.AddBox('avc1', () =>
 								{
 									//
 									// ISO 14496-12:2012 SampleEntry
@@ -2281,7 +2276,7 @@ const м_Балкон = (function()
 									//
 									// ISO 14496-15:2013 AVCConfigurationBox
 									//
-									оСегмент.AddBox('avcC', function()
+									оСегмент.AddBox('avcC', () =>
 									{
 										оСегмент.мбБуфер[оСегмент.уКонец    ] = 1;                                                    // configurationversion
 										оСегмент.мбБуфер[оСегмент.уКонец + 1] = оПараметры.nProfileIndication;                        // avcprofileindication
@@ -2323,7 +2318,7 @@ const м_Балкон = (function()
 								//
 								// ISO 14496-14:2003 MP4AudioSampleEntry
 								//
-								оСегмент.AddBox('mp4a', function()
+								оСегмент.AddBox('mp4a', () =>
 								{
 									//
 									// ISO 14496-12:2012 SampleEntry
@@ -2343,7 +2338,7 @@ const м_Балкон = (function()
 									//
 									// ISO 14496-14:2003 MP4AudioSampleEntry
 									//
-									оСегмент.AddFullBox('esds', 0, 0, function()
+									оСегмент.AddFullBox('esds', 0, 0, () =>
 									{
 										//
 										// ISO 14496-1:2010 ES_Descriptor
@@ -2421,14 +2416,14 @@ const м_Балкон = (function()
 		var оСегмент = new IsoBaseMedia(мбБуфер, 0);
 		var уСмещениеВидеоданных, уСмещениеАудиоданных;
 
-		оСегмент.AddBox('moof', function()
+		оСегмент.AddBox('moof', () =>
 		{
 			оСегмент.AddFullBox('mfhd', 0, 0, 4);
 			мбБуфер.ЗаписатьБЦ32(оСегмент.уКонец - 4, 0); // sequence_number
 
 			if (!срВидео.Пусто())
 			{
-				оСегмент.AddBox('traf', function()
+				оСегмент.AddBox('traf', () =>
 				{
 					оСегмент.AddFullBox('tfhd', 0, 0x020000, 4); // default-base-is-moof
 					мбБуфер.ЗаписатьБЦ32(оСегмент.уКонец - 4, НОМЕР_ВИДЕО_ДОРОЖКИ); // track_id
@@ -2439,7 +2434,7 @@ const м_Балкон = (function()
 
 					оСегмент.AddFullBox('trun', 1, // signed sample_composition_time_offset
 						0xF01, // sample-composition-time-offsets-present | sample-flags-present | sample-size-present | sample-duration-present | data-offset-present
-						function()
+						() =>
 						{
 							мбБуфер.ЗаписатьБЦ32(оСегмент.уКонец, срВидео.ПолучитьКоличествоСемплов()); // sample_count
 							уСмещениеВидеоданных = оСегмент.уКонец + 4; // data_offset
@@ -2451,7 +2446,7 @@ const м_Балкон = (function()
 
 			if (!срАудио.Пусто())
 			{
-				оСегмент.AddBox('traf', function()
+				оСегмент.AddBox('traf', () =>
 				{
 					оСегмент.AddFullBox('tfhd', 0, 0x020000, 4); // default-base-is-moof
 					мбБуфер.ЗаписатьБЦ32(оСегмент.уКонец - 4, НОМЕР_АУДИО_ДОРОЖКИ); // track_id
@@ -2462,7 +2457,7 @@ const м_Балкон = (function()
 
 					оСегмент.AddFullBox('trun', 1, // signed sample_composition_time_offset
 						0x201, // sample-size-present | data-offset-present
-						function()
+						() =>
 						{
 							мбБуфер.ЗаписатьБЦ32(оСегмент.уКонец, срАудио.ПолучитьКоличествоСемплов()); // sample_count
 							уСмещениеАудиоданных = оСегмент.уКонец + 4; // data_offset
@@ -2473,7 +2468,7 @@ const м_Балкон = (function()
 			}
 		});
 
-		оСегмент.AddBox('mdat', function()
+		оСегмент.AddBox('mdat', () =>
 		{
 			if (!срВидео.Пусто())
 			{
@@ -2871,7 +2866,7 @@ const м_Балкон = (function()
 		_чПреобразованЗа = performance.now() - чНачало;
 	}
 
-	self.onmessage = function(оСобытие)
+	self.onmessage = оСобытие =>
 	{
 		// UNDONE report://03599505848251_14958570155
 		const сВерсия = typeof оСобытие.data !== 'object' || оСобытие.data === null ? typeof оСобытие.data : оСобытие.data.сВерсия;
@@ -2903,4 +2898,4 @@ const м_Балкон = (function()
 			_оИсходныйСегмент = null;
 		}
 	};
-})();
+}
