@@ -28,17 +28,17 @@ body
 	padding: 0;
 }
 /*
- * <svg><symbol id="s"><path/></symbol></svg>
- * <button><svg><use href="s"/></svg></button>
+ * <svg><symbol id="s"><path>
+ * <button><svg><use href="s">
  * MouseEvent.target:
  *   Firefox 55: button
  *   Chrome 61:  svg или use
  *   Edge 15:    svg или use
- *   Edge 16:    svg или symbol > path
+ *   Edge 16:    svg или path
  * Вариант Edge 16 не позволяет использовать один обработчик для нескольких кнопок.
  * Этот стиль заставляет все браузеры посылать событие в button.
  */
-button > svg,
+svg,
 button > span
 {
 	pointer-events: none;
