@@ -2,7 +2,7 @@
 
 let г_лРаботаЗавершена = false;
 
-// Chrome 48-, Edge 15
+/* Chrome 48-, Edge 15
 if (!window.URLSearchParams)
 {
 	window.URLSearchParams = function(сПараметры)
