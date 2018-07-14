@@ -92,19 +92,46 @@ const ПРАВАЯ_СТОРОНА                   = 2;
 const НИЖНЯЯ_СТОРОНА                   = 3;
 const ЛЕВАЯ_СТОРОНА                    = 4;
 
-const ЗАСТРЕВАЕТ_СЕГМЕНТОВ_В_РАБОЧЕМ_ПОТОКЕ = ВЕРСИЯ_ДВИЖКА_БРАУЗЕРА < 50 ? 1 : 0;
-
-let г_лРаботаЗавершена = false;
 let г_чИдВкладки = NaN;
 
-function Текст(сКод, сПодстановка)
+// Chrome 65-, Firefox, Edge
+if (!navigator.clipboard)
 {
-	return м_i18n.GetMessage(сКод, сПодстановка);
+	navigator.clipboard = {};
 }
-
-function ЭтоОбъект(пЗначение)
+if (!navigator.clipboard.writeText)
 {
-	return typeof пЗначение === 'object' && пЗначение !== null;
+	// Chrome 67: Если открыто окно, которое запрашивает разрешение на доступ к буферу обмена,
+	// то все вызовы методов navigator.clipboard ставятся в очередь. Они будут обслужены после
+	// закрытия окна.
+	navigator.clipboard.writeText = function(сТекст)
+	{
+		Проверить(typeof сТекст === 'string');
+		return new Promise(ДобавитьОбработчикИсключений((фВыполнить, фОтказаться) =>
+		{
+			const узТекст = document.createElement('input');
+			узТекст.type = 'text';
+			// Нужен чтобы на планшете не вылезала клавиатура.
+			узТекст.readOnly = true;
+			узТекст.value = сТекст;
+			узТекст.style.position = 'fixed';
+			узТекст.style.left = '-100500px';
+			document.body.appendChild(узТекст);
+			узТекст.select();
+			const лПолучилось = document.execCommand('copy');
+			узТекст.remove();
+			if (лПолучилось)
+			{
+				фВыполнить();
+			}
+			else
+			{
+				// Chrome 67 согласно текущей версии стандарта возвращает undefined.
+				// Некоторые методы navigator.clipboard возвращают DOMException.
+				фОтказаться();
+			}
+		}));
+	};
 }
 
 function Текст(сКод, сПодстановка)
