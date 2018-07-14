@@ -94,7 +94,7 @@ const ЛЕВАЯ_СТОРОНА                    = 4;
 
 let г_чИдВкладки = NaN;
 
-// Chrome 65-, Firefox, Edge
+/* Chrome 65-, Firefox, Edge
 if (!navigator.clipboard)
 {
 	navigator.clipboard = {};
@@ -132,7 +132,7 @@ if (!navigator.clipboard.writeText)
 			}
 		}));
 	};
-}
+}*/
 
 function Текст(сКод, сПодстановка)
 {
@@ -8642,6 +8642,8 @@ function ЗавершитьРаботу(лБыстро)
 	])
 	.then(НачатьРаботу)
 	.catch(м_Отладка.ПойманоИсключение);
+	
+	м_i18n.TranslateDocument(document);
 })();
 
 function fitVideo() {
