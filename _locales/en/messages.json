@@ -9,11 +9,11 @@
       "message": "Change the volume.\nPress the UP/DOWN ARROWS on the keyboard or rotate the mouse wheel (see the player settings)."
    },
    "A0507": {
-      "description": "Копия есть в A0527.",
+      "description": "Копия A0527.",
       "message": "The duration of this broadcast. Remember to set the correct date, time and time zone on your computer.\n\nClick to show the player statistics."
    },
    "A0508": {
-      "message": "Show news.\n\nAt any time you can read the help and 3 latest news by clicking the “Help” button in the player settings."
+      "message": "Click to see what's new in the extension"
    },
    "A0509": {
       "message": "Open or close the chat.\nThe C and INSERT keys on the keyboard."
@@ -25,6 +25,7 @@
       "message": "Toggle full-screen mode.\nPress the ENTER key on the keyboard or double-click the view area.\nPress the F11 to leave the chat visible."
    },
    "A0513": {
+      "description": "Копия J0139.",
       "message": "You can reduce the quality if the download speed or your computer's performance is insufficient for continuous playback of this video. Not all channels allow to change the quality.\n\nThe “source” video has the highest quality. The other variants have lower quality; the source video was recompressed on the Twitch.tv server."
    },
    "A0515": {
@@ -36,9 +37,6 @@
    "A0519": {
       "message": "Unlike the “Buffer size” setting, this setting affects only the first start of playback. Allows you to faster start watching after the opening of the player.\n\nWhen this is useful:\n\n• You want to start playback as soon as possible.\n\n• You have no problems with the download speed, therefore no need to wait when the buffer becomes full.\n\n“Start playback” can be greater than “Buffer size”, i.e. they can be swapped. This is useful in case of large “Start playback” (for example, more than 10 s) and if “Download rate” (see in the statistics) does not much exceed “Stream bit rate” (for example, no more than twice)."
    },
-   "A0521": {
-      "message": "The enabled setting can sometimes reduce the server response time (see “Time to first byte” in the statistics), and therefore avoid interruption of the playback (see “Buffer underruns” in the statistics). The enabled setting always increases the stream delay (see the description of the “Buffer size” setting).\n\nIf you increased the “Buffer Size” setting above the default value, I recommend to turn off the delayed downloading."
-   },
    "A0523": {
       "message": "The player at the specified interval downloads the playlist and checks it for new segments to download (see “Playlist” and “Added segments” in the statistics).\n\nThe minimum interval may slightly reduce the stream delay (see the description of the “Buffer size” setting).\n\nThe interval above 100 increases the stream delay and leads to simultaneous downloads of several segments (see the description of the “Simultaneous downloads” setting). You most likely will need to increase the “Buffer overflow” setting.\n\nAutomatic mode (click “+” or “−” until the word “Auto”) — the player will choose the optimal value (see “Polling interval” in the statistics)."
    },
@@ -46,7 +44,7 @@
       "message": "Reset the extension to default settings"
    },
    "A0527": {
-      "description": "Копия есть в A0507.",
+      "description": "Копия A0507.",
       "message": "Show the player statistics.\nPress the S key on the keyboard or click the time in the lower left corner of the player."
    },
    "A0529": {
@@ -69,16 +67,16 @@
       "message": "Change the playback speed.\nThe keys 0 through 9, PLUS and MINUS on the keyboard.\nYour computer's performance may be insufficient for playback at the maximum speed."
    },
    "A0538": {
-      "message": "If the duration of the video in the buffer exceeds the sum “Buffer size” + “Buffer overflow”, then part of this video will be deleted (see “Buffer overflows” in the statistics) and in the upper right corner of the player red scissors will be shown.\n\nDecrease the setting to limit the maximum stream delay. Increase the setting to avoid skipping parts of the video."
+      "message": "If duration of the video in the buffer exceeds the sum “Buffer size” + “Buffer overflow”, then part of this video will be deleted (see “Buffer overflows” in the statistics) and the red scissors icon will be shown in the upper right corner of the player.\n\nDecrease the setting to limit the maximum stream delay. Increase the setting to avoid skipping parts of the video."
    },
    "A0565": {
-      "message": "To set your own colors, select the suitable theme, then open the “Colors” settings group. All changes will be saved in the “Customizable” theme.\n\nDo you want to share your customized theme with all users of the player? Click the “Feedback” button in the player settings, then type the brief name of the theme in English or Russian. If I will like the theme, then I will add it to the next version of the extension."
+      "message": "To set your own colors, select the suitable theme, then open the “Colors” settings group. All changes will be saved in the “Customizable” theme."
    },
    "A0572": {
-      "message": "Check the visibility of the buttons while watching instant replay (the SPACE key on the keyboard). Check the readability of the text in the news.\n\nTo leave the background intact, click this button while holding down the SHIFT key on the keyboard."
+      "message": "Check the visibility of the buttons while watching instant replay (the SPACE key on the keyboard). Check the readability of the text in the help.\n\nTo leave the background intact, click this button while holding down the SHIFT key on the keyboard."
    },
    "A0575": {
-      "message": "Mute the sound and change the volume by mouse wheel"
+      "message": "Pressing the mouse wheel will mute the sound, and rotating the mouse wheel will change the volume"
    },
    "A0578": {
       "description": "Вариант для Edge. A0534 для Chrome и Firefox.",
@@ -101,7 +99,7 @@
       "message": "Open or close the information about this channel.\nThe I key on the keyboard."
    },
    "A0599": {
-      "message": "Show help and 3 latest news.\nThe F1 key on the keyboard."
+      "message": "Show help.\nThe F1 key on the keyboard."
    },
    "A0606": {
       "message": "Save all extension settings to a file"
@@ -122,7 +120,7 @@
       "message": "Scroll down to see all the text"
    },
    "A0620": {
-      "message": "Do not show this news again.\n\nAt any time you can read the help and 3 latest news by clicking the “Help” button in the player settings."
+      "message": "Do not show this news again.\n\nAt any time you can show latest news by right-clicking the view area, then in the menu clicking “Latest News”."
    },
    "A0622": {
       "message": "Temporarily close this window"
@@ -137,7 +135,7 @@
       "message": "Choose how you want to close the chat.\n\nIf the chat is unloaded:\n• It does not receive messages.\n• You are not in the viewers list.\n• It will take more time to reopen the chat.\n\nIf the chat is hidden:\n• It continues to consume RAM (more than 100 megabytes) and load the CPU (can fully load 2 cores).\n• During the player start-up, it takes more time to begin the video playback."
    },
    "A0635": {
-      "message": "Select the device for audio output. This list is shown only if more than one audio device is available to the browser. Due to browser bugs, this list is hidden in incognito mode."
+      "message": "Select the device for audio output. This setting is hidden if only one audio device is available to the browser. Due to browser bug, this setting is not yet available in incognito mode."
    },
    "A0637": {
       "message": "Before selecting a device for audio output, you need to click this button and give the extension additional permission to change the microphone settings (the word “microphone” means both audio input and output)."
@@ -149,17 +147,31 @@
       "message": "Click to open the notifications settings on the Twitch.tv website"
    },
    "A0649": {
-      "message": "Full-featured — identical to the popout chat on the Twitch.tv website. Whispers do not work in chat yet. The dark mode setting is located on the Twitch.tv website.\n\nLess features — no rooms, no moderation, no raids, no Bits, sometimes you need to confirm the sending of the first message. Use this version if the full-featured version does not work as it should."
+      "message": "Full-featured — identical to the popout chat on the Twitch.tv website. Whispers do not work in chat yet. If you need to toggle the dark mode, do it on the Twitch.tv website.\n\nLess features — no rooms, no moderation settings, no raids, no Bits, sometimes you need to confirm the sending of the first message. Use this version if the full-featured version does not work as it should. To enable inline moderation icons, check the “Mod Icons” option in your chat setting on the Twitch.tv website."
+   },
+   "A0654": {
+      "message": "Copies to clipboard the address of this channel to share it with other people, create a bookmark in the browser, etc."
+   },
+   "A0656": {
+      "message": "Copies to clipboard the address of this broadcast to view it in another player that supports HLS, for example Media Player Classic, VLC Media Player, or MX Player. It may take several seconds for the address to be retrieve. The copied address will expire in 20 minutes."
+   },
+   "A0658": {
+      "message": "The setting works when video resolution (see in the statistics) is less than the player size. If enabled, video will be stretched to the player size (keeping the aspect ratio). If disabled, video of the original size will be located in the center of the player, and the unused space is filled with a black background.\n\nThe R key on the keyboard."
+   },
+   "A0660": {
+      "message": "To quickly open the main menu, right click the view area."
+   },
+   "A0662": {
+      "message": "LATE BREAKING NEWS FROM THE FRONT"
+   },
+   "A0665": {
+      "message": "Copies to clipboard the address of the record of this broadcast at the current playback position. Use the address to continue watching the broadcast later or to share an interesting moment with other people.\n\nAlso, the broadcast type indicator in the upper left corner of the player allows you to start watching the record of this broadcast."
    },
    "F0501": {
       "message": "Game:"
    },
    "F0502": {
       "message": "Watching now:"
-   },
-   "F0505": {
-      "description": "Настройка отключена.",
-      "message": "Off"
    },
    "F0512": {
       "message": "Video quality"
@@ -172,9 +184,6 @@
    },
    "F0518": {
       "message": "Start playback, seconds"
-   },
-   "F0520": {
-      "message": "Delayed downloading"
    },
    "F0522": {
       "message": "Polling interval, %"
@@ -189,7 +198,8 @@
       "message": "Feedback"
    },
    "F0530": {
-      "message": "Donate"
+      "description": "Копия F1000.",
+      "message": "Please Support"
    },
    "F0533": {
       "message": "Instant replay duration, seconds"
@@ -199,11 +209,11 @@
    },
    "F0539": {
       "description": "Название параметра статистики.",
-      "message": "Video"
+      "message": "Resolution"
    },
    "F0540": {
       "description": "Название параметра статистики.",
-      "message": "Compression"
+      "message": "Video"
    },
    "F0541": {
       "description": "Название параметра статистики.",
@@ -215,7 +225,7 @@
    },
    "F0543": {
       "description": "Название параметра статистики.",
-      "message": "Queue"
+      "message": "Queue, s"
    },
    "F0544": {
       "description": "Название параметра статистики.",
@@ -287,7 +297,7 @@
    },
    "F0561": {
       "description": "Группа настроек.",
-      "message": "General"
+      "message": "Playback"
    },
    "F0562": {
       "description": "Группа настроек.",
@@ -359,7 +369,7 @@
       "message": "You:"
    },
    "F0590": {
-      "message": "must \u003Ca href='https://www.twitch.tv/login' rel='external noopener noreferrer'>log in\u003C/a> to follow, chat, and create clips"
+      "message": "must \u003Ca href='https://www.twitch.tv/login' rel='noopener noreferrer'>log in\u003C/a> to follow, chat, and create clips"
    },
    "F0591": {
       "message": "Follow"
@@ -408,7 +418,7 @@
       "message": "Chat placement"
    },
    "F0625": {
-      "description": "Есть несколько копий этой строки.",
+      "description": "Пункт меню. Копия F1501.",
       "message": "Help"
    },
    "F0626": {
@@ -436,7 +446,7 @@
       "message": "Give permission"
    },
    "F0638": {
-      "description": "Копия есть в F0777.",
+      "description": "Копия F0777.",
       "message": "Open Chat in Sidebar"
    },
    "F0640": {
@@ -472,9 +482,33 @@
    "F0652": {
       "message": "Less features; dark mode"
    },
+   "F0653": {
+      "message": "Copy Channel Address"
+   },
+   "F0655": {
+      "message": "Copy Broadcast Address"
+   },
+   "F0657": {
+      "message": "Stretch small video"
+   },
+   "F0659": {
+      "message": "Main Menu"
+   },
+   "F0661": {
+      "description": "Пункт меню. Копия A0620.",
+      "message": "Latest News"
+   },
+   "F0663": {
+      "description": "Кнопка, закрывающая что-либо, например окно",
+      "message": "Close"
+   },
+   "F0664": {
+      "description": "Пункт меню. Копия J0130 F1058.",
+      "message": "Copy Record Address"
+   },
    "F0700": {
       "description": "Заголовок формы для отправки отзыва.",
-      "message": "Send Feedback"
+      "message": "Send Message To Developer Of \u003Ccite>Alternate Player for Twitch.tv\u003C/cite> Extension"
    },
    "F0701": {
       "message": "If you want to report the playback issue, first start the standard Twitch.tv player (reload this page, then click the broadcast title in the upper left corner). If the issue stays, then you do not need to report it. The developer of the \u003Ccite>Alternate Player for Twitch.tv\u003C/cite> extension is not affiliated with the owners of \u003Ccite>Twitch.tv\u003C/cite> and can not affect operation of their website and the quality of the broadcasts."
@@ -486,7 +520,7 @@
       "message": "You can enter an e-mail address, so that the developer can answer you."
    },
    "F0704": {
-      "message": "Along with the text that you entered, the debug data will be sent."
+      "message": "Along with the text you entered, the debug data will be sent."
    },
    "F0705": {
       "message": "Show debug data"
@@ -495,21 +529,18 @@
       "message": "Privacy policy"
    },
    "F0707": {
-      "description": "Кнопка.",
-      "message": "Send data to the developer of the \u003Ccite>Alternate Player for Twitch.tv\u003C/cite> extension"
+      "description": "Кнопка для отправки данных.",
+      "message": "Send"
    },
    "F0708": {
       "description": "Заголовок формы для отправки отчета об ошибке.",
-      "message": "An error occurred in the \u003Ccite>Alternate Player for Twitch.tv\u003C/cite> extension"
-   },
-   "F0709": {
-      "message": "The extension is still in development, so errors may occur occasionally."
+      "message": "Send Error Report To Developer Of \u003Ccite>Alternate Player for Twitch.tv\u003C/cite> Extension"
    },
    "F0710": {
-      "message": "Make sure you have the latest version of the extension. Also, do not turn off the browser update: new browser versions are constantly improving the video playback. The frequent occurrence of errors can be caused by incorrect configuration of the hardware or software (first check the web browser settings)."
+      "message": "\u003Cstrong>Make sure you have the latest version of the extension.\u003C/strong> Also, do not turn off the browser update: new browser versions are constantly improving the video playback. The frequent occurrence of errors can be caused by incorrect configuration of the hardware or software (first check the web browser settings)."
    },
    "F0712": {
-      "message": "Please send debug data to the developer of the extension, so he could fix this error. If necessary, a few seconds of the video will be added to the debug data."
+      "message": "An error occurred in the extension. Please send debug data to the developer of the extension, so he could fix this error. If necessary, a few seconds of the video will be added to the debug data."
    },
    "F0715": {
       "message": "If you know the cause or sequence of your actions that led to the error, then briefly describe them."
@@ -526,14 +557,11 @@
       "message": "Fail to send data \u003Cb>:(\u003C/b>"
    },
    "F0720": {
-      "description": "Кнопка, которая повторяет отправку данных.",
+      "description": "Кнопка для повторной отправки данных.",
       "message": "Try again"
    },
    "F0723": {
-      "message": "In case of incorrect or missing English translation, please write the correct variant below. You can also \u003Ca href='https://coolcmd.tk/tw5/translate.html' target='_blank' rel='external noopener noreferrer'>do it yourself\u003C/a>, without the help of extension developer."
-   },
-   "F0724": {
-      "message": "\u003Cb>If you have problems with the \u003Ccite>Alternate Player for Twitch.tv\u003C/cite> extension, first read the help. To do this, click the \u003Cq>Help\u003C/q> button in the player's settings. Also, most elements of the player interface, including menus, have a context help in the form of tooltips, which I highly recommend to read.\u003C/b> If this does not help, use this form to send feedback to the developer of the extension."
+      "message": "In case of incorrect or missing English translation, please write the correct variant below. You can also \u003Ca href='https://coolcmd.tk/tw5/translate.html' target='_blank' rel='noopener noreferrer'>do it yourself\u003C/a>, without the help of extension developer."
    },
    "F0725": {
       "message": "I recommend doing this, because in most cases the information provided by users is not enough."
@@ -541,25 +569,23 @@
    "F0726": {
       "message": "Embedded chat is developed by Twitch.tv. The extension just inserts the chat into its player. This chat has some limitations compared to the version used on the Twitch.tv website. Servers that serve the chat can stop working for reasons beyond the control of the extension developer. This happens relatively rarely (at least in my city)."
    },
+   "F0727": {
+      "message": "The extension can be broken by: Twitch.tv website settings (cookies), browser extensions, ad blockers, firewalls, antiviruses. To diagnose the problem, try turning off all this shit."
+   },
+   "F0728": {
+      "message": "If you do not see the reply, try searching in spam the mail with the subject \u003Cq>Alternate Player for Twitch.tv\u003C/q>."
+   },
    "F0777": {
       "description": "Текст в пустой боковой панели.",
-      "message": "In order to open the \u003Ca href='https://www.twitch.tv/' target='_blank' rel='external noopener noreferrer'>Twitch.tv\u003C/a> chat in this panel, first open the broadcast in the \u003Ccite>Alternate Player for Twitch.tv\u003C/cite>, then right click the view area and in the menu click \u003Cq>Open Chat in Sidebar\u003C/q>."
+      "message": "In order to open the \u003Ca href='https://www.twitch.tv/' target='_blank' rel='noopener noreferrer'>Twitch.tv\u003C/a> chat in this panel, first open the broadcast in the \u003Ccite>Alternate Player for Twitch.tv\u003C/cite>, then right click the view area and in the menu click \u003Cq>Open Chat in Sidebar\u003C/q>."
    },
    "F1000": {
       "description": "Новость.",
-      "message": "\u003Cp>Browser extension \u003Ccite>Alternate Player for Twitch.tv\u003C/cite> is developed by \u003Ccite>Alexander Choporov (CoolCmd)\u003C/cite>, and this takes a lot of free time. Extension is free. If you liked it, then you can thank the developer by donating him some money. Donation will also serve as a great motivation to continue the extension development.\u003C/p>\u003Cp>To make a donation, click \u003Ca href='https://coolcmd.tk/tw5/donate.html' target='_blank' rel='external noopener noreferrer'>this link\u003C/a> or open player settings and click the \u003Cq>Donate\u003C/q> button.\u003C/p>"
-   },
-   "F1001": {
-      "description": "Справка. Часть 1.",
-      "message": "\u003Cp>At any time you can read this help by clicking the \u003Cq>Help\u003C/q> button in the player settings. Also, most elements of the player interface, including menus, have a context help in the form of tooltips, which I highly recommend to read.\u003C/p>\u003Cp>To open the channel on the Twitch.tv website, click the broadcast title in the upper left corner of the player. To open the game on the Twitch.tv website, click the game title in the upper right corner of the player.\u003C/p>\u003Cp>On the Twitch.tv website in the upper right corner there is extension's logo \u003Cq>5\u003C/q>. The right click on the logo toggles the automatic start of the player. The left click starts the player (if possible).\u003C/p>\u003Cp>Frequently used commands, such as \u003Ci>mute\u003C/i>, easier to give by pressing keys on the keyboard. The keys are listed in the tooltips.\u003C/p>"
-   },
-   "F1002": {
-      "description": "Справка. Часть 2.",
-      "message": "\u003Cp>To track your followed channels, as well as explore new ones, I recommend installing the \u003Ca href='https://chrome.google.com/webstore/detail/nlmbdmpjmlijibeockamioakdpmhjnpk' target='_blank' rel='external noopener noreferrer'>\u003Ccite>Twitch Now\u003C/cite>\u003C/a> browser extension.\u003C/p>\u003Cp>The following features of the Twitch.tv website are not available in the player yet: Whispers, Twitch extensions (not to be confused with browser extensions), Drops.\u003C/p>\u003Cp>To reduce the stream delay (to make chatting easier), try changing the \u003Cq>Connection quality\u003C/q> to \u003Cq>Good\u003C/q> in the player settings.\u003C/p>"
+      "message": "\u003Cp>Browser extension \u003Ccite>Alternate Player for Twitch.tv\u003C/cite> is developed by \u003Ccite>Alexander Choporov (CoolCmd)\u003C/cite>, and this takes a lot of free time. Extension is free. If you liked it, then you can thank the developer by donating him some money. Donation will also serve as a great motivation to continue the extension development.\u003C/p>\u003Cp>To make a donation, click \u003Ca href='https://coolcmd.tk/tw5/donate.html' target='_blank' rel='noopener noreferrer'>this link\u003C/a> or right click the view area, then in the menu click \u003Cq>Please Support\u003C/q>.\u003C/p>"
    },
    "F1011": {
       "description": "Новость.",
-      "message": "\u003Cp>The ability to \u003Ca href='https://help.twitch.tv/customer/en/portal/articles/2442508-how-to-use-clips' target='_blank' rel='external noopener noreferrer'>create and share clips\u003C/a> was added to the player. Before clicking the appropriate button please read its tooltip.\u003C/p>"
+      "message": "\u003Cp>The ability to \u003Ca href='https://help.twitch.tv/customer/en/portal/articles/2442508-how-to-use-clips' target='_blank' rel='noopener noreferrer'>create and share clips\u003C/a> was added to the player. Before clicking the appropriate button please read its tooltip.\u003C/p>"
    },
    "F1012": {
       "description": "Новость.",
@@ -575,35 +601,19 @@
    },
    "F1017": {
       "description": "Новость.",
-      "message": "\u003Cp>\u003Ca href='https://www.microsoft.com/store/apps/9p9p2nd0s56c' target='_blank' rel='external noopener noreferrer'>Install\u003C/a>, rate and review. :)\u003C/p>\u003Cp>Also, the \u003Cq>Black And White\u003C/q> color theme was added.\u003C/p>"
+      "message": "\u003Cp>\u003Ca href='https://www.microsoft.com/store/apps/9p9p2nd0s56c' target='_blank' rel='noopener noreferrer'>Install\u003C/a>, rate and review. :)\u003C/p>\u003Cp>Also, the \u003Cq>Black And White\u003C/q> color theme was added.\u003C/p>"
    },
    "F1018": {
       "description": "Новость.",
-      "message": "\u003Cp>Added setting for quick selection of the Internet connection quality.\u003C/p>\u003Cp>Added setting for changing the gradient color.\u003C/p>\u003Cp>\u003Ccite>Chrome\u003C/cite>: added support for the \u003Ca href='https://chrome.google.com/webstore/detail/aiimboljphncldaakcnapfolgnjonlea' target='_blank' rel='external noopener noreferrer'>\u003Ccite>FFZ Add-On Pack\u003C/cite>\u003C/a> extension.\u003C/p>"
+      "message": "\u003Cp>Added setting for quick selection of the Internet connection quality.\u003C/p>\u003Cp>Added setting for changing the gradient color.\u003C/p>\u003Cp>\u003Ccite>Chrome\u003C/cite>: added support for the \u003Ca href='https://chrome.google.com/webstore/detail/aiimboljphncldaakcnapfolgnjonlea' target='_blank' rel='noopener noreferrer'>\u003Ccite>FFZ Add-On Pack\u003C/cite>\u003C/a> extension.\u003C/p>"
    },
    "F1020": {
       "description": "Новость.",
-      "message": "\u003Cp>Added a brief information about the channel you are watching, with the ability to follow/unfollow it. To view this information, click the icon in the upper right corner of the player or press \u003Cq>\u003Ccode>I\u003C/code>\u003C/q> key on the keyboard. To track your followed channels, as well as explore new ones, I recommend installing the \u003Ca href='https://chrome.google.com/webstore/detail/nlmbdmpjmlijibeockamioakdpmhjnpk' target='_blank' rel='external noopener noreferrer'>\u003Ccite>Twitch Now\u003C/cite>\u003C/a> browser extension.\u003C/p>\u003Cp>Added rerun indicator: the icon in the upper left corner of the player.\u003C/p>\u003Cp>Added \u003Cq>Help\u003C/q> button, which shows help and 3 latest news.\u003C/p>\u003Cp>Tapping the touchscreen shows the player interface.\u003C/p>"
+      "message": "\u003Cp>Added a brief information about the channel you are watching, with the ability to follow/unfollow it. To view this information, click the icon in the upper right corner of the player or press \u003Cq>\u003Ccode>I\u003C/code>\u003C/q> key on the keyboard. To track your followed channels, as well as explore new ones, I recommend installing the \u003Ca href='https://chrome.google.com/webstore/detail/nlmbdmpjmlijibeockamioakdpmhjnpk' target='_blank' rel='noopener noreferrer'>\u003Ccite>Twitch Now\u003C/cite>\u003C/a> browser extension.\u003C/p>\u003Cp>Added rerun indicator: the icon in the upper left corner of the player.\u003C/p>\u003Cp>Tapping the touchscreen shows the player interface.\u003C/p>"
    },
    "F1023": {
       "description": "Новость.",
       "message": "\u003Cp>The live broadcast indicator has been added to the top left corner of the player. Click it to view the broadcast from the beginning. This feature is not available on all channels.\u003C/p>"
-   },
-   "F1024": {
-      "description": "Справка. Вариант для Chrome. Часть 1/2.",
-      "message": "\u003Cp>Embedded chat is developed by Twitch.tv. The extension just inserts the chat into its player (and optimizes the \u003Ca href='https://coolcmd.tk/img/tw5/messages.png' target='_blank' rel='external noopener noreferrer'>height\u003C/a> of the \u003Ca href='https://coolcmd.tk/img/tw5/emotes.png' target='_blank' rel='external noopener noreferrer'>content\u003C/a>). This chat has some limitations compared to the version used on the Twitch.tv website. See the description of the chat version in the player settings.\u003C/p>\u003Cp>If you have problems with chat, then open your browser settings and allow to save and read cookie data, including third-party cookie data. Also, try to select a different chat version in the player settings. The dark mode setting is located on the Twitch.tv website.\u003C/p>"
-   },
-   "F1025": {
-      "description": "Справка. Вариант для Edge.",
-      "message": "\u003Cp>Embedded chat is developed by Twitch.tv. The extension just inserts the chat into its player. This chat has the following limitations: no rooms, no moderation, no raids, no Bits, sometimes you need to confirm the sending of the first message. Whispers do not work in chat yet.\u003C/p>\u003Cp>Due to browser limitations, the browser extensions which enhance chat, such as \u003Ccite>BetterTTV\u003C/cite> and \u003Ccite>FrankerFaceZ\u003C/cite>, are not working in the player. Also, the extension does not work in InPrivate mode.\u003C/p>"
-   },
-   "F1026": {
-      "description": "Справка. Вариант для Firefox. Часть 1/2.",
-      "message": "\u003Cp>Embedded chat is developed by Twitch.tv. The extension just inserts the chat into its player (and optimizes the \u003Ca href='https://coolcmd.tk/img/tw5/messages.png' target='_blank' rel='external noopener noreferrer'>height\u003C/a> of the \u003Ca href='https://coolcmd.tk/img/tw5/emotes.png' target='_blank' rel='external noopener noreferrer'>content\u003C/a>). This chat has some limitations compared to the version used on the Twitch.tv website. See the description of the chat version in the player settings.\u003C/p>\u003Cp>If you have problems with chat, then open your browser settings and allow to accept cookies, including third-party cookies, or add an address&emsp;\u003Ccode>https://twitch.tv\u003C/code>&emsp;to exceptions. Also, try to select a different chat version in the player settings. The dark mode setting is located on the Twitch.tv website.\u003C/p>"
-   },
-   "F1027": {
-      "description": "Справка. Часть 3.",
-      "message": "\u003Cp>If you have problems with the \u003Ccite>Alternate Player for Twitch.tv\u003C/cite> extension, send feedback to the extension developer. To do this, click the \u003Cq>Feedback\u003C/q> button in the player settings.\u003C/p>"
    },
    "F1037": {
       "description": "Новость.",
@@ -619,7 +629,7 @@
    },
    "F1042": {
       "description": "Новость.",
-      "message": "\u003Cp>Some time ago, Google removed the extension from its Web Store, because the owners of the Twitch.tv website did not like the name of the extension. Therefore, I decided to change the name of the extension from \u003Ccite>Twitch 5\u003C/cite> to \u003Ccite>Alternate Player for Twitch.tv\u003C/cite>. Nothing else was changed. The extension is still being developed by the \u003Ccite>Alexander Choporov (CoolCmd)\u003C/cite>. The extension is available in the Google Web Store at the \u003Ca href='https://chrome.google.com/webstore/detail/bhplkbgoehhhddaoolmakpocnenplmhf' target='_blank' rel='external noopener noreferrer'>new address\u003C/a>.\u003C/p>"
+      "message": "\u003Cp>Some time ago, Google removed the extension from its Web Store, because the owners of the Twitch.tv website did not like the name of the extension. Therefore, I decided to change the name of the extension from \u003Ccite>Twitch 5\u003C/cite> to \u003Ccite>Alternate Player for Twitch.tv\u003C/cite>. Nothing else was changed. The extension is still being developed by the \u003Ccite>Alexander Choporov (CoolCmd)\u003C/cite>. The extension is available in the Google Web Store at the \u003Ca href='https://chrome.google.com/webstore/detail/bhplkbgoehhhddaoolmakpocnenplmhf' target='_blank' rel='noopener noreferrer'>new address\u003C/a>.\u003C/p>"
    },
    "F1043": {
       "description": "Новость.",
@@ -627,11 +637,11 @@
    },
    "F1044": {
       "description": "Новость.",
-      "message": "\u003Cp>Added settings that allow you to change the size of the interface and turn off the animation.\u003C/p>\u003Cp>Clicking on the duration of the broadcast shows the player statistics.\u003C/p>\u003Cp>On the Twitch.tv website, two buttons are combined into one, which is still located in the upper right corner of the website. The right click on the button toggles the automatic start of the player. The left click starts the player (if possible).\u003C/p>\u003Cp>Added support for the \u003Ca href='https://m.twitch.tv/' target='_blank' rel='external noopener noreferrer'>website for mobile devices\u003C/a>. At the moment, only \u003Ca href='https://play.google.com/store/apps/details?id=org.mozilla.firefox' target='_blank' rel='external noopener noreferrer'>Firefox for Android\u003C/a> can execute my extension. Support for the touch screen is not ideal yet. Anyway, on tablets the people watch the broadcasts in the Twitch App, and not in the browser (I think).\u003C/p>"
+      "message": "\u003Cp>Added settings to change the size of the interface and turn off the animation.\u003C/p>\u003Cp>Clicking on the duration of the broadcast shows the player statistics.\u003C/p>\u003Cp>On the Twitch.tv website, two buttons are combined into one, which is still located in the upper right corner of the website. The right click on the button toggles the automatic start of the player. The left click starts the player (if possible).\u003C/p>\u003Cp>Added support for the \u003Ca href='https://m.twitch.tv/' target='_blank' rel='noopener noreferrer'>website for mobile devices\u003C/a>. At the moment, only \u003Ca href='https://play.google.com/store/apps/details?id=org.mozilla.firefox' target='_blank' rel='noopener noreferrer'>Firefox for Android\u003C/a> can execute my extension. Support for the touch screen is not ideal yet. Anyway, on tablets the people watch the broadcasts in the Twitch App, and not in the browser (I think).\u003C/p>"
    },
    "F1046": {
       "description": "Новость.",
-      "message": "\u003Cp>Added setting that allow you to enable dark mode in the chat. This setting only affects the chat that is embedded in the player.\u003C/p>\u003Cp>Also, in Firefox the bug is fixed: a white page in the place of chat.\u003C/p>"
+      "message": "\u003Cp>Added setting to enable dark mode in the chat. This setting only affects the chat that is embedded in the player.\u003C/p>\u003Cp>Also, in Firefox the bug is fixed: a white page in the place of chat.\u003C/p>"
    },
    "F1047": {
       "description": "Новость.",
@@ -643,21 +653,113 @@
    },
    "F1049": {
       "description": "Новость.",
-      "message": "\u003Cp>Added a full-featured chat, which is identical to the popout chat on the Twitch.tv website. The following features are now available: rooms, moderation, raids, Bits, popout window, you do not need to confirm the sending of the first message. Whispers do not work in chat yet. The dark mode setting is located on the Twitch.tv website. Full-featured chat is not available in Microsoft Edge.\u003C/p>\u003Cp>Now in chat (for example, attached to the bottom or top side of the window) there is room for much more \u003Ca href='https://coolcmd.tk/img/tw5/messages.png' target='_blank' rel='external noopener noreferrer'>messages\u003C/a> and \u003Ca href='https://coolcmd.tk/img/tw5/emotes.png' target='_blank' rel='external noopener noreferrer'>emotes\u003C/a>. This optimization is compatible with current versions of \u003Ccite>BetterTTV\u003C/cite> and \u003Ccite>FrankerFaceZ\u003C/cite> browser extensions. This optimization is not available in Microsoft Edge.\u003C/p>\u003Cp>Added \u003Cq>Incognito\u003C/q> player color theme. Added setting that allow you to select a chat version.\u003C/p>"
+      "message": "\u003Cp>Added a full-featured chat, which is identical to the popout chat on the Twitch.tv website. The following features are now available: rooms, moderation, raids, Bits, popout window, you do not need to confirm the sending of the first message. Whispers do not work in chat yet. If you need to toggle the dark mode, do it on the Twitch.tv website. Full-featured chat is not available in Microsoft Edge.\u003C/p>\u003Cp>Now in chat (for example, attached to the bottom or top side of the window) there is room for much more \u003Ca href='https://coolcmd.tk/img/tw5/messages.png' target='_blank' rel='noopener noreferrer'>messages\u003C/a> and \u003Ca href='https://coolcmd.tk/img/tw5/emotes.png' target='_blank' rel='noopener noreferrer'>emotes\u003C/a>. This optimization is compatible with current versions of \u003Ccite>BetterTTV\u003C/cite> and \u003Ccite>FrankerFaceZ\u003C/cite> browser extensions. This optimization is not available in Microsoft Edge.\u003C/p>\u003Cp>Added \u003Cq>Incognito\u003C/q> player color theme. Added setting to select a chat version.\u003C/p>"
    },
-   "F1050": {
-      "description": "Справка. Вариант для Chrome. Часть 2/2.",
+   "F1053": {
+      "description": "Новость.",
+      "message": "\u003Cp>Due to Chrome 67 bug, all broadcasts can be opened with muted sound. In this case, update your browser to fix this issue.\u003C/p>"
+   },
+   "F1056": {
+      "description": "Новость для планшета.",
+      "message": "\u003Cp>The extension is not tested enough in this browser. The extension does not yet fully support the touch screen: tooltips are not visible, you can not resize chat, you can not drag statistics, the layout of interface is not optimal.\u003C/p>"
+   },
+   "F1057": {
+      "description": "Новость.",
+      "message": "\u003Cp>Added menu with links and commands. One of the commands allows you to view the broadcast in another player, for example \u003Ccite>Media Player Classic\u003C/cite>, \u003Ccite>VLC Media Player\u003C/cite>, or \u003Ccite>MX Player\u003C/cite>. To open the menu, right click the view area.\u003C/p>\u003Cp>Pressing the ESC key on the keyboard hides the player interface, including windows and menus.\u003C/p>\u003Cp>Added setting to disable stretching the small video to the player size.\u003C/p>\u003Cp>Added setting to select the device for audio output: speakers, headphones, TV, etc. This setting is hidden if only one audio device is available to the browser. Due to browser bug, this setting is not yet available in incognito mode. This setting is unavailable in Firefox (but may be added this year) and Microsoft Edge.\u003C/p>"
+   },
+   "F1058": {
+      "description": "Новость.",
+      "message": "\u003Cp>Now you can open the chat while in full-screen mode.\u003C/p>\u003Cp>Added command \u003Cq>Copy Record Address\u003C/q> in the player menu. Use this command to continue watching the broadcast later or to share an interesting moment with other people.\u003C/p>"
+   },
+   "F1501": {
+      "description": "Часть справки, часть формы отзыва, новость для первого запуска проигрывателя.",
+      "message": "\u003Cp>To see help, right click the view area, then in the menu click \u003Cq>Help\u003C/q>. Also, most elements of the player interface (buttons, links, menus, etc) have tooltips, which I highly recommend to read. Tooltips automatically appear under the mouse cursor after it is stopped.\u003C/p>"
+   },
+   "F1502": {
+      "description": "Часть справки.",
+      "message": "\u003Cp>To open the channel on the Twitch.tv website, click the broadcast title in the upper left corner of the player. To open the game on the Twitch.tv website, click the game title in the upper right corner of the player. Other links can be found in the player menu.\u003C/p>"
+   },
+   "F1503": {
+      "description": "Часть справки.",
+      "message": "\u003Cp>On the Twitch.tv website in the upper right corner there is extension's logo \u003Cq>5\u003C/q>. The right click on the logo toggles the automatic start of the player. The left click starts the player (if possible).\u003C/p>"
+   },
+   "F1504": {
+      "description": "Часть справки.",
+      "message": "\u003Cp>Frequently used commands, such as \u003Ci>mute\u003C/i>, easier to give by pressing keys on the keyboard. The keys are listed in the tooltips.\u003C/p>"
+   },
+   "F1505": {
+      "description": "Часть справки.",
+      "message": "\u003Cp>To track your followed channels, as well as explore new ones, I recommend installing the \u003Ca href='https://chrome.google.com/webstore/detail/nlmbdmpjmlijibeockamioakdpmhjnpk' target='_blank' rel='noopener noreferrer'>\u003Ccite>Twitch Now\u003C/cite>\u003C/a> browser extension.\u003C/p>"
+   },
+   "F1506": {
+      "description": "Часть справки.",
+      "message": "\u003Cp>The following features of the Twitch.tv website are not available in the player yet: Whispers, Twitch extensions (not to be confused with browser extensions), Drops, subtitles.\u003C/p>"
+   },
+   "F1507": {
+      "description": "Часть справки.",
+      "message": "\u003Cp>To open the player in its own window, click on the tab with the player and drag it outside the tab bar.\u003C/p>"
+   },
+   "F1508": {
+      "description": "Часть справки.",
+      "message": "If you only need audio, you can reduce the resource usage by the player as follows: select the \u003Cq>360p\u003C/q> quality in the player settings (to save network bandwidth) and switch to another tab (to stop video decoding)."
+   },
+   "F1509": {
+      "description": "Часть справки.",
+      "message": "\u003Cp>To reduce the stream delay (to make chatting easier), try changing the \u003Cq>Connection quality\u003C/q> to \u003Cq>Good\u003C/q> in the player settings.\u003C/p>"
+   },
+   "F1510": {
+      "description": "Часть справки.",
+      "message": "\u003Cp>If you have problems with the \u003Ccite>Alternate Player for Twitch.tv\u003C/cite> extension, send feedback to the extension developer. To do this, right click the view area, then in the menu click \u003Cq>Feedback\u003C/q>.\u003C/p>"
+   },
+   "F1511": {
+      "description": "Часть справки.",
+      "message": "\u003Cp>The red scissors icon in the upper right corner of the player means that several seconds of the broadcast were skipped for some reason. See the description of the \u003Cq>Buffer overflow\u003C/q> setting.\u003C/p>"
+   },
+   "F1570": {
+      "description": "Часть справки для Chrome и Firefox.",
+      "message": "\u003Cp>Embedded chat is developed by Twitch.tv. The extension just inserts the chat into its player (and optimizes the \u003Ca href='https://coolcmd.tk/img/tw5/messages.png' target='_blank' rel='noopener noreferrer'>height\u003C/a> of the \u003Ca href='https://coolcmd.tk/img/tw5/emotes.png' target='_blank' rel='noopener noreferrer'>content\u003C/a>). This chat has some limitations compared to the version used on the Twitch.tv website. See the description of the chat version in the player settings.\u003C/p>"
+   },
+   "F1571": {
+      "description": "Часть справки для Chrome.",
+      "message": "\u003Cp>If you have problems with chat, then open your browser settings and allow to save and read cookie data, including third-party cookie data. Also, try to select a different chat version in the player settings.\u003C/p>"
+   },
+   "F1572": {
+      "description": "Часть справки для Chrome.",
       "message": "\u003Cp>Due to browser limitations, the browser extensions which enhance chat are not working in the player. The exception is made for the \u003Ccite>BetterTTV\u003C/cite>, \u003Ccite>FrankerFaceZ\u003C/cite> and \u003Ccite>FFZ Add-On Pack\u003C/cite> extensions. To do this, the \u003Ccite>Alternate Player for Twitch.tv\u003C/cite> extension during the installation requires permission to read the list of installed extensions. Do not worry about this permission. :) Do not try to activate the dark mode in the \u003Ccite>BetterTTV\u003C/cite> settings, do it in the player settings.\u003C/p>"
    },
-   "F1051": {
-      "description": "Справка. Вариант для Firefox. Часть 2/2.",
+   "F1573": {
+      "description": "Часть справки для Chrome и Firefox.",
+      "message": "\u003Cp>If you need to toggle the dark mode in the \u003Cq>full-featured\u003C/q> chat version, do it on the Twitch.tv website.\u003C/p>"
+   },
+   "F1574": {
+      "description": "Часть справки для Chrome и Firefox.",
+      "message": "\u003Cp>To enable inline moderation icons in the \u003Cq>less-featured\u003C/q> chat version, check the \u003Ca href='https://discuss.dev.twitch.tv/uploads/default/original/2X/f/f3049202b1456ee758ea81487a193ee540c84e7e.gif' target='_blank' rel='noopener noreferrer'>Mod Icons\u003C/a> option in your chat setting on the Twitch.tv website.\u003C/p>"
+   },
+   "F1581": {
+      "description": "Часть справки для Firefox.",
+      "message": "\u003Cp>If you have problems with chat, then open your browser settings and allow to accept cookies, including third-party cookies, or add an address&emsp;\u003Ccode>https://twitch.tv\u003C/code>&emsp;to exceptions. Also, try to select a different chat version in the player settings.\u003C/p>"
+   },
+   "F1582": {
+      "description": "Часть справки для Firefox.",
       "message": "\u003Cp>You should not block the JavaScript on the Twitch.tv website, for example in the \u003Ccite>NoScript\u003C/cite> extension. Also, you should not block the loading of HTML5 video, for example in the \u003Ccite>Flashblock\u003C/cite> extension.\u003C/p>"
+   },
+   "F1590": {
+      "description": "Часть справки для Edge.",
+      "message": "\u003Cp>Embedded chat is developed by Twitch.tv. The extension just inserts the chat into its player. This chat has the following limitations: no rooms, no moderation settings, no raids, no Bits, sometimes you need to confirm the sending of the first message. Whispers do not work in chat yet.\u003C/p>"
+   },
+   "F1591": {
+      "description": "Часть справки для Edge.",
+      "message": "\u003Cp>Due to browser limitations, the browser extensions which enhance chat, such as \u003Ccite>BetterTTV\u003C/cite> and \u003Ccite>FrankerFaceZ\u003C/cite>, are not working in the player. Also, the extension does not work in InPrivate mode.\u003C/p>"
+   },
+   "F1592": {
+      "description": "Часть справки для Edge.",
+      "message": "\u003Cp>To enable inline moderation icons in the player's chat, check the \u003Ca href='https://discuss.dev.twitch.tv/uploads/default/original/2X/f/f3049202b1456ee758ea81487a193ee540c84e7e.gif' target='_blank' rel='noopener noreferrer'>Mod Icons\u003C/a> option in your chat setting on the Twitch.tv website.\u003C/p>"
    },
    "J0100": {
       "message": "Broadcast ended"
    },
    "J0101": {
-      "message": "\n\nClick to open this channel on the Twitch.tv website:\n• To watch this broadcast or video in standard player.\n• To read the full description of the channel.\n• To perform other actions that are not available in the “Alternate Player”."
+      "message": "\n\nClick to open this channel on the Twitch.tv website:\n• To watch this broadcast or video in standard player.\n• To read the full description of the channel.\n• To perform other actions that are not available in the Alternate Player."
    },
    "J0102": {
       "message": "\n\nClick to watch other broadcasts and videos of this game."
@@ -691,28 +793,8 @@
    "J0114": {
       "message": "Mbit/s"
    },
-   "J0115": {
-      "description": "Название качества трансляции.",
-      "message": "Source"
-   },
-   "J0116": {
-      "description": "Название качества трансляции.",
-      "message": "High"
-   },
-   "J0117": {
-      "description": "Название качества трансляции.",
-      "message": "Medium"
-   },
-   "J0118": {
-      "description": "Название качества трансляции.",
-      "message": "Low"
-   },
-   "J0119": {
-      "description": "Название качества трансляции.",
-      "message": "Mobile"
-   },
    "J0120": {
-      "description": "Текст или HTML-фрагмент. Длина слова не более 5 символов. Означает, что значение настройки подбирается автоматически. Копия есть в A0523.",
+      "description": "Текст или HTML-фрагмент. Длина слова не более 5 символов. Означает, что значение настройки подбирается автоматически. Копия A0523.",
       "message": "Auto"
    },
    "J0121": {
@@ -724,11 +806,11 @@
       "message": "Goldish"
    },
    "J0123": {
-      "description": "Название темы оформления. Копия есть в A0565.",
+      "description": "Название темы оформления. Копия A0565.",
       "message": "Customizable"
    },
    "J0124": {
-      "description": "Число в настройках проигрывателя заменяется на это слово. Длина слова не более 5 символов. Означает отсутствие ограничений. Копия есть в A0534.",
+      "description": "Число в настройках проигрывателя заменяется на это слово. Длина слова не более 5 символов. Означает отсутствие ограничений. Копия A0534.",
       "message": "Max"
    },
    "J0125": {
@@ -736,29 +818,27 @@
       "message": "Black And White"
    },
    "J0126": {
-      "description": "Название качества соединения. Копия есть в A0581.",
+      "description": "Название качества соединения. Копия A0581.",
       "message": "Good"
    },
    "J0127": {
-      "description": "Название качества соединения. Копия есть в A0581.",
+      "description": "Название качества соединения. Копия A0581.",
       "message": "Moderate"
    },
    "J0128": {
-      "description": "Название качества соединения. Копия есть в A0581.",
+      "description": "Название качества соединения. Копия A0581.",
       "message": "Bad"
    },
    "J0129": {
-      "description": "Название качества соединения. Копия есть в A0581.",
+      "description": "Название качества соединения. Копия A0581.",
       "message": "Customizable"
    },
    "J0130": {
-      "message": "This is a live broadcast. Click to view this broadcast from the beginning."
+      "description": "Копия F0664.",
+      "message": "This is a live broadcast. Click to view this broadcast from the beginning (if available).\n\nTo continue watching this broadcast later from the current position, right click the view area, then in the menu click “Copy Record Address”."
    },
    "J0131": {
       "message": "Rerun of previously recorded video"
-   },
-   "J0132": {
-      "message": "Today^Yesterday^2 days ago^3 days ago^4 days ago^5 days ago^6 days ago"
    },
    "J0133": {
       "message": "Alternate Player for Twitch.tv extension settings.json"
@@ -787,6 +867,26 @@
       "description": "Название темы оформления.",
       "message": "Incognito"
    },
+   "J0139": {
+      "description": "Часть названия качества трансляции. Копия A0513.",
+      "message": "(source)"
+   },
+   "J0140": {
+      "description": "Единица измерения: кадр в секунду",
+      "message": "fps"
+   },
+   "J0141": {
+      "description": "Единица измерения: герц",
+      "message": "Hz"
+   },
+   "J0142": {
+      "description": "Единица измерения: каналы",
+      "message": "chan."
+   },
+   "J0143": {
+      "description": "Единица измерения: килобит в секунду",
+      "message": "kbit/s"
+   },
    "J0200": {
       "message": "Browser does not have enough RAM."
    },
@@ -797,13 +897,10 @@
       "message": "The “Alternate Player for Twitch.tv” extension can not work in your browser (browser does not support Media Source Extensions). You should update your browser or remove the extension."
    },
    "J0203": {
-      "message": "It seems that you typed the wrong address. Channel with the specified name does not exist."
+      "message": "Channel with the specified name does not exist. Perhaps you typed the wrong address."
    },
    "J0204": {
       "message": "This version of the “Alternate Player for Twitch.tv” extension does not work in your browser. Please remove the extension from your browser and install the correct version.\n\nVersion for Google Chrome:\nhttps://chrome.google.com/webstore/detail/bhplkbgoehhhddaoolmakpocnenplmhf\n\nVersion for Mozilla Firefox:\nhttps://addons.mozilla.org/firefox/addon/twitch_5/\n\nVersion for Microsoft Edge:\nhttps://www.microsoft.com/store/apps/9p9p2nd0s56c"
-   },
-   "J0205": {
-      "message": "Perhaps some browser extension is interfering with the player, for example by blocking HTML5 video playback."
    },
    "J0206": {
       "message": "The browser was unable to play the video.\n\nPossible causes:\n• Video or audio uses compression, which is not supported by your browser.\n• Browser does not have enough RAM. 32-bit browser may not have enough address space (see browser's “Virtual Size” in the “Process Explorer” utility).\n• The video was corrupted, for example during transmission over the network.\n• Problems with computer hardware: overheating, overclocking, etc.\n• Bugs in computer software.\n\nPlease reload the page to continue viewing the broadcast. If the problem persists on other channels, and you do not know its cause, follow these steps one at a time until the error will disappear:\n• Close the several browser tabs (to free up memory).\n• Restart the browser.\n• Restart the computer.\n• Disable hardware-accelerated video decoding.\n• Reset the browser settings.\n• Update the video card drivers.\n• Uninstall the “codec pack” (if any)."
@@ -817,25 +914,15 @@
    "J0209": {
       "message": "Failed to read extension settings."
    },
-   "J0210": {
-      "message": "Please restart the browser to make the “Alternate Player for Twitch.tv” extension operable. If this will not help, open the list of installed extensions and make sure that the extension is turned on."
-   },
    "J0211": {
       "message": "This channel is already open in another tab of the browser. Click the “Back” button to go back to the previous page."
    },
    "J0212": {
       "message": "Failed to save extension settings."
    },
-   "J0213": {
-      "message": "The “Alternate Player for Twitch.tv” extension works in all Firefox versions starting with 52, but does not work in one version 55. Please update your browser or remove the extension from it."
-   },
    "J1003": {
       "description": "Заголовок новости.",
       "message": "Please support!"
-   },
-   "J1004": {
-      "description": "Заголовок справки.",
-      "message": "Important information"
    },
    "J1010": {
       "description": "Заголовок новости.",
@@ -864,6 +951,22 @@
    "J1041": {
       "description": "Заголовок новости.",
       "message": "The name of the extension has been changed"
+   },
+   "J1052": {
+      "description": "Заголовок новости.",
+      "message": "Muted at startup?"
+   },
+   "J1054": {
+      "description": "Заголовок новости для первого запуска проигрывателя.",
+      "message": "Important information"
+   },
+   "J1055": {
+      "description": "Заголовок новости для планшета.",
+      "message": "Version of extension for Firefox Mobile browser is experimental"
+   },
+   "J1500": {
+      "description": "Заголовок справки.",
+      "message": "Help"
    },
    "M0001": {
       "description": "Краткое описание расширения. Копия этой строки есть в AMO и Windows Store.",
