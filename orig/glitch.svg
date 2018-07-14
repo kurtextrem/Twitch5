@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 128 134">
+	<defs>
+		<style>
+			g {display: none}
+			g:target {display: inline}
+		</style>
+		<linearGradient id="_gradient" gradientTransform="rotate(90)">
+			<stop offset="0%"   stop-color="#f2f2f2"/>
+			<stop offset="100%" stop-color="#e2e2e2"/>
+		</linearGradient>
+		<symbol id="_glitch">
+			<!-- https://www.twitch.tv/p/brand -->
+			<path fill-rule="evenodd" transform="translate(-80 -77)" d="M89,77l-9,23v94h32v17h18l17-17h26l35-35V77H89Zm107,76-20,20H144l-17,17V173H100V89h96v64Zm-20-41v35H164V112h12Zm-32,0v35H132V112h12Z"/>
+		</symbol>
+	</defs>
+	<g id="avatar">
+		<use fill="#fff" opacity="0.3" xlink:href="#_glitch"/>
+	</g>
+	<g id="sidebar">
+		<use fill="url(#_gradient)" xlink:href="#_glitch"/>
+	</g>
+</svg>

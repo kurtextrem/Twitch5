@@ -1,0 +1,31 @@
+{
+   "author": "Alexander Choporov (CoolCmd)",
+   "content_scripts": [ {
+      "all_frames": true,
+      "js": [ "content.js" ],
+      "matches": [ "https://www.twitch.tv/*", "https://m.twitch.tv/*" ],
+      "run_at": "document_start"
+   } ],
+   "default_locale": "en",
+   "description": "__MSG_M0001__",
+   "developer": {
+      "name": "Alexander Choporov (CoolCmd)"
+   },
+   "icons": {
+      "128": "icon128.png",
+      "16": "icon16.png",
+      "32": "icon32.png",
+      "48": "icon48.png"
+   },
+   "incognito": "split",
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1gkPWhu5vgon5TFeDVT+hC9n1gPcbTIrmLBxz5oKuQBZVB/yGzAZCmf6OJesFpGEs19e/633sgGePiswI4rqBczewdVL1fqxnR3KtCgfzxTvX3QQU27eBxJ94KinmVmu51qJj6Eruxl8lTZB8UqNzCHhAS6buZ1ngXEf/eUWfJAQWAY63kOEDGM9CuR5FPEubqKkpPhtZuLcLlOO0gLwG918FJ5oso8TkDJ4GmXMgMXLVluEshOifnOmwoJ1OrjGe6j6CyLnqehdX7Xv7wLR4GX8erf1vZMEwiGMOQtOiui/vnTqBsfRdSm5nKnMP6ydylvd7X816axP18+nk5cCbwIDAQAB",
+   "manifest_version": 2,
+   "minimum_chrome_version": "49",
+   "name": "Alternate Player for Twitch.tv",
+   "optional_permissions": [ "contentSettings" ],
+   "permissions": [ "storage", "webRequest", "webRequestBlocking", "management", "system.memory", "system.cpu", "http://*/*", "https://*/*" ],
+   "short_name": "Alternate Player",
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "2018.7.9",
+   "web_accessible_resources": [ "player.html", "content.css" ]
+}
