@@ -9,6 +9,7 @@ const СТРАНИЦА_НЕИЗВЕСТНАЯ                = 0;
 const СТРАНИЦА_ВОЗМОЖНО_ПРЯМАЯ_ТРАНСЛЯЦИЯ = 1;
 const СТРАНИЦА_ЧАТ_КАНАЛА                 = 2;
 
+// См. ПолучитьАдресКанала() в player.js.
 const АДРЕС_НЕ_ПЕРЕНАПРАВЛЯТЬ = 'twitch5=0';
 
 const ЭТО_НЕ_КОД_КАНАЛА =
@@ -135,12 +136,12 @@ function РазобратьАдрес(oUrl)
 // Сервер Twitch перенаправляет на адрес с первой директорией в нижнем регистре.
 // Сервер Twitch иногда переводит параметры в нижний регистр.
 {
-	var чСтраница = СТРАНИЦА_НЕИЗВЕСТНАЯ;
-	var сКодКанала = '';
-	var лМожноПеренаправлять = false;
+	let чСтраница = СТРАНИЦА_НЕИЗВЕСТНАЯ;
+	let сКодКанала = '';
+	let лМожноПеренаправлять = false;
 	if (oUrl.protocol === 'https:' && (oUrl.host === 'www.twitch.tv' || oUrl.host === 'm.twitch.tv'))
 	{
-		var мсЧасти = oUrl.pathname.match(/^\/([^/]+)(\/[^/]+)?(\/[^/]+)?\/?$/);
+		const мсЧасти = oUrl.pathname.match(/^\/([^/]+)(\/[^/]+)?(\/[^/]+)?\/?$/);
 		if (мсЧасти && мсЧасти[2] === undefined)
 		{
 			// Оптимизация. Не слать напрасно запрос.
@@ -158,11 +159,9 @@ function РазобратьАдрес(oUrl)
 		}
 	}
 	Журнал('[Twitch 5] Адрес разобран: Страница=%s КодКанала=%s МожноПеренаправлять=%s', чСтраница, сКодКанала, лМожноПеренаправлять);
-	return {
-		чСтраница,
-		сКодКанала,
-		лМожноПеренаправлять
-	};
+	this.чСтраница = чСтраница;
+	this.сКодКанала = сКодКанала;
+	this.лМожноПеренаправлять = лМожноПеренаправлять;
 }
 
 function ПолучитьАдресНашегоПроигрывателя(сКодКанала)
@@ -195,7 +194,7 @@ function ЗапроситьСостояниеКанала(оРазобранны
 
 function ИзмененАдресСтраницы(сИсторияВкладки)
 {
-	г_оРазобранныйАдрес = РазобратьАдрес(location);
+	г_оРазобранныйАдрес = new РазобратьАдрес(location);
 	г_сИсторияВкладки = сИсторияВкладки;
 	// Адрес перенаправлять не нужно?
 	if (!г_оРазобранныйАдрес.лМожноПеренаправлять || м_Настройки.АвтоперенаправлениеВключено() === false)
@@ -332,7 +331,7 @@ function ОбработатьЩелчокМыши(оСобытие)
 	{
 		Журнал('[Twitch 5] Вызван обработчик %s ссылки %s', оСобытие.type, узСсылка.href);
 		// Шлем запрос заранее. Это сэкономит до 200 мс.
-		ЗапроситьСостояниеКанала(РазобратьАдрес(узСсылка));
+		ЗапроситьСостояниеКанала(new РазобратьАдрес(узСсылка));
 	}
 }
 
@@ -536,7 +535,7 @@ function ПерехватитьФункции()
 
 	// Запретить менять адрес страницы. Twitch не использует replaceState и location.hash.
 	// Также следить за изменением адреса.
-	var fPushState = history.pushState;
+	const fPushState = history.pushState;
 	history.pushState = function(state, title)
 	{
 		if (document.documentElement.hasAttribute('data-tw5-перенаправление'))
@@ -544,7 +543,7 @@ function ПерехватитьФункции()
 			Журнал('[Twitch 5] Изменение адреса страницы отклонено');
 			return;
 		}
-		var сБыло = location.href;
+		const сБыло = location.href;
 		fPushState.apply(this, arguments);
 		if (location.href !== сБыло)
 		{
@@ -553,7 +552,7 @@ function ПерехватитьФункции()
 	};
 
 	// Запретить менять заголовок. Twitch не использует document.title.
-	var oNodeValueDescriptor = Object.getOwnPropertyDescriptor(Node.prototype, 'nodeValue');
+	const oNodeValueDescriptor = Object.getOwnPropertyDescriptor(Node.prototype, 'nodeValue');
 	Object.defineProperty(Node.prototype, 'nodeValue',
 	{
 		configurable: oNodeValueDescriptor.configurable,
@@ -564,11 +563,11 @@ function ПерехватитьФункции()
 		},
 		set: function()
 		{
-			var node = this.parentNode;
+			const node = this.parentNode;
 			if (node && node.nodeName === 'TITLE')
 			{
-				node = node.ownerDocument;
-				if (node && node.documentElement.hasAttribute('data-tw5-перенаправление'))
+				const doc = node.ownerDocument;
+				if (doc && doc.documentElement.hasAttribute('data-tw5-перенаправление'))
 				{
 					Журнал('[Twitch 5] Изменение заголовка отклонено');
 					return;
@@ -631,19 +630,19 @@ function ВставитьСторонниеРасширения()
 				if (оСообщение.сСторонниеРасширения.indexOf('BTTV ') !== -1)
 				{
 					const узСкрипт = document.createElement('script');
-					узСкрипт.setAttribute('src', 'https://cdn.betterttv.net/betterttv.js');
+					узСкрипт.src = 'https://cdn.betterttv.net/betterttv.js';
 					document.head.appendChild(узСкрипт);
 				}
 				if (оСообщение.сСторонниеРасширения.indexOf('FFZ ') !== -1)
 				{
 					const узСкрипт = document.createElement('script');
-					узСкрипт.setAttribute('src', 'https://cdn.frankerfacez.com/script/script.min.js');
+					узСкрипт.src = 'https://cdn.frankerfacez.com/script/script.min.js';
 					document.head.appendChild(узСкрипт);
 				}
 				if (оСообщение.сСторонниеРасширения.indexOf('FFZAP ') !== -1)
 				{
 					const узСкрипт = document.createElement('script');
-					узСкрипт.setAttribute('src', 'https://cdn.ffzap.com/ffz-ap.min.js');
+					узСкрипт.src = 'https://cdn.ffzap.com/ffz-ap.min.js';
 					document.head.appendChild(узСкрипт);
 				}
 			});
@@ -655,8 +654,8 @@ function ВставитьСторонниеРасширения()
 function ИзменитьСтильЧата()
 {
 	const узСтиль = document.createElement('link');
-	узСтиль.setAttribute('rel', 'stylesheet');
-	узСтиль.setAttribute('href', chrome.extension.getURL('content.css'));
+	узСтиль.href = chrome.extension.getURL('content.css');
+	узСтиль.rel = 'stylesheet';
 	(document.head || document.documentElement).appendChild(узСтиль);
 }
 
@@ -686,7 +685,7 @@ function ИзменитьПоведениеЧата()
 				if (сАдрес.startsWith('http:') || сАдрес.startsWith('https:') || (!сАдрес.includes(':') && !сАдрес.startsWith('#')))
 				{
 					Журнал('[Twitch 5] Открываю ссылку в новой вкладке:', сАдрес);
-					узСсылка.setAttribute('target', '_blank');
+					узСсылка.target = '_blank';
 					// В настройках чата ссылки Manage Raid Settings и Manage Moderation Settings непонятно зачем
 					// вызывают preventDefault() и самостоятельно меняют адрес текущей вкладки, игнорируя target.
 					оСобытие.stopImmediatePropagation();
