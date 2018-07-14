@@ -19,7 +19,7 @@ body
 }
 form
 {
-	max-width: 50em;
+	max-width: 62em;
 	margin: auto;
 	padding: 0 1em;
 	text-align: center;
@@ -64,6 +64,11 @@ input[type="checkbox"]:not(:checked) + [name="отладка-отчет"]
 #отладка-текстсообщения
 {
 	white-space: pre-wrap;
+}
+button[type="submit"]
+{
+	min-width: 15em;
+	margin-right: 1em;
 }
 ::selection,
 ::selection,

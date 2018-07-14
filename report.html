@@ -13,9 +13,10 @@
 	</form>
 	<form id="отладка-отзыв" hidden="">
 		<h3 data-i18n="F0700"></h3>
-		<p data-i18n="F0724"></p>
+		<div data-i18n="F1501"></div>
 		<p data-i18n="F0701"></p>
 		<p data-i18n="F0726"></p>
+		<p data-i18n="F0727"></p>
 		<p data-i18n="F0723"></p>
 		<p>
 			<label for="отладка-отзыв-сообщение" data-i18n="F0702"></label>
@@ -25,7 +26,8 @@
 			<label>
 				<span data-i18n="F0703"></span>
 				<span data-i18n="F0725"></span>
-				<input id="отладка-отзыв-почта" name="отладка-почта" type="email" maxlength="254" spellcheck="false"/>
+				<span data-i18n="F0728"></span>
+				<input name="отладка-почта" type="email" maxlength="254" spellcheck="false"/>
 			</label>
 		</p>
 		<p>
@@ -33,33 +35,34 @@
 			<label for="отладка-отзыв-показатьотчет" class="отладка-ссылкакнопка" data-i18n="F0705"></label>.
 			<input id="отладка-отзыв-показатьотчет" type="checkbox" hidden=""/>
 			<textarea name="отладка-отчет" rows="15" spellcheck="false" required="" readonly=""></textarea>
-			<a href="https://coolcmd.tk/tw5/privacy.html" target="_blank" rel='external noopener noreferrer' data-i18n="F0706"></a>.
+			<a href="https://coolcmd.tk/tw5/privacy.html" target="_blank" rel='noopener noreferrer' data-i18n="F0706"></a>.
 		</p>
 		<p>
 			<input name="отладка-типданных" type="hidden" value="отзыв"/>
 			<button type="submit" data-i18n="F0707"></button>
-			&#8194;
 			<button type="reset" data-i18n="F0718"></button>
 		</p>
 	</form>
 	<form id="отладка-ошибка" hidden="">
 		<h3 data-i18n="F0708"></h3>
-		<p data-i18n="F0709"></p>
-		<p data-i18n="F0710"></p>
 		<p>
 			<span data-i18n="F0712"></span>
 			<label for="отладка-ошибка-показатьотчет" class="отладка-ссылкакнопка" data-i18n="F0705"></label>.
 			<input id="отладка-ошибка-показатьотчет" type="checkbox" hidden=""/>
 			<textarea name="отладка-отчет" rows="15" spellcheck="false" required="" readonly=""></textarea>
-			<a href="https://coolcmd.tk/tw5/privacy.html" target="_blank" rel='external noopener noreferrer' data-i18n="F0706"></a>.
+			<a href="https://coolcmd.tk/tw5/privacy.html" target="_blank" rel='noopener noreferrer' data-i18n="F0706"></a>.
 		</p>
+		<p data-i18n="F0710"></p>
 		<p>
 			<label for="отладка-ошибка-сообщение" data-i18n="F0715"></label>
 			<textarea id="отладка-ошибка-сообщение" name="отладка-сообщение" rows="3" maxlength="10000" spellcheck="true"></textarea>
 		</p>
 		<p>
-			<label for="отладка-ошибка-почта" data-i18n="F0703"></label>
-			<input id="отладка-ошибка-почта" name="отладка-почта" type="email" maxlength="254" spellcheck="false"/>
+			<label>
+				<span data-i18n="F0703"></span>
+				<span data-i18n="F0728"></span>
+				<input name="отладка-почта" type="email" maxlength="254" spellcheck="false"/>
+			</label>
 		</p>
 		<p>
 			<input name="отладка-типданных" type="hidden" value="ошибка"/>
@@ -77,7 +80,6 @@
 	<form id="отладка-сбойотправки" hidden="">
 		<p data-i18n="F0719"></p>
 		<button type="submit" autofocus="" data-i18n="F0720"></button>
-		&#8194;
 		<button type="reset" data-i18n="F0718"></button>
 	</form>
 </body>
