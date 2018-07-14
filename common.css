@@ -19,6 +19,12 @@ textarea
 	font-size: inherit;
 	font-family: inherit;
 }
+svg
+{
+	fill: currentColor;
+	stroke: currentColor;
+	stroke-width: 0;
+}
 html,
 body
 {
@@ -35,8 +41,8 @@ body
  *   Chrome 61:  svg или use
  *   Edge 15:    svg или use
  *   Edge 16:    svg или path
- * Вариант Edge 16 не позволяет использовать один обработчик для нескольких кнопок.
- * Этот стиль заставляет все браузеры посылать событие в button.
+ * Вариант Edge 16 не позволяет использовать один обработчик для нескольких однотипных элементов.
+ * Этот стиль заставляет все браузеры посылать событие в родительский элемент.
  */
 svg,
 button > span

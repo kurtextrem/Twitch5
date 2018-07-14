@@ -14,21 +14,18 @@ function НачатьИздеватьсяНадЧатом(чИдВкладки)
 	chrome.webRequest.onHeadersReceived.addListener(
 		ДобавитьОбработчикИсключений(оОтвет =>
 		{
-			if (оОтвет.frameId > 0 && оОтвет.parentFrameId === 0)
-			{
-				for (let ы = 0; ы < оОтвет.responseHeaders.length; ++ы)
-				{
-					if (оОтвет.responseHeaders[ы].name.toLowerCase() === 'x-frame-options')
-					{
-						м_Журнал.Окак(`[Чат] Удаляю заголовок X-Frame-Options из iframe ${оОтвет.url}`);
-						оОтвет.responseHeaders.splice(ы, 1);
-						return {responseHeaders: оОтвет.responseHeaders};
-					}
-				}
-			}
-			else
+			if (!( оОтвет.frameId > 0 && оОтвет.parentFrameId === 0 ))
 			{
 				throw new Error(`Неизвестный источник запроса: ${м_Журнал.O(оОтвет)}`);
+			}
+			for (let ы = 0; ы < оОтвет.responseHeaders.length; ++ы)
+			{
+				if (оОтвет.responseHeaders[ы].name.toLowerCase() === 'x-frame-options')
+				{
+					м_Журнал.Окак(`[Чат] Удаляю заголовок X-Frame-Options из ${оОтвет.url}`);
+					оОтвет.responseHeaders.splice(ы, 1);
+					return {responseHeaders: оОтвет.responseHeaders};
+				}
 			}
 		}),
 		{
@@ -53,10 +50,10 @@ function НачатьИздеватьсяНадЧатом(чИдВкладки)
 		]
 	);
 
-	chrome.runtime.onMessage.addListener(ДобавитьОбработчикИсключений((оСообщение, оОтправитель, фПослатьОтвет) =>
+	chrome.runtime.onMessage.addListener(ДобавитьОбработчикИсключений((оСообщение, оОтправитель, фОтветить) =>
 	{
-		if (оСообщение.сЗапрос !== 'ВставитьСторонниеРасширения'
-		|| (оОтправитель.tab ? оОтправитель.tab.id : chrome.tabs.TAB_ID_NONE) !== чИдВкладки)
+		if (!( оСообщение.сЗапрос === 'ВставитьСторонниеРасширения'
+		&& (оОтправитель.tab ? оОтправитель.tab.id : chrome.tabs.TAB_ID_NONE) === чИдВкладки ))
 		{
 			return false;
 		}
@@ -91,7 +88,15 @@ function НачатьИздеватьсяНадЧатом(чИдВкладки)
 				}
 			}
 			м_Журнал.Вот(`[Чат] Посылаю ответ на вставку сторонних расширений: ${оСообщение.сСторонниеРасширения}`);
-			фПослатьОтвет(оСообщение);
+			try
+			{
+				// Chrome 66: Кидает исключение если оОтправитель к этому моменту уже закрыт.
+				фОтветить(оСообщение);
+			}
+			catch (пИсключение)
+			{
+				м_Журнал.Ой(`[Чат] Ошибка при посылке ответа: ${пИсключение}`);
+			}
 		}));
 		return true;
 	}));

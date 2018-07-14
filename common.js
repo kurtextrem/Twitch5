@@ -1,6 +1,8 @@
 ﻿'use strict';
 
-/* Chrome 48-, Edge 15
+let г_лРаботаЗавершена = false;
+
+// Chrome 48-, Edge 15
 if (!window.URLSearchParams)
 {
 	window.URLSearchParams = function(сПараметры)
@@ -46,7 +48,7 @@ if (!window.URLSearchParams)
 
 // Chrome 59, Firefox 54
 if (!window.setImmediate)
-// Для моих целей пока достаточно setTimeout().
+// Для моих целей пока достаточно setTimeout(). Нельзя использовать обещания.
 {
 	window.setImmediate = фВызвать =>
 	{
@@ -75,9 +77,38 @@ function Проверить(пУсловие)
 	}
 }
 
+function ДобавитьОбработчикИсключений(фФункция)
+{
+	return function()
+	{
+		if (г_лРаботаЗавершена)
+		{
+			return;
+		}
+		try
+		{
+			return фФункция.apply(this, arguments);
+		}
+		catch (пИсключение)
+		{
+			м_Отладка.ПойманоИсключение(пИсключение);
+		}
+	};
+}
+
 function Тип(пЗначение)
 {
 	return пЗначение === null ? 'null' : typeof пЗначение;
+}
+
+function ЭтоЧисло(пЗначение)
+{
+	return typeof пЗначение === 'number' && пЗначение === пЗначение;
+}
+
+function ЭтоОбъект(пЗначение)
+{
+	return typeof пЗначение === 'object' && пЗначение !== null;
 }
 
 function ЭтоНепустаяСтрока(пЗначение)
@@ -91,19 +122,14 @@ function ОграничитьДлинуСтроки(сСтрока, чМакси
 	return сСтрока.length <= чМаксимальнаяДлина ? сСтрока : `${сСтрока.slice(0, чМаксимальнаяДлина)}---8<---Отрезано ${сСтрока.length - чМаксимальнаяДлина}`;
 }
 
-function ДобавитьОбработчикИсключений(фФункция)
+function Узел(пУзел)
 {
-	return function()
+	if (typeof пУзел === 'string')
 	{
-		try
-		{
-			return фФункция.apply(this, arguments);
-		}
-		catch (пИсключение)
-		{
-			м_Отладка.ПойманоИсключение(пИсключение);
-		}
-	};
+		пУзел = document.getElementById(пУзел);
+	}
+	Проверить(ЭтоОбъект(пУзел));
+	return пУзел;
 }
 
 const м_Журнал = (() =>
@@ -207,10 +233,22 @@ const м_i18n = (() =>
 		return sMessageText;
 	}
 
-	function InsertAdjacentHtmlMessage(elInsertTo, sPosition, sMessageName)
+	function FastInsertAdjacentHtmlMessage(elInsertTo, sPosition, sMessageName)
 	{
 		// Commentary for AMO reviewers: HTML content is taken from the file messages.json. See GetMessage().
 		elInsertTo.insertAdjacentHTML(sPosition, GetMessage(sMessageName));
+	}
+
+	function InsertAdjacentHtmlMessage(vInsertTo, sPosition, sMessageName)
+	{
+		const elInsertTo = Узел(vInsertTo);
+		if (sPosition === 'content')
+		{
+			sPosition = 'beforeend';
+			elInsertTo.textContent = '';
+		}
+		FastInsertAdjacentHtmlMessage(elInsertTo, sPosition, sMessageName);
+		return elInsertTo;
 	}
 
 	function TranslateDocument(оДокумент)
@@ -223,7 +261,7 @@ const м_i18n = (() =>
 			const sNamesDelimiter = sNames.indexOf('^');
 			if (sNamesDelimiter !== 0)
 			{
-				InsertAdjacentHtmlMessage(elTranslate, 'beforeend', sNamesDelimiter === -1 ? sNames : sNames.slice(0, sNamesDelimiter));
+				FastInsertAdjacentHtmlMessage(elTranslate, 'afterbegin', sNamesDelimiter === -1 ? sNames : sNames.slice(0, sNamesDelimiter));
 			}
 			if (sNamesDelimiter !== -1)
 			{
@@ -251,23 +289,11 @@ const м_i18n = (() =>
 		return с;
 	}
 
-	function ПрошлоДнейПрописью(дСДаты)
-	{
-		if (ПрошлоДнейПрописью.мсДни === undefined)
-		{
-			ПрошлоДнейПрописью.мсДни = GetMessage('J0132').split('^');
-			Проверить(ПрошлоДнейПрописью.мсДни.length > 1);
-		}
-		const чПрошлоДней = Math.floor((Date.now() - дСДаты.getTime()) / (1000 * 60 * 60 * 24));
-		return чПрошлоДней >= 0 && чПрошлоДней < ПрошлоДнейПрописью.мсДни.length ? ПрошлоДнейПрописью.мсДни[чПрошлоДней] : '';
-	}
-
 	return {
 		GetMessage,
 		InsertAdjacentHtmlMessage,
 		TranslateDocument,
 		ФорматироватьЧисло,
-		ПеревестиСекундыВСтроку,
-		ПрошлоДнейПрописью
+		ПеревестиСекундыВСтроку
 	};
 })();
