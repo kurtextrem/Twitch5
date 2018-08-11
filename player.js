@@ -1,8 +1,4 @@
-﻿﻿(function(window){
-'use strict';
-
-const document = window.document, performance = window.performance, ДобавитьОбработчикИсключений = window.ДобавитьОбработчикИсключений
-
+﻿﻿
 // Формат версии: https://developer.chrome.com/extensions/manifest/version
 // В моем случае это UTC-дата выкладывания данной версии для скачивания.
 // 1 - год >= 2016
@@ -8665,4 +8661,3 @@ function fitVideo() {
 	video.style.width = vWidth + 'px'
 	video.style.height = vHeight + 'px'
 }
-})(window);
