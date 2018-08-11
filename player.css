@@ -333,16 +333,9 @@ body
 	min-height: 29.62rem;
 	position: relative;
 }
-/* Chrome 49
-#проигрыватель:-webkit-full-screen
+.автоскрытие:not([data-состояние="3"]):not([data-состояние="7"]):not([data-окно-открыто]):not(.меню-открыто) #проигрыватель
 {
-	width: 100%;
-	height: 100%;
-}*/
-#проигрыватель:fullscreen
-{
-	width: 100%;
-	height: 100%;
+	cursor: none;
 }
 #размерчата:hover,
 #размерчата.тащилка-элемент
