@@ -217,7 +217,7 @@ input:checked + .флажок-значок
 /*	М_ОКНА
 /*************************************/
 
-.окно
+.окно.окно
 {
 	position: absolute;
 	margin: .5rem;
@@ -230,7 +230,7 @@ input:checked + .флажок-значок
 }
 .окнооткрыто
 {
-	display: block;
+	display: flex !important;
 	transform: none;
 	-webkit-animation: fadeIn .3s ease-out;
 	animation: fadeIn .3s ease-out;
@@ -643,7 +643,7 @@ a:hover
 		rgba({{сЦветГрадиента}}, .2) 40%,
 		rgba({{сЦветГрадиента}}, .2) 60%,
 		rgba({{сЦветГрадиента}},  0) 90%),
-		rgba({{сЦветФона}}, {{чНепрозрачность}});
+		rgba({{сЦветФона}}, 0.8);
 	-webkit-animation: fadeIn .3s ease-out;
 	animation: fadeIn .3s ease-out;
 }
