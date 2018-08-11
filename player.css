@@ -318,10 +318,6 @@ body
 	color: rgb({{сЦветКнопок}});
 	text-shadow: 0 .0625rem .0625rem #333;
 }
-#проигрыватель:hover > .панель {
-	will-change: opacity;
-}
-
 #проигрыватель
 {
 	flex: 1;
@@ -374,7 +370,12 @@ body
  */
 .скрытьчат #чат.загружается
 {
-	display: none;
+	display: block;
+	width: 0;
+	height: 0;
+	min-width: 0;
+	min-height: 0;
+	visibility: hidden;
 }
 /*
  * Положение чата
@@ -626,7 +627,6 @@ a:hover
 }
 .панель
 {
-	contain: strict;
 	position: absolute;
 	left: 0;
 	right: 0;
@@ -642,20 +642,13 @@ a:hover
 		rgba({{сЦветГрадиента}}, .2) 60%,
 		rgba({{сЦветГрадиента}},  0) 90%),
 		rgba({{сЦветФона}}, {{чНепрозрачность}});
-	-webkit-animation: fadeIn .3s ease-out;
-	animation: fadeIn .3s ease-out;
 }
-@-webkit-keyframes fadeIn {
-	0% { opacity: 0; }
-	100% { opacity: 1; }
-}
-@keyframes fadeIn {
-	0% { opacity: 0; }
-	100% { opacity: 1; }
 .автоскрытие:not([data-состояние="3"]):not([data-состояние="7"]):not([data-окно-открыто]) .панель
 {
 	/* Чтобы transition не мешал скрывать tooltip и курсор, висящего над элементом, для которого задан cursor */
-	display: none;
+	pointer-events: none;
+	visibility: hidden;
+	opacity: 0;
 }
 .санимацией:not(.панель-безанимации) .панель
 {
