@@ -1,4 +1,8 @@
-﻿﻿
+﻿
+
+
+'use strict';
+
 // Формат версии: https://developer.chrome.com/extensions/manifest/version
 // В моем случае это UTC-дата выкладывания данной версии для скачивания.
 // 1 - год >= 2016
@@ -8636,7 +8640,7 @@ function ЗавершитьРаботу(лБыстро)
 	])
 	.then(НачатьРаботу)
 	.catch(м_Отладка.ПойманоИсключение);
-	
+
 	м_i18n.TranslateDocument(document);
 })();
 
