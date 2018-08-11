@@ -576,10 +576,6 @@ a:hover
 	height: 100% !important;
 	width: 100% !important;
 }
-body[data-состояние="8"] #глаз
-{
-	cursor: pointer;
-}
 #глаз.масштабировать /* specificity */
 {
 	object-fit: contain;
@@ -608,10 +604,10 @@ body[data-состояние="8"] #глаз
 	height: 4rem;
 	border: .125rem solid rgba(255, 255, 255, .35);
 	border-radius: 8%;
-	padding: .4375rem;
-	fill: hsl(0, 0%, 100%);
-	background: hsl(0, 100%, 50%);
-	box-shadow: 0 0 .625rem hsla(0, 0%, 0%, .4);
+	padding: .625rem;
+	color: rgb({{сЦветВыделения}});
+	background: rgb({{сЦветФона}});
+	z-index: 9;
 	display: none;
 }
 #уведомление.жопа /* specificity */
