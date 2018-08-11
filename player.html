@@ -9,10 +9,10 @@
 	<!-- Firefox 60, Opera 52: У svg белая кромка плохо сглаживается -->
 	<link rel="icon" href="player.ico" type="image/x-icon"/>
 	<!-- Chrome 61 не хочет crossorigin, Firefox 57 crossorigin похоже пофигу, Edge 15 не понимает preconnect -->
-	<link rel="preconnect"   href="https://api.twitch.tv"  pr="1.0"/>
-	<link rel="dns-prefetch" href="https://api.twitch.tv"  pr="1.0"/>
-	<link rel="preconnect"   href="http://usher.ttvnw.net" pr="0.9"/>
-	<link rel="dns-prefetch" href="http://usher.ttvnw.net" pr="0.9"/>
+	<link rel="dns-prefetch" href="https://api.twitch.tv"   pr="1.0"/>
+	<link rel="preconnect"   href="https://api.twitch.tv"   pr="1.0"/>
+	<link rel="dns-prefetch" href="https://usher.ttvnw.net" pr="0.9"/>
+	<link rel="preconnect"   href="https://usher.ttvnw.net" pr="0.9"/>
 	<style id="стиль">
 		/*
 		 * Не показывать верстку без стилей.
@@ -24,11 +24,8 @@
 		}
 	</style>
 	<link rel="preload" as="script" href="common_pre.js">
-	<script src="common_pre.js" data-журнал=""></script>
 	<link rel="preload" as="script" href="player_pre.js">
-	<script src="player_pre.js" async></script>
 	<link rel="preload" as="script" href="chat.js">
-	<script src="chat.js"></script>
 	<link rel="preload" as="script" href="news.js">
 	<link rel="preload" as="style" href="common.css">
 </head>
@@ -860,7 +857,10 @@
 		<input id="создатьклип-трансляция" name="broadcast_id" type="hidden" value=""/>
 		<input id="создатьклип-позиция" name="offset" type="hidden" value=""/>
 	</form>
-	<script src="news.js" defer></script>
-	<link rel="stylesheet" href="common.css">
+	<script src="common.js" data-журнал=""></script>
+	<script src="player.js"></script>
+	<script src="chat.js"></script>
+	<script src="news.js"></script>
+	<link rel="stylesheet"   href="common.css"/>
 </body>
 </html>
