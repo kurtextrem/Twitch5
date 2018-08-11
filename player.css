@@ -230,7 +230,7 @@ input:checked + .флажок-значок
 }
 .окнооткрыто
 {
-	display: flex !important;
+	display: block !important;
 	transform: none;
 	-webkit-animation: fadeIn .3s ease-out;
 	animation: fadeIn .3s ease-out;
@@ -273,17 +273,19 @@ input:checked + .флажок-значок
 {
 	display: none;
 }
-#проигрывательичат:-webkit-full-screen
+#проигрывательичат:-webkit-full-screen > div > #глаз
 {
-	width:  100%;            /* Chrome 49 */
-	height: 100%;            /* Chrome 49 */
+	width:  100% !important;            /* Chrome 49 */
+	height: 100% !important;            /* Chrome 49 */
 	background: transparent; /* Chrome 68 */
+	contain: layout style;
 }
-#проигрывательичат:fullscreen
+#проигрывательичат:fullscreen > div > #глаз
 {
-	width: 100%;
-	height: 100%;
+	width: 100% !important;
+	height: 100% !important;
 	background: transparent;
+	contain: layout style;
 }
 
 /*************************************/
@@ -328,6 +330,9 @@ body
 	/* Место для обеих панелей и окна настроек */
 	min-height: 29.62rem;
 	position: relative;
+	justify-content: center;
+	align-items: center;
+	display: flex;
 }
 .автоскрытие:not([data-состояние="3"]):not([data-состояние="7"]):not([data-окно-открыто]):not(.меню-открыто) #проигрыватель
 {
@@ -574,14 +579,11 @@ a:hover
 	max-width: 100%;
 	max-height: 100%;
 }
-#проигрыватель:fullscreen > #глаз {
-	contain: layout style;
-	height: 100% !important;
-	width: 100% !important;
-}
 #глаз.масштабировать /* specificity */
 {
 	object-fit: contain;
+	height: 100% !important;
+	width: 100% !important;
 }
 .крутилка
 {

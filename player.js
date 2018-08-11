@@ -8614,7 +8614,7 @@ function ЗавершитьРаботу(лБыстро)
 		м_Статистика.Запустить();
 	}
 
-	// Edge 15 не дает запускать проигрыватель во фрейме на обычном сайте.
+	/* Edge 15 не дает запускать проигрыватель во фрейме на обычном сайте.
 	if (window.top !== window)
 	{
 		return;
@@ -8623,7 +8623,7 @@ function ЗавершитьРаботу(лБыстро)
 	if (navigator.userAgent.includes('Gecko/') || navigator.userAgent.includes('Edge/'))
 	{
 		м_Отладка.ЗавершитьРаботуИПоказатьСообщение('J0204');
-	}
+	}*/
 
 	const сКанал = ВыделитьКанал(window.location);
 	м_Журнал.Вот(`[Запускалка] Канал ${сКанал}`);
@@ -8645,8 +8645,10 @@ function ЗавершитьРаботу(лБыстро)
 })();
 
 function fitVideo() {
-	const video = document.getElementById('глаз'),
-		wHeight = window.innerHeight,
+	const video = document.getElementById('глаз')
+	//if (video.classList.contains('масштабировать')) return 
+
+	const wHeight = window.innerHeight,
 		wWidth = window.innerWidth
 	let vWidth = video.videoWidth,
 		vHeight = video.videoHeight
