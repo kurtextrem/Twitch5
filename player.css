@@ -608,7 +608,6 @@ a:hover
 	color: rgb({{сЦветВыделения}});
 	background: rgb({{сЦветФона}});
 	z-index: 9;
-	display: none;
 }
 #уведомление.жопа /* specificity */
 {
