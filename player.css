@@ -313,9 +313,7 @@ body
 	align-items: stretch;
 	/* Не показывать прокрутку если перетаскиваемый absolutely positioned element вылезет за пределы проигрывателя */
 	overflow: hidden;
-	font-weight: bold;
-	font-size: .75rem;
-	line-height: 1.5;
+	font: bold .75rem/1.5 Arial, "Helvetica Neue", Helvetica, sans-serif;
 	white-space: nowrap;
 	color: rgb({{сЦветКнопок}});
 	text-shadow: 0 .0625rem .0625rem #333;
@@ -1167,7 +1165,7 @@ input:not(:checked) + .заголовокнастроек + .группанас�
 	top: 2.5rem;
 	left: 0;
 	padding: .5em;
-	font: inherit;
+	font: .75rem/1rem "Roboto Condensed", Calibri, Arial, "Helvetica Neue", Helvetica, sans-serif;
 	max-width: 100%;
 	overflow: auto;
 	z-index: 1;
