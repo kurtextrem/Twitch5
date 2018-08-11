@@ -318,10 +318,7 @@ body
 	line-height: 1.5;
 	white-space: nowrap;
 	color: rgb({{сЦветКнопок}});
-	fill: currentColor;
 	text-shadow: 0 .0625rem .0625rem #333;
-	background: inherit;
-	-webkit-user-select: none;
 }
 #проигрыватель:hover > .панель {
 	will-change: opacity;
