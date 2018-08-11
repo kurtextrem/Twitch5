@@ -144,8 +144,7 @@ input:checked + .флажок-значок
 	cursor: default;
 	/* Firefox 59: Изменить свойство, влияющее на размер элемента, чтобы анимация не мешала обновлять форму курсора и выделять пункт меню под курсором */
 	max-width: 100500px;
-	visibility: hidden;
-	opacity: 0;
+	display: none;
 }
 .меню-пункт
 {
@@ -198,8 +197,9 @@ input:checked + .флажок-значок
 .менюоткрыто
 {
 	max-width: 100501px;
-	visibility: visible;
-	opacity: 1;
+	display: block;
+	-webkit-animation: fadeIn .3s ease-out;
+	animation: fadeIn .3s ease-out;
 }
 .санимацией:not(.меню-безанимации) .меню
 {
@@ -225,15 +225,15 @@ input:checked + .флажок-значок
 	z-index: 3;
 	background: linear-gradient(45deg, transparent 50%, rgba({{сЦветГрадиента}}, .2)),
 		rgba({{сЦветФона}}, {{чНепрозрачностьОкна}});
-	visibility: hidden;
-	opacity: 0;
+	display: none;
 	transform: scale(.8);
 }
 .окнооткрыто
 {
-	visibility: visible;
-	opacity: 1;
+	display: block;
 	transform: none;
+	-webkit-animation: fadeIn .3s ease-out;
+	animation: fadeIn .3s ease-out;
 }
 .санимацией .окно
 {
@@ -256,7 +256,9 @@ input:checked + .флажок-значок
 }
 .тащилка-скрыть
 {
-	visibility: hidden !important;
+	display: block !important;
+	-webkit-animation: fadeIn .3s ease-out;
+	animation: fadeIn .3s ease-out;
 }
 
 /*************************************/
@@ -375,7 +377,7 @@ body
 	height: 0;
 	min-width: 0;
 	min-height: 0;
-	visibility: hidden;
+	display: none;
 }
 /*
  * Положение чата
@@ -569,6 +571,8 @@ a:hover
 	width: 100%;*/
 	z-index: 1;
 	object-fit: contain;
+	max-width: 100%;
+	max-height: 100%;
 }
 #проигрыватель:fullscreen > #глаз {
 	contain: layout style;
@@ -578,8 +582,6 @@ a:hover
 #глаз.масштабировать /* specificity */
 {
 	object-fit: contain;
-	max-width: 100%;
-	max-height: 100%;
 }
 .крутилка
 {
@@ -642,13 +644,21 @@ a:hover
 		rgba({{сЦветГрадиента}}, .2) 60%,
 		rgba({{сЦветГрадиента}},  0) 90%),
 		rgba({{сЦветФона}}, {{чНепрозрачность}});
+	-webkit-animation: fadeIn .3s ease-out;
+	animation: fadeIn .3s ease-out;
+}
+@-webkit-keyframes fadeIn {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
+}
+@keyframes fadeIn {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
 }
 .автоскрытие:not([data-состояние="3"]):not([data-состояние="7"]):not([data-окно-открыто]) .панель
 {
 	/* Чтобы transition не мешал скрывать tooltip и курсор, висящего над элементом, для которого задан cursor */
-	pointer-events: none;
-	visibility: hidden;
-	opacity: 0;
+	display: none;
 }
 .санимацией:not(.панель-безанимации) .панель
 {

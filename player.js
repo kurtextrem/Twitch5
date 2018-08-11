@@ -7472,7 +7472,7 @@ const м_Преобразователь = (() =>
 		if (!_оРабочийПоток)
 		{
 			м_Журнал.Вот('[Преобразование] Создаю рабочий поток');
-			_оРабочийПоток = new Worker(chrome.extension.getURL('worker.js'));
+			_оРабочийПоток = new Worker(chrome.extension.getURL('worker_pre.js'));
 			_оРабочийПоток.addEventListener('message', ОбработатьОкончаниеПреобразования);
 			_оРабочийПоток.addEventListener('error', ОбработатьОшибкуПреобразования);
 			_оРабочийПоток.addEventListener('messageerror', ОбработатьОшибкуПреобразования);
