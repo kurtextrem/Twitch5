@@ -70,6 +70,7 @@ input[type="color"]
 	padding: 0 3px;
 }
 input[type="color"]:disabled,
+input[type="range"]:disabled,
 button:disabled,
 select:empty
 {
@@ -190,9 +191,11 @@ input:checked + .флажок-значок
 {
 	margin: .1875rem 0;
 	/* Chrome 66, Edge 16: С определенными дробными значениями rem один из бордюров исчезает или между верхним и нижнем бордюром появляется пустой пиксель */
+	border: 0;
 	border-top: 1px solid #e0e0e0;
-	border-bottom: 1px solid #fff;
-	border-image: none;
+	padding: 0;
+	height: 2px;
+	background: #fff;
 }
 .менюоткрыто
 {
@@ -581,7 +584,7 @@ a:hover
 }
 #глаз.масштабировать /* specificity */
 {
-	object-fit: contain;
+	object-fit: cover;
 	height: 100% !important;
 	width: 100% !important;
 }
@@ -1267,19 +1270,4 @@ input:not(:checked) + .заголовокнастроек + .группанас�
 .анализ-история:empty
 {
 	display: none;
-}
-#закрытьстатистику
-{
-	position: absolute;
-	top: 0;
-	left: 0;
-	cursor: pointer;
-}
-#закрытьстатистику > svg
-{
-	display: block;
-	margin: .375rem .75rem .75rem .375rem;
-	width: .9rem;
-	height: .9rem;
-	color: #bbb;
 }

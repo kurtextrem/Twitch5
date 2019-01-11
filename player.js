@@ -3314,12 +3314,12 @@ const м_Управление = (() =>
 	{
 		if (м_Настройки.Получить('лМенятьГромкостьКолесом'))
 		{
-			document.addEventListener('wheel', ОбработатьВращениеКолеса);
+			document.addEventListener('wheel', ОбработатьВращениеКолеса, {passive:true});
 			document.addEventListener('pointerdown', ОбработатьНажатиеКолеса);
 		}
 		else
 		{
-			document.removeEventListener('wheel', ОбработатьВращениеКолеса);
+			document.removeEventListener('wheel', ОбработатьВращениеКолеса, {passive:true});
 			document.removeEventListener('pointerdown', ОбработатьНажатиеКолеса);
 		}
 	}
