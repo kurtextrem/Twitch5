@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24">
 	<!--
-		Chrome 63 не любит кириллицу в <use xlink:href> сука.
+		Chrome 63 не любит кириллицу в <use xlink:href>, расист херов.
 		https://bugs.chromium.org/p/chromium/issues/detail?id=779420
 
 		HACK Chrome 65: Если добавить filter с feOffset, то при определенных дробных значениях
