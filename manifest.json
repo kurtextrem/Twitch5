@@ -1,9 +1,9 @@
 {
 	"manifest_version": 2,
-	"minimum_chrome_version": "43",
+	"minimum_chrome_version": "49",
 	"name": "Improved Player for Twitch",
 	"short_name": "Twitch 5",
-	"version": "2018.7.9.2",
+	"version": "2018.12.10",
 	"description": "__MSG_M0001__",
 	"author": "Alexander Choporov (CoolCmd), Jacob Groß",
 	"icons":
@@ -26,7 +26,8 @@
       "webRequestBlocking",
 		"*://*.twitch.tv/*",
 		"*://twitch.tv/*",
-		"*://*.ttvnw.net/*"
+		"*://*.ttvnw.net/*",
+		"cookies"
 	],
 	"web_accessible_resources":
 	[
@@ -42,7 +43,7 @@
 		],
 		"js":
 		[
-			"content.js"
+			"common.js", "content.js"
 		],
 		"all_frames": true,
 		"run_at": "document_start"
