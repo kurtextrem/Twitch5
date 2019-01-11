@@ -8662,7 +8662,7 @@ function fitVideo() {
 		vWidth = wWidth
 		sw = true
 	}
-	if (sw) video.style.objectFit = 'fill'
+	if (sw) video.style.objectFit = 'scale-down'
 
 	video.style.width = vWidth + 'px'
 	video.style.height = vHeight + 'px'
