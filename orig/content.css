@@ -2,30 +2,41 @@
 /* Включаем без учета ширины если не влезает выбор bits */
 @media (max-height: 35em), (max-height: 42em) and (min-width: 32em)
 {
+	:root
+	{
+		--tw5-высотакомнат: 3rem;
+		--tw5-отступокна: .2rem;
+		--tw5-нижнийотступчата: .4rem;
+		--tw5-высотавводасообщения-в: (.8rem + 22px); /* Равна высоте кнопок */
+		--tw5-вышевводасообщения-в: (var(--tw5-нижнийотступчата) + var(--tw5-высотавводасообщения-в));
+	}
+
 	/**
 	 * Уменьшить вертикальные поля заголовка со списком комнат.
 	 */
 	html .room-selector__header
 	{
-		height: 3rem;
+		height: var(--tw5-высотакомнат);
 	}
 	html .room-selector__open-header-wrapper
 	{
-		min-height: 3rem;
+		min-height: var(--tw5-высотакомнат);
 	}
-	html .room-picker
+	.room-selector__open-header-wrapper + div > .tw-absolute
 	{
-		top: calc(3rem - 1px);
-		max-width: 40rem;
+		left: auto !important;
 	}
 
 	/**
 	 * Поле для ввода сообщения.
 	 */
+	html .chat-input
+	{
+		padding-bottom: var(--tw5-нижнийотступчата) !important;
+	}
 	.tw-textarea[data-a-target="chat-input"]
 	{
-		/* Высота равна высоте кнопок */
-		height: calc(2.8rem + 2px);
+		height: calc(var(--tw5-высотавводасообщения-в));
 		/* Вертикальная полоса прокрутки не перекроет кнопку справа */ 
 		overflow: hidden;
 		padding-left: .5rem;
@@ -36,27 +47,25 @@
 	 */
 	.tw-textarea[data-a-target="chat-input"][style*="padding-right: 3rem"]
 	{
-		padding-right: calc((2px + 1.2rem + 16px) * 1) !important;
+		padding-right: calc(var(--tw5-высотавводасообщения-в) * 1) !important;
 	}
 	.tw-textarea[data-a-target="chat-input"][style*="padding-right: 6rem"]
 	{
-		padding-right: calc((2px + 1.2rem + 16px) * 2) !important;
+		padding-right: calc(var(--tw5-высотавводасообщения-в) * 2) !important;
 	}
 	.tw-textarea[data-a-target="chat-input"][style*="padding-right: 9rem"]
 	{
-		padding-right: calc((2px + 1.2rem + 16px) * 3) !important;
+		padding-right: calc(var(--tw5-высотавводасообщения-в) * 3) !important;
 	}
 
 	/**
 	 * Кнопки, которые были под вводом сообщения, будут находиться справа от него.
 	 */
-	html .chat-input
+	.chat-input > div:last-child
 	{
 		display: flex;
-		flex: none;
-		padding-bottom: .4rem !important;
 	}
-	.chat-input > .tw-relative.tw-z-default
+	.chat-input .tw-block.tw-relative.tw-z-default
 	{
 		flex: 1;
 	}
@@ -71,22 +80,51 @@
 	}
 
 	/**
+	 * Кнопка режима только для подписчиков, которая была над вводом сообщения, будет находиться слева от него.
+	 * Скрыть текст кнопки (оставить только значок), уменьшить высоту до стандартной.
+	 */
+	/* Во время показа списка зрителей .tw-block будет заменен на .tw-hide */
+	.chat-input:not(.tw-hide)
+	{
+		display: flex !important;
+		/* Не уменьшать высоту если видны не все сообщения */
+		flex-shrink: 0;
+	}
+	.chat-input > div:last-child
+	{
+		flex: 1;
+	}
+	.chat-input div[data-test-selector="chat-restricted-header"]
+	{
+		/* margin-top вместо padding-top для позиционирования окна, которое появляется по нажатию кнопки */
+		margin-top: -.5rem !important;
+		border-top: 0 !important;
+		padding-bottom: 0 !important;
+	}
+	.chat-input div[data-test-selector="chat-restricted-header"] > .tw-link
+	{
+		display: none;
+	}
+	.chat-input div[data-test-selector="chat-restricted-header"] > .tw-mg-l-05
+	{
+		margin-left: 0 !important;
+	}
+
+	/**
 	 * Окна.
 	 */
 	.tw-balloon[data-a-target="chat-settings-balloon"],
 	.tw-balloon[data-a-target="emote-picker"],
-	html .t-bits-card,
-	html .bits-card-loading,
-	html .bits-buy-card
+	html .bits-card-wrapper
 	{
 		/* Использовать место, занимаемое заголовком со списком комнат */
 		position: fixed !important;
 		left: auto !important;
 		/* Не прислонять окно вплотную к границе экрана, чтобы пользователь
 		понял, что ни одна часть окна не вышла за пределы экрана. */
-		right: .2rem !important;
+		right: var(--tw5-отступокна) !important;
 		/* Не перекрывать кнопки, которые закрывают окно */
-		bottom: calc(.4rem + (2.8rem + 2px)) !important;
+		bottom: calc(var(--tw5-вышевводасообщения-в)) !important;
 		margin: 0 !important;
 	}
 
@@ -95,7 +133,7 @@
 	 */
 	.chat-settings
 	{
-		max-height: calc(100vh - .4rem - (2.8rem + 2px) - 2px - .2rem) !important;
+		max-height: calc(100vh - var(--tw5-вышевводасообщения-в) - 2px - var(--tw5-отступокна)) !important;
 	}
 	html .chat-settings__content
 	{
@@ -109,11 +147,15 @@
 	{
 		width: 80rem;
 	}
-	.emote-picker__tab-content
+	/**
+	 * Старый список.
+	 */
+	/* Селектор уточнен чтобы не влиял на новый список */
+	.emote-picker__tab-content:first-child
 	{
-		max-height: calc(100vh - .4rem - (2.8rem + 2px) - 3rem - 2px - .2rem) !important; /* important для FFZ */
+		max-height: calc(100vh - var(--tw5-вышевводасообщения-в) - 3rem - 2px - var(--tw5-отступокна)) !important;
 	}
-	html .emote-picker__content-block
+	.emote-picker__content-block
 	{
 		padding-left: 0 !important;
 		padding-right: 0 !important;
@@ -123,7 +165,7 @@
 		padding-top: 0 !important;
 	}
 	/* Оставить поле у последнего блока, чтобы влезла всплывающая подсказка
-	с названием смайлика. Подсказка всегда внизу - это недоработка Twitch. */
+	с названием смайлика, которая всегда появляется внизу. */
 	.emote-picker__content-block.tw-pd-b-2:not(:last-child)
 	{
 		padding-bottom: 1rem !important;
@@ -139,31 +181,50 @@
 	{
 		flex: 1;
 	}
-	/* html для FFZ */
-	html .emote-picker__controls-container > .tw-border-t.tw-pd-1
+	.emote-picker__controls-container > .tw-border-t.tw-pd-1
 	{
 		order: 1;
-		display: flex;
-		align-items: center;
-		padding: 0 .2rem 0 0 !important;
+		padding: 0 !important;
 	}
-	.emote-picker__controls-container .tw-input
+	.emote-picker .tw-input.tw-full-width
 	{
-		width: 12em;
-		padding: .2rem .8rem;
+		width: 12em !important;
+	}
+	/**
+	 * Новый список. Отличается наследниками .emote-picker.
+	 */
+	/* Селектор уточнен чтобы не влиял на старый список */
+	div + .emote-picker__tab-content
+	{
+		max-height: calc(100vh - var(--tw5-вышевводасообщения-в) - 2rem - 20px - 2px - var(--tw5-отступокна)) !important;
+	}
+	html .emote-grid-section
+	{
+		padding-top: .2rem !important;
+		padding-bottom: 0 !important;
+	}
+	/**
+	 * Переместить поиск смайликов в строку с вкладками.
+	 */
+	.emote-picker > .tw-pd-t-2.tw-pd-x-2
+	{
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		padding: 0 .5rem calc((2rem + 20px - 3rem) / 2) 0 !important;
+	}
+	.emote-picker .tw-input.tw-full-width
+	{
+		width: 13em !important;
 	}
 
 	/**
 	 * Выбор bits.
 	 */
-	html .t-bits-card
+	html .bits-card-wrapper
 	{
-		width: 150rem !important;
-		max-width: calc(100vw - .2rem * 2);
-	}
-	html .bits-card-loading
-	{
-		width: 40rem !important;
+		width: 98rem !important;
+		max-width: calc(100vw - var(--tw5-отступокна) * 2);
 	}
 	/* Значение взято с запасом */
 	@media (max-height: 27em)
@@ -191,59 +252,54 @@
 		{
 			margin-bottom: .5rem;
 		}
-		.t-bits-card .tw-pd-1,
-		.t-bits-card .tw-pd-2,
-		.t-bits-card .tw-pd-3
+		.bits-card-wrapper .tw-pd-1,
+		.bits-card-wrapper .tw-pd-2,
+		.bits-card-wrapper .tw-pd-3,
+		.bits-card-wrapper .tw-pd-y-1,
+		.bits-card-wrapper .tw-pd-y-2,
+		.bits-card-wrapper .tw-pd-y-3
 		{
 			padding-top: .5rem !important;
 			padding-bottom: .5rem !important;
 		}
-		.t-bits-card .tw-pd-t-1,
-		.t-bits-card .tw-pd-t-2,
-		.t-bits-card .tw-pd-t-3,
+		.bits-card-wrapper .tw-pd-t-1,
+		.bits-card-wrapper .tw-pd-t-2,
+		.bits-card-wrapper .tw-pd-t-3,
 		html .cheermote-prefix-selector__cheermotes,
 		html .cheermote-tier-selector__cheermotes
 		{
 			padding-top: .5rem !important;
 		}
-		.t-bits-card .tw-pd-b-1,
-		.t-bits-card .tw-pd-b-2,
-		.t-bits-card .tw-pd-b-3
+		.bits-card-wrapper .tw-pd-b-1,
+		.bits-card-wrapper .tw-pd-b-2,
+		.bits-card-wrapper .tw-pd-b-3
 		{
 			padding-bottom: .5rem !important;
 		}
-		.t-bits-card .tw-mg-1,
-		.t-bits-card .tw-mg-2,
-		.t-bits-card .tw-mg-3,
-		.t-bits-card .tw-mg-t-1,
-		.t-bits-card .tw-mg-t-2,
-		.t-bits-card .tw-mg-t-3,
-		.t-bits-card .tw-mg-b-1,
-		.t-bits-card .tw-mg-b-2,
-		.t-bits-card .tw-mg-b-3
+		.bits-card-wrapper .tw-mg-1,
+		.bits-card-wrapper .tw-mg-2,
+		.bits-card-wrapper .tw-mg-3,
+		.bits-card-wrapper .tw-mg-t-1,
+		.bits-card-wrapper .tw-mg-t-2,
+		.bits-card-wrapper .tw-mg-t-3,
+		.bits-card-wrapper .tw-mg-b-1,
+		.bits-card-wrapper .tw-mg-b-2,
+		.bits-card-wrapper .tw-mg-b-3
 		{
 			margin-top: 0 !important;
 			margin-bottom: 0 !important;
 		}
-	}
-
-	/**
-	 * Покупка bits.
-	 */
-	html .bits-buy-card
-	{
-		width: 80rem !important;
-		max-width: calc(100vw - .2rem * 2);
-		min-height: 0;
-		max-height: calc(100vh - .4rem - (2.8rem + 2px) - .2rem);
-	}
-	.bits-buy-card[data-a-target="bits-buy-card-loading"]
-	{
-		min-height: 18rem;
-	}
-	html .bits-buy-card-offers__scroll-view
-	{
-		height: 100%;
+		/**
+		 * Покупка bits.
+		 */
+		html .bits-buy-card
+		{
+			min-height: 0;
+		}
+		html .bits-buy-card-offers__scroll-view
+		{
+			height: 20rem !important;
+		}
 	}
 
 	/**
@@ -251,17 +307,14 @@
 	 */
 	html .chat-viewers__header
 	{
-		height: 3rem;
+		height: 3.1rem;
 	}
 	html .chat-viewers__filter
 	{
-		margin-top: .5rem !important;
-		margin-bottom: .5rem !important;
-	}
-	.chat-viewers__filter .tw-input
-	{
-		padding-top: .2rem;
-		padding-bottom: .2rem;
+		position: absolute;
+		left: 6rem;
+		top: 0;
+		margin: 0 !important;
 	}
 	.chat-viewers-list.tw-pd-b-2
 	{
@@ -271,40 +324,38 @@
 	/**
 	 * Список пожертвований. Будет висеть в правом верхнем углу, не отнимая место у сообщений.
 	 */
-	html .pinned-cheer-v2
+	.pinned-cheer-v2
 	{
 		position: absolute;
 		/* Не перекрывать вертикальную полосу прокрутки */
 		right: 12px;
 		top: 0;
-		max-height: calc(100vh - .4rem - (2.8rem + 2px) - 3rem);
-		height: auto;
-		display: flex;
 	}
-	html .pinned-cheer-v2-header__users
+	.pinned-cheer-v2 > * > .tw-c-background-base.tw-pd-t-1
 	{
-		width: auto;
+		display: flex;
+		flex-flow: column;
+		max-height: calc(100vh - var(--tw5-вышевводасообщения-в) - 1px - var(--tw5-высотакомнат));
 	}
+	.pinned-cheer-v2 > * > * > .tw-align-items-center
+	{
+		flex-shrink: 0;
+		/* Оставить место для .bits-leaderboard-expanded__arrow */
+		margin-left:  3.8rem;
+		margin-right: 3.8rem;
+	}
+	/* Высоту заголовка предсказать невозможно */
+	html .bits-leaderboard-expanded__scrollable
+	{
+		max-height: none !important;
+	}
+	/**
+	 * Оставить место для .pinned-cheer-v2-header--arrow.
+	 */
 	html .pinned-cheer-v2-header--arrow
 	{
 		position: static !important;
 		vertical-align: top;
-	}
-	.pinned-cheer-v2 > * > .tw-c-background.tw-pd-t-1
-	{
-		height: 100%;
-		display: flex;
-		flex-flow: column;
-	}
-	html .bits-leaderboard-expanded__scrollable
-	{
-		max-height: none;
-	}
-	/* Оставить место для bits-leaderboard-expanded__arrow */
-	.pinned-cheer-v2 > * > * > .tw-align-items-center
-	{
-		margin-left: 3.8rem;
-		margin-right: 3.8rem;
 	}
 	@media (max-width: 47em)
 	{
@@ -324,7 +375,7 @@
 	html .chat-rules
 	{
 		position: fixed !important;
-		bottom: .4rem;
+		bottom: var(--tw5-нижнийотступчата);
 		z-index: 5;
 	}
 	.chat-rules > .tw-mg-b-1
@@ -335,29 +386,21 @@
 	/**
 	 * Меню в карточке откроется вверх и не вылезет за нижнюю границу экрана.
 	 */
-	.viewer-card__actions > div > .tw-align-right .tw-balloon--down
+	.viewer-card__actions .tw-balloon--down.tw-balloon--right
 	{
 		top: auto;
 		bottom: 100%;
 		margin-bottom: 8px;
 	}
-	.viewer-card__actions > div > .tw-align-right .tw-balloon--down > .tw-balloon__tail
+	.viewer-card__actions .tw-balloon--down.tw-balloon--right > .tw-balloon__tail
 	{
 		top: 100%;
 		margin-top: -1px;
 	}
-	.viewer-card__actions > div > .tw-align-right .tw-balloon--down > .tw-balloon__tail .tw-balloon__tail-symbol
+	.viewer-card__actions .tw-balloon--down.tw-balloon--right > .tw-balloon__tail > .tw-balloon__tail-symbol
 	{
 		top: auto;
 		bottom: 8px;
-	}
-
-	/* Исправляем косяк Twitch: карточку не видно в Chrome 49 */
-	.chat-room__viewer-card,
-	/* Исправляем косяк Twitch: элемент смещен по вертикали в списке зрителей в Chrome 49 */
-	.chat-viewers__header > .tw-absolute
-	{
-		top: 0;
 	}
 
 	.chat-list__lines .tw-full-height.tw-pd-b-1[role="log"]
@@ -366,12 +409,47 @@
 	}
 
 	/**
+	 * Исправляем косяк Twitch в Chrome 49.
+	 */
+	/* Не видно карточку */
+	.chat-room__viewer-card,
+	/* В списке зрителей кнопка закрытия смещена по вертикали */
+	.chat-viewers__header > .tw-absolute
+	{
+		top: 0;
+	}
+
+	/**
 	 * BetterTTV
 	 */
 	#emote-menu-for-twitch
 	{
-		max-width: 120rem;
 		left: auto !important;
-		right: 1px;
+		right: 0;
+		max-width: 120rem;
+		top: 0 !important;
+		bottom: calc(var(--tw5-вышевводасообщения-в));
+		height: auto !important;
+	}
+	#emote-menu-for-twitch .emote-menu-inner > .draggable
+	{
+		display: none;
+	}
+	.chat-input .tw-textarea--no-resize
+	{
+		resize: none !important;
+		min-height: 0 !important;
+	}
+
+	/**
+	 * FrankerFaceZ
+	 */
+	.ffz--emote-picker heading.tw-pd-1
+	{
+		padding: .5rem 1rem !important;
+	}
+	.ffz--emote-picker heading + .tw-pd-1
+	{
+		padding: 0 1rem !important;
 	}
 }
