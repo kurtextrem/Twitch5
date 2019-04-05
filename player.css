@@ -323,9 +323,9 @@ body
 {
 	height: 100%;
 	display: flex;
-	align-items: stretch;
+	align-items: center;
 	/* Не показывать прокрутку если перетаскиваемый absolutely positioned element вылезет за пределы проигрывателя */
-	overflow: hidden;
+	/*overflow: hidden;*/
 	font: bold .75rem/1.5 Arial, "Helvetica Neue", Helvetica, sans-serif;
 	white-space: nowrap;
 	color: rgb({{сЦветКнопок}});
@@ -338,6 +338,7 @@ body
 	min-width: 35.75rem;
 	/* Место для обеих панелей и окна настроек */
 	min-height: 29.62rem;
+	height: min-content;
 	position: relative;
 	justify-content: center;
 	align-items: center;
@@ -350,11 +351,11 @@ body
 #размерчата:hover,
 #размерчата.тащилка
 {
-	opacity: 1;
+	display: block;
 }
 .санимацией #размерчата
 {
-	transition: opacity .35s ease-out;
+	
 }
 /*
  * UNDONE Нужно для Chrome 56..65, более новым версиям вроде не мешает.
@@ -372,6 +373,7 @@ body
 	/* Должна влезать карточка зрителя с кнопками модератора */
 	min-height: 188px;
 	border: 0;
+	z-index: 0;
 }
 .скрытьчат #размерчата,
 .скрытьчат #чат
@@ -410,7 +412,7 @@ body
 	cursor: ew-resize;
 	/* Прозрачная часть висит над панелью и чатом */
 	z-index: 5;
-	opacity: 0;
+	display: none;
 }
 .чатслева #размерчата
 {
