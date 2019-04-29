@@ -24,9 +24,7 @@
 		"management",
       "webRequest", 
       "webRequestBlocking",
-		"*://*.twitch.tv/*",
-		"*://twitch.tv/*",
-		"*://*.ttvnw.net/*",
+		"*://*.twitch.tv/*", "*://*.ttvnw.net/*", "*://*.akamaized.net/*"
 		"cookies"
 	],
 	"web_accessible_resources":

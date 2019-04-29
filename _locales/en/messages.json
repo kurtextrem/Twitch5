@@ -86,20 +86,20 @@
       "message": "Good — the download speed is always enough for the selected video quality (see the description of the “Video quality” setting). Select this option to make chatting easier (see the description of the “Buffer size” setting).\n\nModerate — sometimes the download speed falls below the desired level (see “Download rate” in the statistics). This is the most universal option.\n\nBad — the download speed often falls below the desired level or some segments cannot be downloaded due to network errors (see “Download errors” in the statistics). Select this option to reduce the number of playback interruptions.\n\nCustomizable — you have changed the settings in the “Buffering” settings group."
    },
    "A0592": {
-      "message": "Click to begin following this channel.\n\nTo track your followed channels, as well as explore new ones, I recommend installing the “Twitch Now” browser extension."
+      "message": "Click to begin following this channel.\n\nTo track your followed channels, quickly switch between them, and also to search for new channels, I recommend installing the “Twitch Now” browser extension."
    },
    "A0594": {
       "message": "Click to unfollow this channel"
    },
    "A0595": {
       "description": "Текст скопирован с сайта Twitch.tv",
-      "message": "Check the box to receive updates on this channel's activity, including when they go live"
+      "message": "Check the box to receive updates on this channel's activity, including when it go live"
    },
    "A0597": {
       "message": "Open or close the information about this channel.\nThe I key on the keyboard."
    },
    "A0599": {
-      "message": "Show help.\nThe F1 key on the keyboard."
+      "message": "Show important information.\nThe F1 key on the keyboard."
    },
    "A0606": {
       "message": "Save all extension settings to a file"
@@ -449,7 +449,7 @@
       "message": "Give permission"
    },
    "F0640": {
-      "message": "Home Page"
+      "message": "Discover"
    },
    "F0641": {
       "message": "All Games"
@@ -574,6 +574,9 @@
    "F0728": {
       "message": "\u003Cb>If you do not receive the reply for a long time, try searching in spam the mail with the subject \u003Cq>Alternate Player for Twitch.tv\u003C/q>.\u003C/b>"
    },
+   "F0729": {
+      "message": "Data was rejected. The version of the installed extension is outdated! Please update the extension."
+   },
    "F0777": {
       "description": "Текст в пустой боковой панели.",
       "message": "Съешь ещё этих мягких французских булок, да выпей чаю. Съешь ещё этих мягких французских булок, да выпей чаю. Съешь ещё этих мягких французских булок, да выпей чаю. Съешь ещё этих мягких французских булок, да выпей чаю. Съешь ещё этих мягких французских булок, да выпей чаю. Съешь ещё этих мягких французских булок, да выпей чаю. Съешь ещё этих мягких французских булок, да выпей чаю."
@@ -656,7 +659,7 @@
    },
    "F1056": {
       "description": "Новость для планшета.",
-      "message": "\u003Cp>The extension is not tested enough in this browser.\u003C/p>\u003Cp>The extension does not fully support the touch screen: tooltips are not visible, the layout of interface is not optimal.\u003C/p>\u003Cp>The browser contains the bug that sometimes causes the player to crash if it is the only opened browser tab. There are other errors which developers of this browser do not hurry to fix.\u003C/p>"
+      "message": "\u003Cp>The extension is not tested enough in this browser. The extension does not fully support the touch screen: tooltips are not visible. The browser contains some annoying bugs.\u003C/p>"
    },
    "F1057": {
       "description": "Новость.",
@@ -678,6 +681,10 @@
       "description": "Новость.",
       "message": "\u003Cp>Added video quality \u003Cq>Audio only\u003C/q>. In this mode, the video is not downloaded nor shown. This reduces the resource (CPU, RAM, Internet connection) usage by the player. Ideal for music listening.\u003C/p>\u003Cp>Improved setting for changing the volume by mouse wheel. Now you can set the volume change step.\u003C/p>"
    },
+   "F1063": {
+      "description": "Новость.",
+      "message": "\u003Cp>In some cases, ads was shown in the broadcasts. Now this ads will be blocked.\u003C/p>"
+   },
    "F1501": {
       "description": "Часть справки, часть формы отзыва, новость для первого запуска проигрывателя.",
       "message": "\u003Cp>To see help, right click the view area, then in the menu click \u003Cq>Help\u003C/q>. Also, most elements of the player interface (buttons, links, menus, etc) have tooltips, which I highly recommend to read. Tooltips automatically appear under the mouse cursor after it is stopped.\u003C/p>"
@@ -693,10 +700,6 @@
    "F1504": {
       "description": "Часть справки.",
       "message": "\u003Cp>Frequently used commands, such as \u003Ci>mute\u003C/i>, easier to give by pressing keys on the keyboard. The keys are listed in the tooltips.\u003C/p>"
-   },
-   "F1505": {
-      "description": "Часть справки.",
-      "message": "\u003Cp>To track your followed channels, as well as explore new ones, I recommend installing the \u003Ca href='https://chrome.google.com/webstore/detail/nlmbdmpjmlijibeockamioakdpmhjnpk' target='_blank' rel='noopener noreferrer'>\u003Ccite>Twitch Now\u003C/cite>\u003C/a> browser extension.\u003C/p>"
    },
    "F1506": {
       "description": "Часть справки.",
@@ -742,6 +745,10 @@
       "description": "Часть справки для Chrome и Firefox.",
       "message": "\u003Cp>To enable inline moderation icons in the \u003Cq>less-featured\u003C/q> chat version, check the \u003Ca href='https://discuss.dev.twitch.tv/uploads/default/original/2X/f/f3049202b1456ee758ea81487a193ee540c84e7e.gif' target='_blank' rel='noopener noreferrer'>Mod Icons\u003C/a> option in your chat setting on the Twitch.tv website.\u003C/p>"
    },
+   "F1575": {
+      "description": "Часть справки для Chrome.",
+      "message": "\u003Cp>To track your followed channels, quickly switch between them, and also to search for new channels, I recommend installing the \u003Ca href='https://chrome.google.com/webstore/detail/nlmbdmpjmlijibeockamioakdpmhjnpk' target='_blank' rel='noopener noreferrer'>\u003Ccite>Twitch Now\u003C/cite>\u003C/a> browser extension.\u003C/p>"
+   },
    "F1581": {
       "description": "Часть справки для Firefox.",
       "message": "\u003Cp>If you have problems with chat, then try the following:\u003Cul>\u003Cli>Open your browser settings and allow to accept cookies, including third-party cookies, or add an address&emsp;\u003Ccode>https://twitch.tv\u003C/code>&emsp;to exceptions.\u003Cli>Go to \u003Ca href='https://www.twitch.tv/' rel='noopener noreferrer'>Twitch.tv\u003C/a> website and remove its cookies.\u003Cli>Select a different chat version in the player settings.\u003Cli>Chat can be broken by: other browser extensions, ad blockers, firewalls, antiviruses. To diagnose a problem, try temporarily turning off all of the above. Here are the \u003Ca href='https://coolcmd.tk/img/tw5/privacy%20badger%20options.png' target='_blank' rel='noopener noreferrer'>Privacy Badger extension settings\u003C/a>, which do not interfere with chat.\u003C/ul>\u003C/p>"
@@ -749,6 +756,10 @@
    "F1582": {
       "description": "Часть справки для Firefox.",
       "message": "\u003Cp>You should not block the JavaScript on the Twitch.tv website, for example in the \u003Ccite>NoScript\u003C/cite> extension. Also, you should not block the loading of HTML5 video, for example in the \u003Ccite>Flashblock\u003C/cite> extension.\u003C/p>"
+   },
+   "F1583": {
+      "description": "Часть справки для Firefox.",
+      "message": "\u003Cp>To track your followed channels, quickly switch between them, and also to search for new channels, I recommend installing the \u003Ca href='https://addons.mozilla.org/firefox/addon/twitch-now/' target='_blank' rel='noopener noreferrer'>\u003Ccite>Twitch Now\u003C/cite>\u003C/a> browser extension.\u003C/p>"
    },
    "F1590": {
       "description": "Часть справки для Edge.",
@@ -917,6 +928,12 @@
    },
    "J0212": {
       "message": "Failed to save extension settings."
+   },
+   "J0213": {
+      "message": "An error occurred in the extension. This error was fixed in Windows version 1809. Please update Windows."
+   },
+   "J0214": {
+      "message": "Due to browser bug, the player is not always able to work if only one tab is open in the browser. Try to open this page in another tab."
    },
    "J1003": {
       "description": "Заголовок новости.",
