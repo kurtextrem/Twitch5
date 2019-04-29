@@ -584,7 +584,7 @@ a:hover
 }
 #глаз
 {
-	contain: strict;
+	/*contain: strict;
 	 /* position: absolute; Chrome 59- */
 	/*height: 100%;
 	width: 100%;*/

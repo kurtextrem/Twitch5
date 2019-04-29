@@ -5390,7 +5390,7 @@ function ЗавершитьРаботу(лБыстро) {
 	м_Twitch = Twitch(сКанал);
 })();
 
-document.getElementById('глаз').addEventListener('canplay', fitVideo)
+//document.getElementById('глаз').addEventListener('canplay', fitVideo)
 
 function fitVideo() {
 	const video = document.getElementById('глаз')
